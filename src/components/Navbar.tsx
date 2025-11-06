@@ -9,7 +9,7 @@ const Navbar: React.FC = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <nav className="bg-gradient-to-br from-primary-50 via-secondary-50 to-accent-50 shadow-xl backdrop-blur-sm relative">
+    <nav className="bg-white shadow-xl backdrop-blur-sm relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Desktop Layout */}
         <div className="hidden md:flex items-center justify-between h-36">
@@ -73,21 +73,13 @@ const Navbar: React.FC = () => {
 
           {/* Center Logo */}
           <div className="flex items-center justify-center flex-1">
-            <Link to="/" className="flex-shrink-0">
+            <Link to="/" className="block">
               <img 
-                src="/images/logo.svg" 
+                src="/logo.png.png" 
                 alt="Rose Wedding Hall" 
-                className="h-28 w-auto"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.style.display = 'none';
-                  const fallback = target.nextElementSibling as HTMLElement;
-                  if (fallback) fallback.style.display = 'block';
-                }}
+                className="w-auto object-contain"
+                style={{ background: 'transparent', height: '15rem' }}
               />
-              <div style={{display: 'none'}} className="h-28 flex items-center justify-center">
-                <span className="text-2xl font-bold text-primary" style={{fontFamily: 'Arial, sans-serif', fontWeight: 'bold', fontStyle: 'italic'}}>Rose Wedding Hall</span>
-              </div>
             </Link>
           </div>
           
@@ -158,19 +150,11 @@ const Navbar: React.FC = () => {
           <div className="flex-1 flex justify-center">
             <Link to="/" className="flex-shrink-0">
               <img 
-                src="/images/logo.svg" 
+                src="/logo.png.png" 
                 alt="Rose Wedding Hall" 
-                className="h-20 w-auto"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.style.display = 'none';
-                  const fallback = target.nextElementSibling as HTMLElement;
-                  if (fallback) fallback.style.display = 'block';
-                }}
+                className="h-20 w-auto object-contain"
+                style={{ background: 'transparent' }}
               />
-              <div style={{display: 'none'}} className="h-20 flex items-center justify-center">
-                <span className="text-lg font-bold text-primary" style={{fontFamily: 'Arial, sans-serif', fontWeight: 'bold', fontStyle: 'italic'}}>Rose Wedding Hall</span>
-              </div>
             </Link>
           </div>
 

@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
 
+interface ImageWithLoading {
+  loaded: boolean;
+  error: boolean;
+}
+
 const Gallery: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const [imageStates, setImageStates] = useState<Record<number, ImageWithLoading>>({});
 
   const galleryData = [
     // Angel Salon Görselleri
@@ -91,22 +97,59 @@ const Gallery: React.FC = () => {
                   {/* Media Content */}
                   <div className="relative h-64 bg-gradient-to-br from-pink-100 via-purple-50 to-rose-100 group-hover:from-pink-200 group-hover:via-purple-100 group-hover:to-rose-200 transition-all duration-700 overflow-hidden">
                     {item.type === 'image' ? (
-                      <img 
-                        src={item.src} 
-                        alt={item.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          target.style.display = 'none';
-                          const fallback = target.nextElementSibling as HTMLElement;
-                          if (fallback) fallback.style.display = 'flex';
-                        }}
-                      />
+                      <>
+                        {/* Loading Placeholder */}
+                        {!imageStates[item.id]?.loaded && !imageStates[item.id]?.error && (
+                          <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-pink-100 via-purple-50 to-rose-100">
+                            <div className="animate-pulse">
+                              <svg className="w-12 h-12 mx-auto text-gray-400" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" />
+                              </svg>
+                            </div>
+                          </div>
+                        )}
+                        {/* Actual Image */}
+                        <img 
+                          src={item.src} 
+                          alt={item.title}
+                          loading="lazy"
+                          decoding="async"
+                          className={`w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ${
+                            imageStates[item.id]?.loaded ? 'opacity-100' : 'opacity-0'
+                          }`}
+                          onLoad={() => {
+                            setImageStates(prev => ({
+                              ...prev,
+                              [item.id]: { loaded: true, error: false }
+                            }));
+                          }}
+                          onError={(e) => {
+                            setImageStates(prev => ({
+                              ...prev,
+                              [item.id]: { loaded: false, error: true }
+                            }));
+                            const target = e.target as HTMLImageElement;
+                            target.style.display = 'none';
+                          }}
+                        />
+                        {/* Error Fallback */}
+                        {imageStates[item.id]?.error && (
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="text-center text-gray-500">
+                              <svg className="w-16 h-16 mx-auto mb-4" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" />
+                              </svg>
+                              <p className="text-sm font-medium">Görsel yüklenemedi</p>
+                            </div>
+                          </div>
+                        )}
+                      </>
                     ) : (
                       <video 
                         src={item.src} 
                         className="w-full h-full object-cover"
                         controls
+                        preload="none"
                         onError={(e) => {
                           const target = e.target as HTMLVideoElement;
                           target.style.display = 'none';
@@ -115,15 +158,6 @@ const Gallery: React.FC = () => {
                         }}
                       />
                     )}
-                    {/* Fallback for missing images */}
-                    <div className="absolute inset-0 flex items-center justify-center" style={{display: 'none'}}>
-                      <div className="text-center text-gray-500 group-hover:text-gray-700 transition-colors duration-300">
-                        <svg className="w-16 h-16 mx-auto mb-4 group-hover:scale-110 transition-transform duration-500" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" />
-                        </svg>
-                        <p className="text-sm font-medium">{item.title} Görseli</p>
-                      </div>
-                    </div>
                     
                     {/* Media Type Badge */}
                     <div className="absolute top-4 left-4">

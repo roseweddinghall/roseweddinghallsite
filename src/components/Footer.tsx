@@ -3,16 +3,17 @@ import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-gradient-to-br from-primary-50 via-secondary-50 to-accent-50 border-t border-primary-200">
+    <footer className="bg-white border-t border-gray-200">
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo ve Açıklama */}
           <div className="col-span-1 md:col-span-2">
             <Link to="/" className="block">
               <img 
-                src="/images/logo.svg" 
+                src="/logo.png.png" 
                 alt="Rose Wedding Hall" 
-                className="h-32 md:h-40 w-auto mb-4"
+                className="w-auto mb-4 object-contain"
+                style={{ background: 'transparent', height: '15rem' }}
               />
             </Link>
             <p className="mt-4 text-gray-600 max-w-md">
