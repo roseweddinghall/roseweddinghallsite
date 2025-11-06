@@ -47,7 +47,7 @@ const Home: React.FC = () => {
           name: "Angel",
           description: "Modern tasarımın güçlü çizgileriyle dikkat çeken ferah ve aydınlık bir salon. Büyük davetleriniz için şık, konforlu ve unutulmaz bir deneyim sunar.",
           capacity: 660,
-          image: "/images/salon-angel-eryaman.jpg"
+          image: "/images/angel.JPG"
         },
         {
           name: "Amore", 
@@ -140,15 +140,27 @@ const Home: React.FC = () => {
                     <div key={salonIndex} className="group">
                       <div className="bg-white rounded-2xl shadow-lg shadow-pink-200/50 hover:shadow-2xl hover:shadow-pink-300/60 transition-all duration-500 transform hover:-translate-y-3 hover:rotate-1 overflow-hidden">
                         {/* Görsel Bölümü */}
-                        <div className="relative h-64 bg-gradient-to-br from-pink-100 via-purple-50 to-rose-100 group-hover:from-pink-200 group-hover:via-purple-100 group-hover:to-rose-200 transition-all duration-700">
-                          <div className="absolute inset-0 flex items-center justify-center">
-                            <div className="text-center text-gray-500 group-hover:text-gray-700 transition-colors duration-300">
-                              <svg className="w-16 h-16 mx-auto mb-4 group-hover:scale-110 transition-transform duration-500" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" />
-                              </svg>
-                              <p className="text-sm font-medium">{salon.name} Salon Görseli</p>
+                        <div 
+                          className="relative h-64 bg-gradient-to-br from-pink-100 via-purple-50 to-rose-100 group-hover:from-pink-200 group-hover:via-purple-100 group-hover:to-rose-200 transition-all duration-700 bg-cover bg-center"
+                          style={{
+                            backgroundImage: salon.image ? `url(${salon.image})` : undefined,
+                            backgroundBlendMode: salon.image ? 'overlay' : undefined
+                          }}
+                        >
+                          {!salon.image && (
+                            <div className="absolute inset-0 flex items-center justify-center">
+                              <div className="text-center text-gray-500 group-hover:text-gray-700 transition-colors duration-300">
+                                <svg className="w-16 h-16 mx-auto mb-4 group-hover:scale-110 transition-transform duration-500" fill="currentColor" viewBox="0 0 24 24">
+                                  <path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" />
+                                </svg>
+                                <p className="text-sm font-medium">{salon.name} Salon Görseli</p>
+                              </div>
                             </div>
-                          </div>
+                          )}
+                          {/* Overlay for better text readability */}
+                          {salon.image && (
+                            <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-all duration-300"></div>
+                          )}
                           {/* Kapasite Etiketi */}
                           <div className="absolute top-4 right-4">
                             <span className="bg-gradient-to-r from-primary-500 via-primary-600 to-primary-700 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg shadow-primary-300/50 hover:shadow-primary-400/60 transition-all duration-300 hover:scale-105">

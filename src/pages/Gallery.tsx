@@ -4,90 +4,36 @@ const Gallery: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
 
   const galleryData = [
-    {
-      id: 1,
-      category: 'salon',
-      title: 'Angel Salon - Eryaman',
-      type: 'image',
-      src: '/images/gallery/angel-eryaman-1.jpg'
-    },
-    {
-      id: 2,
-      category: 'salon',
-      title: 'Amore Salon - Eryaman',
-      type: 'image',
-      src: '/images/gallery/amore-eryaman-1.jpg'
-    },
-    {
-      id: 3,
-      category: 'salon',
-      title: 'Angel Salon - İvedik',
-      type: 'image',
-      src: '/images/gallery/angel-ivedik-1.jpg'
-    },
-    {
-      id: 4,
-      category: 'salon',
-      title: 'Amore Salon - İvedik',
-      type: 'image',
-      src: '/images/gallery/amore-ivedik-1.jpg'
-    },
-    {
-      id: 5,
-      category: 'dugun',
-      title: 'Düğün Töreni',
-      type: 'video',
-      src: '/videos/gallery/dugun-toreni.mp4'
-    },
-    {
-      id: 6,
-      category: 'dugun',
-      title: 'Gelin Damat',
-      type: 'image',
-      src: '/images/gallery/gelin-damat-1.jpg'
-    },
-    {
-      id: 7,
-      category: 'dugun',
-      title: 'Nişan Töreni',
-      type: 'image',
-      src: '/images/gallery/nisan-toreni-1.jpg'
-    },
-    {
-      id: 8,
-      category: 'dugun',
-      title: 'Söz Töreni',
-      type: 'image',
-      src: '/images/gallery/soz-toreni-1.jpg'
-    },
-    {
-      id: 9,
-      category: 'detay',
-      title: 'Masa Düzenlemesi',
-      type: 'image',
-      src: '/images/gallery/masa-duzenlemesi-1.jpg'
-    },
-    {
-      id: 10,
-      category: 'detay',
-      title: 'Çiçek Dekorasyonu',
-      type: 'image',
-      src: '/images/gallery/cicek-dekorasyonu-1.jpg'
-    },
-    {
-      id: 11,
-      category: 'detay',
-      title: 'Işık Gösterisi',
-      type: 'video',
-      src: '/videos/gallery/isik-gosterisi.mp4'
-    },
-    {
-      id: 12,
-      category: 'detay',
-      title: 'Pasta Kesimi',
-      type: 'image',
-      src: '/images/gallery/pasta-kesimi-1.jpg'
-    }
+    // Angel Salon Görselleri
+    { id: 1, category: 'salon', title: 'Angel Salon', type: 'image', src: '/images/angel.JPG' },
+    { id: 2, category: 'salon', title: 'Angel Salon', type: 'image', src: '/images/Angel0.jpg' },
+    { id: 3, category: 'salon', title: 'Angel Salon', type: 'image', src: '/images/Angel1.jpg' },
+    { id: 4, category: 'salon', title: 'Angel Salon', type: 'image', src: '/images/Angel2.jpg' },
+    { id: 5, category: 'salon', title: 'Angel Salon', type: 'image', src: '/images/Angel3.jpg' },
+    { id: 6, category: 'salon', title: 'Angel Salon', type: 'image', src: '/images/Angel4.jpg' },
+    { id: 7, category: 'salon', title: 'Angel Salon', type: 'image', src: '/images/Angel5.jpg' },
+    { id: 8, category: 'salon', title: 'Angel Salon', type: 'image', src: '/images/Angel6.jpeg.jpg' },
+    { id: 9, category: 'salon', title: 'Angel Salon', type: 'image', src: '/images/Angel7.jpg' },
+    { id: 10, category: 'salon', title: 'Angel Salon', type: 'image', src: '/images/Angel8.jpg' },
+    { id: 11, category: 'salon', title: 'Angel Salon', type: 'image', src: '/images/Angel9.jpg' },
+    { id: 12, category: 'salon', title: 'Angel Salon', type: 'image', src: '/images/Angel10.jpg' },
+    { id: 13, category: 'salon', title: 'Angel Salon', type: 'image', src: '/images/Angel11.jpg' },
+    { id: 14, category: 'salon', title: 'Angel Salon', type: 'image', src: '/images/Angel12.jpg' },
+    { id: 15, category: 'salon', title: 'Angel Salon', type: 'image', src: '/images/Angel13.jpg' },
+    { id: 16, category: 'salon', title: 'Angel Salon', type: 'image', src: '/images/Angel14.jpg' },
+    { id: 17, category: 'salon', title: 'Angel Salon', type: 'image', src: '/images/Angel15.jpg' },
+    { id: 18, category: 'salon', title: 'Angel Salon', type: 'image', src: '/images/Angel16.jpg' },
+    { id: 19, category: 'salon', title: 'Angel Salon', type: 'image', src: '/images/Angel17.jpg' },
+    { id: 20, category: 'salon', title: 'Angel Salon', type: 'image', src: '/images/Angel18.jpg' },
+    { id: 21, category: 'salon', title: 'Angel Salon', type: 'image', src: '/images/Angel19.jpg' },
+    // Düğün Görselleri
+    { id: 22, category: 'dugun', title: 'Düğün Anıları', type: 'image', src: '/images/IMG_5499.JPG' },
+    { id: 23, category: 'dugun', title: 'Düğün Anıları', type: 'image', src: '/images/IMG_5500.JPG' },
+    { id: 24, category: 'dugun', title: 'Düğün Anıları', type: 'image', src: '/images/IMG_5501.JPG' },
+    { id: 25, category: 'dugun', title: 'Düğün Anıları', type: 'image', src: '/images/IMG_5502.JPG' },
+    { id: 26, category: 'dugun', title: 'Düğün Anıları', type: 'image', src: '/images/IMG_5503.JPG' },
+    { id: 27, category: 'dugun', title: 'Düğün Anıları', type: 'image', src: '/images/IMG_5504.JPG' },
+    { id: 28, category: 'dugun', title: 'Düğün Anıları', type: 'image', src: '/images/IMG_5505.JPG' }
   ];
 
   const filteredGallery = selectedCategory === 'all' 
@@ -143,26 +89,41 @@ const Gallery: React.FC = () => {
               <div key={item.id} className="group">
                 <div className="bg-white rounded-2xl shadow-lg shadow-pink-200/40 hover:shadow-2xl hover:shadow-pink-300/60 transition-all duration-500 transform hover:-translate-y-2 overflow-hidden">
                   {/* Media Content */}
-                  <div className="relative h-64 bg-gradient-to-br from-pink-100 via-purple-50 to-rose-100 group-hover:from-pink-200 group-hover:via-purple-100 group-hover:to-rose-200 transition-all duration-700">
+                  <div className="relative h-64 bg-gradient-to-br from-pink-100 via-purple-50 to-rose-100 group-hover:from-pink-200 group-hover:via-purple-100 group-hover:to-rose-200 transition-all duration-700 overflow-hidden">
                     {item.type === 'image' ? (
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="text-center text-gray-500 group-hover:text-gray-700 transition-colors duration-300">
-                          <svg className="w-16 h-16 mx-auto mb-4 group-hover:scale-110 transition-transform duration-500" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" />
-                          </svg>
-                          <p className="text-sm font-medium">{item.title} Görseli</p>
-                        </div>
-                      </div>
+                      <img 
+                        src={item.src} 
+                        alt={item.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = 'none';
+                          const fallback = target.nextElementSibling as HTMLElement;
+                          if (fallback) fallback.style.display = 'flex';
+                        }}
+                      />
                     ) : (
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="text-center text-gray-500 group-hover:text-gray-700 transition-colors duration-300">
-                          <svg className="w-16 h-16 mx-auto mb-4 group-hover:scale-110 transition-transform duration-500" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M8 5v14l11-7z"/>
-                          </svg>
-                          <p className="text-sm font-medium">{item.title} Videosu</p>
-                        </div>
-                      </div>
+                      <video 
+                        src={item.src} 
+                        className="w-full h-full object-cover"
+                        controls
+                        onError={(e) => {
+                          const target = e.target as HTMLVideoElement;
+                          target.style.display = 'none';
+                          const fallback = target.nextElementSibling as HTMLElement;
+                          if (fallback) fallback.style.display = 'flex';
+                        }}
+                      />
                     )}
+                    {/* Fallback for missing images */}
+                    <div className="absolute inset-0 flex items-center justify-center" style={{display: 'none'}}>
+                      <div className="text-center text-gray-500 group-hover:text-gray-700 transition-colors duration-300">
+                        <svg className="w-16 h-16 mx-auto mb-4 group-hover:scale-110 transition-transform duration-500" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" />
+                        </svg>
+                        <p className="text-sm font-medium">{item.title} Görseli</p>
+                      </div>
+                    </div>
                     
                     {/* Media Type Badge */}
                     <div className="absolute top-4 left-4">
