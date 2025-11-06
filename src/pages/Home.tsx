@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import HeroSlider from '../components/HeroSlider';
 
 const Home: React.FC = () => {
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
@@ -38,6 +39,24 @@ const Home: React.FC = () => {
   const toggleFAQ = (index: number) => {
     setOpenFAQ(openFAQ === index ? null : index);
   };
+
+  const heroSlides = [
+    {
+      image: "/images/hero/hero-slide-1.jpg.JPG",
+      title: "Hayalinizdeki Düğün",
+      subtitle: "Burada Başlıyor"
+    },
+    {
+      image: "/images/hero/hero-slide-2.jpg.jpg",
+      title: "Modern Salonlar ile",
+      subtitle: "Unutulmaz Anlara İmza Atın!"
+    },
+    {
+      image: "/images/hero/hero-slide-3.jpg.jpg",
+      title: "Farklı Konseptler",
+      subtitle: "Profesyonel Ekipler"
+    }
+  ];
 
   const salonData = [
     {
@@ -78,38 +97,33 @@ const Home: React.FC = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary-50 via-secondary-50 to-accent-50 py-20 lg:py-32 overflow-hidden">
-        {/* Floating elements */}
-        <div className="absolute top-20 left-10 w-20 h-20 bg-primary/20 rounded-full animate-float"></div>
-        <div className="absolute top-40 right-20 w-16 h-16 bg-secondary/20 rounded-full animate-bounce-gentle"></div>
-        <div className="absolute bottom-20 left-1/4 w-12 h-12 bg-accent/30 rounded-full animate-pulse-slow"></div>
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-0">
-          <div className="text-center animate-fade-in">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 font-romantic" style={{lineHeight: '1.4', paddingTop: '0.2em', paddingBottom: '0.2em'}}>
-              <div className="animate-slow-gentle">
-                <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent" style={{display: 'inline-block', lineHeight: '1.3', paddingTop: '0.1em', paddingBottom: '0.1em'}}>
-                  Hayalinizdeki Düğün
-                </span>
-              </div>
-              <div className="animate-slow-gentle" style={{animationDelay: '0.5s'}}>
-                <span className="block bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent" style={{lineHeight: '1.3', paddingTop: '0.1em', paddingBottom: '0.1em'}}>Burada Başlıyor</span>
-              </div>
-            </h1>
-            <p className="text-xl text-gray-700 mb-8 max-w-4xl mx-auto animate-slide-up">
-              Size özel tasarlanmış modern salonlarımızda, unutulmaz anlar yaşayın.<br/>
-              Farklı konsept seçeneklerimiz ve profesyonel ekibimizle düğününüzü mükemmel bir organizasyona dönüştürüyoruz!
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up">
-              <Link to="/subelerimiz" className="bg-gradient-to-r from-primary to-primary-700 text-white px-8 py-4 rounded-full font-semibold hover:scale-105 transform transition-all duration-300 shadow-lg hover:shadow-xl">
-                Salonları İncele
-              </Link>
-              <Link to="/rezervasyon" className="border-2 border-primary/80 bg-white/10 text-primary px-8 py-4 rounded-full font-semibold hover:bg-primary/10 transition-all duration-300 hover:scale-105 backdrop-blur-sm">
-                Rezervasyon Yap
-              </Link>
-            </div>
+      {/* Hero Section with Slider */}
+      <section className="relative py-8 lg:py-12 overflow-hidden z-0">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Hero Slider */}
+          <HeroSlider slides={heroSlides} autoPlayInterval={5000} />
+          
+          {/* Call to Action Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8 animate-slide-up">
+            <Link 
+              to="/subelerimiz" 
+              className="bg-gradient-to-r from-primary to-primary-700 text-white px-8 py-4 rounded-full font-semibold hover:scale-105 transform transition-all duration-300 shadow-lg hover:shadow-xl text-center"
+            >
+              Salonları İncele
+            </Link>
+            <Link 
+              to="/rezervasyon" 
+              className="border-2 border-primary/80 bg-white text-primary px-8 py-4 rounded-full font-semibold hover:bg-primary/10 transition-all duration-300 hover:scale-105 text-center"
+            >
+              Rezervasyon Yap
+            </Link>
           </div>
+          
+          {/* Description Text */}
+          <p className="text-lg md:text-xl text-gray-700 mt-6 max-w-4xl mx-auto text-center animate-fade-in">
+            Size özel tasarlanmış modern salonlarımızda, unutulmaz anlar yaşayın.<br/>
+            Farklı konsept seçeneklerimiz ve profesyonel ekibimizle düğününüzü mükemmel bir organizasyona dönüştürüyoruz!
+          </p>
         </div>
       </section>
 

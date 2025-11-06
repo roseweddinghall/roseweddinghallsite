@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 const Navbar: React.FC = () => {
@@ -6,15 +6,20 @@ const Navbar: React.FC = () => {
   const [isSubelerDropdownOpen, setIsSubelerDropdownOpen] = useState(false);
   const location = useLocation();
 
+  // Sayfa değiştiğinde dropdown'ı kapat
+  useEffect(() => {
+    setIsSubelerDropdownOpen(false);
+  }, [location.pathname]);
+
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <nav className="bg-white shadow-xl backdrop-blur-sm relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav className="bg-white backdrop-blur-sm relative z-50" style={{ boxShadow: '0 20px 25px -5px rgba(164, 88, 90, 0.3), 0 10px 10px -5px rgba(164, 88, 90, 0.2)' }}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Desktop Layout */}
-        <div className="hidden md:flex items-center justify-between h-36">
+        <div className="hidden md:flex items-center justify-between h-36" style={{ overflow: 'visible' }}>
           {/* Left Menu - Ana Sayfa, Şubelerimiz, Galeri */}
-          <div className="flex items-center space-x-6">
+          <div className="flex items-center space-x-6 relative" style={{ overflow: 'visible' }}>
             <Link
               to="/"
               className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105 ${
@@ -25,10 +30,14 @@ const Navbar: React.FC = () => {
             >
               Ana Sayfa
             </Link>
-            <div className="relative">
-              <button
-                onClick={() => setIsSubelerDropdownOpen(!isSubelerDropdownOpen)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105 ${
+            <div 
+              className="relative z-50"
+              onMouseEnter={() => setIsSubelerDropdownOpen(true)}
+              onMouseLeave={() => setIsSubelerDropdownOpen(false)}
+            >
+              <Link
+                to="/subelerimiz"
+                className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105 ${
                   isActive('/subelerimiz') || isActive('/eryaman') || isActive('/ivedik')
                     ? 'text-white bg-gradient-to-r from-primary to-primary-700 shadow-lg' 
                     : 'text-gray-700 hover:text-primary hover:bg-gradient-to-r hover:from-primary/10 hover:to-primary-50'
@@ -38,20 +47,20 @@ const Navbar: React.FC = () => {
                 <svg className="w-4 h-4 ml-1 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
-              </button>
+              </Link>
               
               {isSubelerDropdownOpen && (
-                <div className="absolute top-full left-0 mt-2 bg-white rounded-lg shadow-lg border border-gray-200 z-[9999] min-w-[120px]">
+                <div className="absolute top-full left-0 mt-2 bg-white rounded-lg shadow-xl border border-gray-200 z-[10000] min-w-[120px]">
                   <Link
                     to="/eryaman"
-                    className="block px-4 py-3 text-sm text-gray-700 hover:bg-primary/10 hover:text-primary transition-colors rounded-t-lg"
+                    className="block px-4 py-3 text-sm text-gray-700 hover:bg-primary/10 hover:text-primary transition-colors rounded-t-lg whitespace-nowrap"
                     onClick={() => setIsSubelerDropdownOpen(false)}
                   >
                     Eryaman
                   </Link>
                   <Link
                     to="/ivedik"
-                    className="block px-4 py-3 text-sm text-gray-700 hover:bg-primary/10 hover:text-primary transition-colors rounded-b-lg"
+                    className="block px-4 py-3 text-sm text-gray-700 hover:bg-primary/10 hover:text-primary transition-colors rounded-b-lg whitespace-nowrap"
                     onClick={() => setIsSubelerDropdownOpen(false)}
                   >
                     İvedik
@@ -72,8 +81,8 @@ const Navbar: React.FC = () => {
           </div>
 
           {/* Center Logo */}
-          <div className="flex items-center justify-center flex-1">
-            <Link to="/" className="block">
+          <div className="flex items-center justify-center flex-1 h-36 overflow-hidden">
+            <Link to="/" className="block flex items-start">
               <img 
                 src="/logo.png.png" 
                 alt="Rose Wedding Hall" 
