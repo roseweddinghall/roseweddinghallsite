@@ -50,13 +50,20 @@ Bu mesaj Rose Wedding Hall web sitesinden gönderilmiştir.
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-primary text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">İletişim</h1>
-          <p className="text-xl text-primary-100 max-w-3xl mx-auto">
-            Düğününüzle ilgili tüm sorularınız için bizimle iletişime geçebilir, 
-            randevu alabilir ve rezervasyon yapabilirsiniz.
-          </p>
+      <section className="relative bg-white py-10 overflow-hidden">
+        {/* Soft gradient in bottom right corner */}
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-[#a4585a]/10 via-pink-50/5 to-transparent rounded-full blur-3xl transform translate-x-1/2 translate-y-1/2"></div>
+        
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 animate-fade-in text-gray-900">İletişim</h1>
+          <div className="max-w-3xl mx-auto">
+            <p className="text-sm md:text-base text-gray-700 font-light leading-relaxed tracking-wide animate-slide-up">
+              Düğününüzle ilgili tüm sorularınız için 
+              <span className="font-medium text-[#a4585a]"> bizimle iletişime geçebilir</span>, 
+              <span className="font-medium text-[#a4585a]"> randevu alabilir </span>
+              ve rezervasyon yapabilirsiniz.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -67,83 +74,85 @@ Bu mesaj Rose Wedding Hall web sitesinden gönderilmiştir.
             <h2 className="text-3xl font-bold text-gray-900 mb-8">İletişim Bilgileri</h2>
             
             <div className="space-y-8">
-              <div className="flex items-start">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-4">
-                  <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Şubelerimiz</h3>
-                  <div className="space-y-4">
-                    <div>
-                      <p className="font-semibold text-gray-800 mb-1">Eryaman Şubesi</p>
-                      <p className="text-gray-600">
-                        Yeşilova, 4016. Cad. B Blok No:2/2/13<br />
-                        06796 Etimesgut/Ankara
-                      </p>
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-6">Şubelerimiz</h3>
+                
+                {/* Eryaman Şubesi */}
+                <div className="mb-8 pb-8 border-b border-gray-200">
+                  <h4 className="text-xl font-bold text-gray-900 mb-4">Eryaman Şubesi</h4>
+                  <div className="space-y-3">
+                    <div className="flex items-start">
+                      <svg className="w-5 h-5 mr-3 text-primary mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                      <div>
+                        <p className="text-gray-600">
+                          Yeşilova, 4016. Cad. B Blok No:2/2/13<br />
+                          06796 Etimesgut/Ankara
+                        </p>
+                      </div>
                     </div>
-                    <div>
-                      <p className="font-semibold text-gray-800 mb-1">İvedik Şubesi</p>
-                      <p className="text-gray-600">
-                        İvedik OSB, 1439. Sk. No: 1<br />
-                        İç Kapı: 121, 06378 Yenimahalle/Ankara
-                      </p>
+                    <div className="flex items-start">
+                      <svg className="w-5 h-5 mr-3 text-primary mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                      </svg>
+                      <div>
+                        <a href="tel:+905386223050" className="text-gray-600 hover:text-primary transition-colors">
+                          +90 538 622 30 50
+                        </a>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex items-start">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-4">
-                  <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Telefon</h3>
-                  <div className="space-y-2">
-                    <div>
-                      <p className="font-semibold text-gray-800">Eryaman Şubesi</p>
-                      <p className="text-gray-600">+90 538 622 30 50</p>
-                    </div>
-                    <div>
-                      <p className="font-semibold text-gray-800">İvedik Şubesi</p>
-                      <p className="text-gray-600">+90 546 624 25 95</p>
+                    <div className="flex items-start">
+                      <svg className="w-5 h-5 mr-3 text-primary mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      </svg>
+                      <div>
+                        <a href="mailto:eryaman@roseweddinghall.com" className="text-gray-600 hover:text-primary transition-colors">
+                          eryaman@roseweddinghall.com
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
 
-              <div className="flex items-start">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-4">
-                  <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
-                </div>
+                {/* İvedik Şubesi */}
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">E-posta</h3>
-                  <p className="text-gray-600">
-                    info@roseweddinghall.com<br />
-                    rezervasyon@roseweddinghall.com
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-4">
-                  <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Çalışma Saatleri</h3>
-                  <p className="text-gray-600">
-                    Pazartesi - Cuma: 09:00 - 18:00<br />
-                    Cumartesi: 09:00 - 16:00<br />
-                    Pazar: Randevulu görüşme
-                  </p>
+                  <h4 className="text-xl font-bold text-gray-900 mb-4">İvedik Şubesi</h4>
+                  <div className="space-y-3">
+                    <div className="flex items-start">
+                      <svg className="w-5 h-5 mr-3 text-primary mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                      <div>
+                        <p className="text-gray-600">
+                          İvedik OSB, 1439. Sk. No: 1<br />
+                          İç Kapı: 121, 06378 Yenimahalle/Ankara
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-start">
+                      <svg className="w-5 h-5 mr-3 text-primary mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                      </svg>
+                      <div>
+                        <a href="tel:+905466242595" className="text-gray-600 hover:text-primary transition-colors">
+                          +90 546 624 25 95
+                        </a>
+                      </div>
+                    </div>
+                    <div className="flex items-start">
+                      <svg className="w-5 h-5 mr-3 text-primary mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      </svg>
+                      <div>
+                        <a href="mailto:roseweddingivedik@gmail.com" className="text-gray-600 hover:text-primary transition-colors">
+                          roseweddingivedik@gmail.com
+                        </a>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -291,24 +300,82 @@ Bu mesaj Rose Wedding Hall web sitesinden gönderilmiştir.
         </div>
       </div>
 
-      {/* Harita */}
+      {/* Harita Bölümü */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Konumumuz</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Konumlarımız</h2>
             <p className="text-xl text-gray-600">
-              Şubelerimizi haritada görüntüleyin
+              Ankara'nın iki farklı bölgesinde hizmet veriyoruz
             </p>
           </div>
           
-          <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-            <div className="h-96 bg-gray-200 flex items-center justify-center">
-              <div className="text-center text-gray-500">
-                <svg className="w-16 h-16 mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
-                </svg>
-                <p className="text-lg font-semibold">İnteraktif Harita</p>
-                <p className="text-sm">Ankara - Rose Wedding Hall Şubeleri</p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Eryaman Şubesi Harita */}
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+              <div className="h-64">
+                <iframe
+                  src="https://www.google.com/maps?q=Yeşilova,+4016.+Cad.+B+Blok+No:2/2/13,+06796+Etimesgut/Ankara&output=embed"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Eryaman Şubesi Konumu"
+                ></iframe>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Eryaman Şubesi</h3>
+                <p className="text-gray-600 mb-4">Yeşilova, 4016. Cad. B Blok No:2/2/13, 06796 Etimesgut/Ankara</p>
+                <a 
+                  href="https://share.google/s73VdxD4h4IF37TVJ" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-700 transition-colors duration-300"
+                >
+                  <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                    <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                    <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                    <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                  </svg>
+                  Google Maps'te Gör
+                </a>
+              </div>
+            </div>
+
+            {/* İvedik Şubesi Harita */}
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+              <div className="h-64">
+                <iframe
+                  src="https://www.google.com/maps?q=İvedik+OSB,+1439.+Sk.+No:+1+İç+Kapı:+121,+06378+Yenimahalle/Ankara&output=embed"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="İvedik Şubesi Konumu"
+                ></iframe>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">İvedik Şubesi</h3>
+                <p className="text-gray-600 mb-4">İvedik OSB, 1439. Sk. No: 1 İç Kapı: 121, 06378 Yenimahalle/Ankara</p>
+                <a 
+                  href="https://share.google/UXXnXgOAlStYZRLgc" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-700 transition-colors duration-300"
+                >
+                  <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                    <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                    <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                    <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                  </svg>
+                  Google Maps'te Gör
+                </a>
               </div>
             </div>
           </div>

@@ -4,12 +4,18 @@ const Eryaman: React.FC = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-primary text-white py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">Eryaman Şubesi</h1>
-          <p className="text-xl text-primary-100 max-w-3xl mx-auto">
-            Modern mimarisi ve geniş alanıyla düğününüzün en özel anlarını yaşayacağınız Eryaman şubemiz.
-          </p>
+      <section className="relative bg-white py-10 overflow-hidden">
+        {/* Soft gradient in bottom right corner */}
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-[#a4585a]/10 via-pink-50/5 to-transparent rounded-full blur-3xl transform translate-x-1/2 translate-y-1/2"></div>
+        
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 animate-fade-in text-gray-900">Eryaman Şubesi</h1>
+          <div className="max-w-3xl mx-auto">
+            <p className="text-sm md:text-base text-gray-700 font-light leading-relaxed tracking-wide animate-slide-up">
+              <span className="font-medium text-[#a4585a]">Modern mimarisi ve geniş alanıyla </span>
+              düğününüzün en özel anlarını yaşayacağınız Eryaman şubemiz.
+            </p>
+          </div>
         </div>
       </section>
 

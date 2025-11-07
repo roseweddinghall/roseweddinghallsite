@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface ImageWithLoading {
   loaded: boolean;
@@ -8,6 +8,7 @@ interface ImageWithLoading {
 const Gallery: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [imageStates, setImageStates] = useState<Record<number, ImageWithLoading>>({});
+  const [selectedImage, setSelectedImage] = useState<{ id: number; src: string; title: string } | null>(null);
 
   const galleryData = [
     // Angel Salon Görselleri
@@ -32,14 +33,25 @@ const Gallery: React.FC = () => {
     { id: 19, category: 'salon', title: 'Angel Salon', type: 'image', src: '/images/Angel17.jpg' },
     { id: 20, category: 'salon', title: 'Angel Salon', type: 'image', src: '/images/Angel18.jpg' },
     { id: 21, category: 'salon', title: 'Angel Salon', type: 'image', src: '/images/Angel19.jpg' },
+    // Amore Salon Görselleri
+    { id: 22, category: 'salon', title: 'Amore Salon', type: 'image', src: '/images/amore1.JPG' },
+    { id: 23, category: 'salon', title: 'Amore Salon', type: 'image', src: '/images/amore2.JPG' },
+    { id: 24, category: 'salon', title: 'Amore Salon', type: 'image', src: '/images/amore3.JPG' },
+    { id: 25, category: 'salon', title: 'Amore Salon', type: 'image', src: '/images/amore4.JPG' },
     // Düğün Görselleri
-    { id: 22, category: 'dugun', title: 'Düğün Anıları', type: 'image', src: '/images/IMG_5499.JPG' },
-    { id: 23, category: 'dugun', title: 'Düğün Anıları', type: 'image', src: '/images/IMG_5500.JPG' },
-    { id: 24, category: 'dugun', title: 'Düğün Anıları', type: 'image', src: '/images/IMG_5501.JPG' },
-    { id: 25, category: 'dugun', title: 'Düğün Anıları', type: 'image', src: '/images/IMG_5502.JPG' },
-    { id: 26, category: 'dugun', title: 'Düğün Anıları', type: 'image', src: '/images/IMG_5503.JPG' },
-    { id: 27, category: 'dugun', title: 'Düğün Anıları', type: 'image', src: '/images/IMG_5504.JPG' },
-    { id: 28, category: 'dugun', title: 'Düğün Anıları', type: 'image', src: '/images/IMG_5505.JPG' }
+    { id: 26, category: 'dugun', title: 'Düğün Anıları', type: 'image', src: '/images/IMG_5499.JPG' },
+    { id: 27, category: 'dugun', title: 'Düğün Anıları', type: 'image', src: '/images/IMG_5500.JPG' },
+    { id: 28, category: 'dugun', title: 'Düğün Anıları', type: 'image', src: '/images/IMG_5501.JPG' },
+    { id: 29, category: 'dugun', title: 'Düğün Anıları', type: 'image', src: '/images/IMG_5502.JPG' },
+    { id: 30, category: 'dugun', title: 'Düğün Anıları', type: 'image', src: '/images/IMG_5503.JPG' },
+    { id: 31, category: 'dugun', title: 'Düğün Anıları', type: 'image', src: '/images/IMG_5504.JPG' },
+    { id: 32, category: 'dugun', title: 'Düğün Anıları', type: 'image', src: '/images/IMG_5505.JPG' },
+    { id: 33, category: 'dugun', title: 'Düğün Anıları', type: 'image', src: '/images/5A6A0494.JPG' },
+    { id: 34, category: 'dugun', title: 'Düğün Anıları', type: 'image', src: '/images/5A6A0498.JPG' },
+    { id: 35, category: 'dugun', title: 'Düğün Anıları', type: 'image', src: '/images/5A6A0527.JPG' },
+    { id: 36, category: 'dugun', title: 'Düğün Anıları', type: 'image', src: '/images/5A6A0654.JPG' },
+    { id: 37, category: 'dugun', title: 'Düğün Anıları', type: 'image', src: '/images/5A6A0702.JPG' },
+    { id: 38, category: 'dugun', title: 'Düğün Anıları', type: 'image', src: '/images/5A6A0881.JPG' }
   ];
 
   const filteredGallery = selectedCategory === 'all' 
@@ -53,16 +65,41 @@ const Gallery: React.FC = () => {
     { id: 'detay', name: 'Detaylar' }
   ];
 
+  // ESC tuşu ile modal'ı kapat
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setSelectedImage(null);
+      }
+    };
+
+    if (selectedImage) {
+      document.addEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'hidden'; // Scroll'u engelle
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedImage]);
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-primary text-white py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">Galeri</h1>
-          <p className="text-xl text-primary-100 max-w-3xl mx-auto">
-            Salonlarımız, düğünlerimiz ve unutulmaz anlarımızdan öne çıkan kareleri keşfedin. 
-            Hayalinizdeki düğün için ilham alın.
-          </p>
+      <section className="relative bg-white py-10 overflow-hidden">
+        {/* Soft gradient in bottom right corner */}
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-[#a4585a]/10 via-pink-50/5 to-transparent rounded-full blur-3xl transform translate-x-1/2 translate-y-1/2"></div>
+        
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 animate-fade-in text-gray-900">Galeri</h1>
+          <div className="max-w-3xl mx-auto">
+            <p className="text-sm md:text-base text-gray-700 font-light leading-relaxed tracking-wide animate-slide-up">
+              Salonlarımız, düğünlerimiz ve 
+              <span className="font-medium text-[#a4585a]"> unutulmaz anlarımızdan öne çıkan kareleri </span>
+              keşfedin. Hayalinizdeki düğün için ilham alın.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -114,9 +151,10 @@ const Gallery: React.FC = () => {
                           alt={item.title}
                           loading="lazy"
                           decoding="async"
-                          className={`w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ${
+                          className={`w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 cursor-pointer ${
                             imageStates[item.id]?.loaded ? 'opacity-100' : 'opacity-0'
                           }`}
+                          onClick={() => setSelectedImage({ id: item.id, src: item.src, title: item.title })}
                           onLoad={() => {
                             setImageStates(prev => ({
                               ...prev,
@@ -187,7 +225,10 @@ const Gallery: React.FC = () => {
                       <span className="text-sm text-gray-500 capitalize">
                         {categories.find(cat => cat.id === item.category)?.name}
                       </span>
-                      <button className="text-purple-600 hover:text-purple-800 text-sm font-medium transition-colors duration-300">
+                      <button 
+                        onClick={() => setSelectedImage({ id: item.id, src: item.src, title: item.title })}
+                        className="text-purple-600 hover:text-purple-800 text-sm font-medium transition-colors duration-300"
+                      >
                         Büyüt →
                       </button>
                     </div>
@@ -224,6 +265,42 @@ const Gallery: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* Image Modal */}
+      {selectedImage && (
+        <div 
+          className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm"
+          onClick={() => setSelectedImage(null)}
+        >
+          {/* Close Button */}
+          <button
+            onClick={() => setSelectedImage(null)}
+            className="absolute top-4 right-4 z-50 text-white hover:text-gray-300 transition-colors duration-300 bg-black/50 rounded-full p-3 hover:bg-black/70"
+            aria-label="Kapat"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+
+          {/* Image Container */}
+          <div 
+            className="relative max-w-7xl max-h-[90vh] w-full h-full flex items-center justify-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={selectedImage.src}
+              alt={selectedImage.title}
+              className="max-w-full max-h-[90vh] w-auto h-auto object-contain rounded-lg shadow-2xl"
+            />
+            
+            {/* Image Title */}
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/70 text-white px-6 py-3 rounded-full backdrop-blur-sm">
+              <p className="text-lg font-semibold">{selectedImage.title}</p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

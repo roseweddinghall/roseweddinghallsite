@@ -47,14 +47,14 @@ const Home: React.FC = () => {
       subtitle: "Burada Başlıyor"
     },
     {
-      image: "/images/hero/hero-slide-2.jpg.jpg",
-      title: "Modern Salonlar ile",
-      subtitle: "Unutulmaz Anlara İmza Atın!"
+      image: "/images/hero/hero-slide-2.jpg.JPG",
+      title: "Unutulmaz Anların Mimari",
+      subtitle: "Profesyonel Ekibimiz"
     },
     {
       image: "/images/hero/hero-slide-3.jpg.jpg",
       title: "Farklı Konseptler",
-      subtitle: "Profesyonel Ekipler"
+      subtitle: "Modern Salonlar"
     }
   ];
 
@@ -72,7 +72,7 @@ const Home: React.FC = () => {
           name: "Amore", 
           description: "Geleneksel sıcaklık, modern estetikle buluştu. En yakınlarınızla, en özel anlarınızı yaşayacağınız şık ve butik bir atmosfer.",
           capacity: 220,
-          image: "/images/salon-amore-eryaman.jpg"
+          image: "/images/salon-amore-eryaman.jpg.JPG"
         }
       ]
     },
@@ -118,12 +118,6 @@ const Home: React.FC = () => {
               Rezervasyon Yap
             </Link>
           </div>
-          
-          {/* Description Text */}
-          <p className="text-lg md:text-xl text-gray-700 mt-6 max-w-4xl mx-auto text-center animate-fade-in">
-            Size özel tasarlanmış modern salonlarımızda, unutulmaz anlar yaşayın.<br/>
-            Farklı konsept seçeneklerimiz ve profesyonel ekibimizle düğününüzü mükemmel bir organizasyona dönüştürüyoruz!
-          </p>
         </div>
       </section>
 
@@ -141,15 +135,15 @@ const Home: React.FC = () => {
             </p>
           </div>
 
-          <div className="space-y-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
             {salonData.map((branch, branchIndex) => (
-              <div key={branchIndex}>
+              <div key={branchIndex} className="space-y-6">
                 <div className="text-center mb-8">
                   <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">{branch.branch}</h3>
                   <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full"></div>
                 </div>
                 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div className="flex flex-col gap-6">
                   {branch.salons.map((salon, salonIndex) => (
                     <div key={salonIndex} className="group">
                       <div className="bg-white rounded-2xl shadow-lg shadow-pink-200/50 hover:shadow-2xl hover:shadow-pink-300/60 transition-all duration-500 transform hover:-translate-y-3 hover:rotate-1 overflow-hidden">

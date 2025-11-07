@@ -4,12 +4,19 @@ const About: React.FC = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-primary text-white py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">Hakkımızda</h1>
-          <p className="text-xl text-primary-100 max-w-3xl mx-auto">
-            8 yılı aşkın sektör deneyimimizle, hayallerinizdeki düğünü Rose Wedding Hall markası altında gerçeğe dönüştürüyoruz.
-          </p>
+      <section className="relative bg-white py-10 overflow-hidden">
+        {/* Soft gradient in bottom right corner */}
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-[#a4585a]/10 via-pink-50/5 to-transparent rounded-full blur-3xl transform translate-x-1/2 translate-y-1/2"></div>
+        
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 animate-fade-in text-gray-900">Hakkımızda</h1>
+          <div className="max-w-3xl mx-auto">
+            <p className="text-sm md:text-base text-gray-700 font-light leading-relaxed tracking-wide animate-slide-up">
+              <span className="font-medium text-[#a4585a]">8 yılı aşkın sektör deneyimimizle</span>, hayallerinizdeki düğünü 
+              <span className="font-medium text-[#a4585a]"> Rose Wedding Hall </span>
+              markası altında gerçeğe dönüştürüyoruz.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -29,24 +36,31 @@ const About: React.FC = () => {
                 Organizasyonun her aşamasında görev alan profesyonel ve deneyimli ekibimiz, en ince detayı bile büyük bir titizlik ve samimiyetle ele alır. Yüksek kalite standartları ve detaylara verdiğimiz bu büyük özen sayesinde, düğününüzün beklentilerinizin ötesinde, tam anlamıyla eşsiz bir şekilde gerçekleşmesini garanti ediyoruz. Rose Wedding Hall olarak, hayatınızın en önemli "evet"ine şahitlik etmekten mutluluk duyuyoruz.
               </p>
             </div>
-            <div className="bg-gray-100 rounded-lg p-8">
-              <div className="grid grid-cols-2 gap-6">
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-primary mb-2">500+</div>
-                  <div className="text-gray-600">Düğün</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-primary mb-2">8+</div>
-                  <div className="text-gray-600">Yıl Deneyim</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-primary mb-2">2</div>
-                  <div className="text-gray-600">Şehir</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-primary mb-2">50+</div>
-                  <div className="text-gray-600">Çalışan</div>
-                </div>
+            <div className="relative">
+              {/* Görsel Container - Soluklaşma efekti */}
+              <div className="relative aspect-square rounded-lg overflow-hidden shadow-2xl">
+                {/* Ana görsel */}
+                <img 
+                  src="/images/about-story.jpg.JPG" 
+                  alt="Hikayemiz" 
+                  className="w-full h-full object-cover"
+                />
+                
+                {/* Sol üst köşeden soluklaşma - Beyaz gradient */}
+                <div 
+                  className="absolute top-0 left-0 w-full h-full pointer-events-none"
+                  style={{
+                    background: 'radial-gradient(circle at 0% 0%, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.5) 25%, rgba(255,255,255,0.2) 40%, transparent 60%)'
+                  }}
+                ></div>
+                
+                {/* Sağ alt köşeden soluklaşma - Pembe tonlu gradient */}
+                <div 
+                  className="absolute bottom-0 right-0 w-full h-full pointer-events-none"
+                  style={{
+                    background: 'radial-gradient(circle at 100% 100%, rgba(164,88,90,0.4) 0%, rgba(164,88,90,0.25) 20%, rgba(164,88,90,0.1) 35%, transparent 55%)'
+                  }}
+                ></div>
               </div>
             </div>
           </div>
