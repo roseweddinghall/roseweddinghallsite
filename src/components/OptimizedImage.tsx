@@ -86,23 +86,43 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
     };
   }, [shouldLoadImmediately]);
 
-  // Preload kritik görseller
+  // Preload kritik görseller - hemen yükle
   useEffect(() => {
     if (priority && !isLoaded) {
       const link = document.createElement('link');
       link.rel = 'preload';
       link.as = 'image';
       link.href = src;
+      // fetchPriority özelliği bazı tarayıcılarda destekleniyor
+      if ('fetchPriority' in link) {
+        (link as any).fetchPriority = 'high';
+      }
       document.head.appendChild(link);
 
+      // Hemen yüklemeyi başlat
+      const img = new Image();
+      img.src = src;
+      img.decode().catch(() => {
+        // Decode hatası olsa bile devam et
+      });
+
       return () => {
-        document.head.removeChild(link);
+        if (document.head.contains(link)) {
+          document.head.removeChild(link);
+        }
       };
     }
   }, [priority, src, isLoaded]);
 
   useEffect(() => {
-    if (!isInView || canStartLoading || shouldLoadImmediately) {
+    // Priority görseller için slot'a gerek yok, hemen yükle
+    if (shouldLoadImmediately) {
+      hasStartedLoadingRef.current = true;
+      setCanStartLoading(true);
+      return;
+    }
+
+    if (!isInView || canStartLoading) {
       return;
     }
 

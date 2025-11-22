@@ -104,8 +104,8 @@ const HeroSlider: React.FC<HeroSliderProps> = ({
             alt={slide.title}
             className="absolute inset-0 w-full h-full z-0"
             objectFit="cover"
-            priority={index === 0}
-            loading={index === 0 ? 'eager' : 'lazy'}
+            priority={true}
+            loading="eager"
             placeholder="blur"
             style={{
               objectPosition: 'center',

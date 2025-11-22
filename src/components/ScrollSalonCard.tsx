@@ -77,7 +77,7 @@ const ScrollSalonCard: React.FC<ScrollSalonCardProps> = ({
                 alt={`${salon.name} Salon`}
                 className="w-full h-full group-hover:scale-110 transition-transform duration-1000"
                 objectFit="cover"
-                loading="lazy"
+                loading={priority ? 'eager' : 'lazy'}
                 placeholder="blur"
                 priority={priority}
               />

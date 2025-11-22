@@ -151,8 +151,8 @@ const CreativeGallery: React.FC<CreativeGalleryProps> = ({ images }) => {
                   alt={image.alt}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   objectFit="cover"
-                  loading={index < 8 ? 'eager' : 'lazy'}
-                  priority={index < 4}
+                  loading={index < 12 ? 'eager' : 'lazy'}
+                  priority={index < 12}
                   placeholder="blur"
                 />
                 {/* Subtle overlay on hover */}

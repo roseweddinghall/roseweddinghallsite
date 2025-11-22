@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -13,8 +13,14 @@ import Gallery from './pages/Gallery';
 import Reservation from './pages/Reservation';
 import Reviews from './pages/Reviews';
 import FAQ from './pages/FAQ';
+import { initImagePreloader } from './utils/imagePreloader';
 
 function App() {
+  // Sayfa yüklenir yüklenmez tüm kritik görselleri preload et
+  useEffect(() => {
+    initImagePreloader();
+  }, []);
+
   return (
     <Router>
       <div className="App min-h-screen bg-white">
