@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import OptimizedImage from './OptimizedImage';
 
 const Footer: React.FC = () => {
   return (
@@ -9,10 +10,13 @@ const Footer: React.FC = () => {
           {/* Logo ve Açıklama */}
           <div className="col-span-1 md:col-span-2">
             <Link to="/" className="block">
-              <img 
-                src="/logo.png.png" 
-                alt="Rose Wedding Hall" 
+              <OptimizedImage
+                src="/logo.png.png"
+                alt="Rose Wedding Hall"
                 className="w-auto mb-4 object-contain"
+                priority={false}
+                loading="lazy"
+                objectFit="contain"
                 style={{ background: 'transparent', height: '15rem' }}
               />
             </Link>

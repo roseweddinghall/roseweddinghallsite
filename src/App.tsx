@@ -12,6 +12,7 @@ import Contact from './pages/Contact';
 import Gallery from './pages/Gallery';
 import Reservation from './pages/Reservation';
 import Reviews from './pages/Reviews';
+import FAQ from './pages/FAQ';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             <Route path="/is-birlikleri" element={<Partnerships />} />
             <Route path="/yorumlar" element={<Reviews />} />
             <Route path="/iletisim" element={<Contact />} />
+            <Route path="/sikca-sorulan-sorular" element={<FAQ />} />
           </Routes>
         </main>
         <Footer />

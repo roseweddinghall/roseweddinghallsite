@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import OptimizedImage from './OptimizedImage';
 
 interface Slide {
   image: string;
@@ -17,6 +18,45 @@ const HeroSlider: React.FC<HeroSliderProps> = ({
 }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [preloadedSlides, setPreloadedSlides] = useState<Set<number>>(new Set([0]));
+
+  // İlk slide'ı ve bir sonraki slide'ı preload et
+  useEffect(() => {
+    if (slides.length === 0) return;
+
+    // İlk slide'ı hemen preload et
+    const preloadImage = (src: string) => {
+      const img = new Image();
+      img.src = src;
+    };
+
+    // İlk slide'ı preload et
+    if (slides[0]) {
+      preloadImage(slides[0].image);
+    }
+
+    // Bir sonraki slide'ı preload et
+    if (slides.length > 1 && slides[1]) {
+      preloadImage(slides[1].image);
+      setPreloadedSlides(new Set([0, 1]));
+    }
+  }, [slides]);
+
+  // Mevcut slide değiştiğinde bir sonraki slide'ı preload et
+  useEffect(() => {
+    if (slides.length <= 1) return;
+
+    const nextSlideIndex = (currentSlide + 1) % slides.length;
+    if (!preloadedSlides.has(nextSlideIndex)) {
+      const img = new Image();
+      img.src = slides[nextSlideIndex].image;
+      setPreloadedSlides((prev) => {
+        const newSet = new Set(Array.from(prev));
+        newSet.add(nextSlideIndex);
+        return newSet;
+      });
+    }
+  }, [currentSlide, slides, preloadedSlides]);
 
   useEffect(() => {
     if (!isAutoPlaying || slides.length <= 1) return;
@@ -55,31 +95,42 @@ const HeroSlider: React.FC<HeroSliderProps> = ({
         <div
           key={index}
           className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-            index === currentSlide ? 'opacity-100' : 'opacity-0'
+            index === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'
           }`}
         >
-          {/* Background Image */}
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(${slide.image})` }}
-          >
-            {/* Dark Overlay for better text readability */}
-            <div className="absolute inset-0 bg-black/40"></div>
-          </div>
+          {/* Background Image - Optimized */}
+          <OptimizedImage
+            src={slide.image}
+            alt={slide.title}
+            className="absolute inset-0 w-full h-full z-0"
+            objectFit="cover"
+            priority={index === 0}
+            loading={index === 0 ? 'eager' : 'lazy'}
+            placeholder="blur"
+            style={{
+              objectPosition: 'center',
+            }}
+          />
+          {/* Dark Overlay for better text readability */}
+          <div className="absolute inset-0 bg-black/40 z-[1]"></div>
 
-          {/* Slide Content */}
-          <div className="relative z-10 h-full flex items-center justify-center">
-            <div className="text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 animate-fade-in">
-                {slide.title}
-              </h2>
-              {slide.subtitle && (
-                <p className="text-xl md:text-2xl lg:text-3xl text-white/90 font-light animate-slide-up">
-                  {slide.subtitle}
-                </p>
-              )}
+          {/* Slide Content - Text Overlay */}
+          {slide.title && (
+            <div className="absolute inset-0 z-[2] flex items-center justify-center">
+              <div className="text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+                <h2 className="text-5xl md:text-6xl lg:text-7xl font-classic font-bold text-white mb-4" style={{
+                  textShadow: '1px 1px 4px rgba(164, 88, 90, 0.3), 0 0 12px rgba(164, 88, 90, 0.2)',
+                }}>
+                  {slide.title}
+                </h2>
+                {slide.subtitle && (
+                  <p className="text-2xl md:text-3xl lg:text-4xl font-classic text-white font-semibold">
+                    {slide.subtitle}
+                  </p>
+                )}
+              </div>
             </div>
-          </div>
+          )}
         </div>
       ))}
 

@@ -1,6 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
+import OptimizedImage from '../components/OptimizedImage';
 
-const Eryaman: React.FC = () => {
+const galleryImages = [
+  { id: 1, src: '/images/Angel0.jpg', alt: 'Etimesgut salon görüntüsü 1' },
+  { id: 2, src: '/images/Angel1.jpg', alt: 'Etimesgut salon görüntüsü 2' },
+  { id: 3, src: '/images/Angel2.jpg', alt: 'Etimesgut salon görüntüsü 3' },
+  { id: 4, src: '/images/Angel3.jpg', alt: 'Etimesgut salon görüntüsü 4' },
+  { id: 5, src: '/images/Angel4.jpg', alt: 'Etimesgut salon görüntüsü 5' },
+  { id: 6, src: '/images/Angel5.jpg', alt: 'Etimesgut salon görüntüsü 6' },
+  { id: 7, src: '/images/Angel6.jpeg.jpg', alt: 'Etimesgut salon görüntüsü 7' },
+  { id: 8, src: '/images/Angel7.jpg', alt: 'Etimesgut salon görüntüsü 8' },
+  { id: 9, src: '/images/Angel8.jpg', alt: 'Etimesgut salon görüntüsü 9' },
+  { id: 10, src: '/images/Angel9.jpg', alt: 'Etimesgut salon görüntüsü 10' },
+  { id: 11, src: '/images/Angel10.jpg', alt: 'Etimesgut salon görüntüsü 11' },
+  { id: 12, src: '/images/Angel11.jpg', alt: 'Etimesgut salon görüntüsü 12' }
+];
+
+const Etimesgut: React.FC = () => {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -9,11 +27,11 @@ const Eryaman: React.FC = () => {
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-[#a4585a]/10 via-pink-50/5 to-transparent rounded-full blur-3xl transform translate-x-1/2 translate-y-1/2"></div>
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 animate-fade-in text-gray-900">Eryaman Şubesi</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 animate-fade-in text-gray-900">Etimesgut Şubesi</h1>
           <div className="max-w-3xl mx-auto">
             <p className="text-sm md:text-base text-gray-700 font-light leading-relaxed tracking-wide animate-slide-up">
               <span className="font-medium text-[#a4585a]">Modern mimarisi ve geniş alanıyla </span>
-              düğününüzün en özel anlarını yaşayacağınız Eryaman şubemiz.
+              düğününüzün en özel anlarını yaşayacağınız Etimesgut şubemiz.
             </p>
           </div>
         </div>
@@ -25,9 +43,9 @@ const Eryaman: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Sol Taraf - Bilgiler */}
             <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Eryaman Şubesi</h2>
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">Etimesgut Şubesi</h2>
               <p className="text-gray-600 mb-8 text-lg">
-                Eryaman şubemiz, modern mimarisi ve geniş alanıyla düğün organizasyonlarınız için ideal bir mekan sunar. 
+                Etimesgut şubemiz, modern mimarisi ve geniş alanıyla düğün organizasyonlarınız için ideal bir mekan sunar. 
                 Yüksek tavanı ve kolonsuz mimarisi sayesinde ferah bir atmosfer yaratır.
               </p>
               
@@ -65,7 +83,7 @@ const Eryaman: React.FC = () => {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">E-posta</h3>
-                    <p className="text-gray-600">eryaman@roseweddinghall.com</p>
+                    <p className="text-gray-600">roseweddinghall06@gmail.com</p>
                   </div>
                 </div>
 
@@ -76,7 +94,7 @@ const Eryaman: React.FC = () => {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Kapasite</h3>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Maksimum Kapasite</h3>
                     <p className="text-gray-600">660 kişi</p>
                   </div>
                 </div>
@@ -123,12 +141,42 @@ const Eryaman: React.FC = () => {
         </div>
       </section>
 
+      {/* Salon Galerisi */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900">Etimesgut Şubesi Galerisi</h2>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+            {galleryImages.map((image) => (
+              <button
+                key={image.id}
+                type="button"
+                onClick={() => setSelectedImage(image.src)}
+                className="relative group aspect-square rounded-2xl overflow-hidden shadow-lg shadow-primary/10 hover:shadow-2xl hover:shadow-primary/25 transition-all duration-500"
+              >
+                <OptimizedImage
+                  src={image.src}
+                  alt={image.alt}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  objectFit="cover"
+                  loading="lazy"
+                  placeholder="blur"
+                />
+                <span className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/0 to-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Harita */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Konumumuz</h2>
-            <p className="text-xl text-gray-600">Eryaman şubemizin konumunu haritada görüntüleyebilirsiniz</p>
+            <p className="text-xl text-gray-600">Etimesgut şubemizin konumunu haritada görüntüleyebilirsiniz</p>
           </div>
           
           <div className="bg-white rounded-lg shadow-lg overflow-hidden">
@@ -145,7 +193,7 @@ const Eryaman: React.FC = () => {
               ></iframe>
             </div>
             <div className="p-6">
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Eryaman Şubesi</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Etimesgut Şubesi</h3>
               <p className="text-gray-600 mb-4">Yeşilova, 4016. Cad. B Blok No:2/2/13, 06796 Etimesgut/Ankara</p>
               <a 
                 href="https://share.google/s73VdxD4h4IF37TVJ" 
@@ -171,7 +219,7 @@ const Eryaman: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">İletişime Geçin</h2>
-            <p className="text-xl text-gray-600">Eryaman şubemiz hakkında detaylı bilgi almak için bizimle iletişime geçin</p>
+            <p className="text-xl text-gray-600">Etimesgut şubemiz hakkında detaylı bilgi almak için bizimle iletişime geçin</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -192,7 +240,7 @@ const Eryaman: React.FC = () => {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">E-posta</h3>
-              <p className="text-gray-600">eryaman@roseweddinghall.com</p>
+              <p className="text-gray-600">roseweddinghall06@gmail.com</p>
             </div>
             
             <div className="text-center">
@@ -208,8 +256,36 @@ const Eryaman: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {selectedImage && (
+        <div
+          className="fixed inset-0 z-[9999] bg-black/80 backdrop-blur-sm flex items-center justify-center p-6"
+          onClick={() => setSelectedImage(null)}
+        >
+          <div className="relative max-w-5xl w-full" onClick={(e) => e.stopPropagation()}>
+            <button
+              type="button"
+              onClick={() => setSelectedImage(null)}
+              className="absolute -top-10 right-0 text-white hover:text-primary transition-colors"
+              aria-label="Kapat"
+            >
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            <OptimizedImage
+              src={selectedImage}
+              alt="Etimesgut salon görseli"
+              className="w-full h-full rounded-2xl shadow-2xl"
+              objectFit="contain"
+              loading="eager"
+              placeholder="blur"
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
 
-export default Eryaman;
+export default Etimesgut;

@@ -51,6 +51,13 @@ module.exports = {
           800: '#84484b',
           900: '#6e3c3f',
         },
+        luxury: {
+          gold: '#d4af37',
+          'gold-light': '#f4e4bc',
+          'gold-dark': '#b8941f',
+          brass: '#b5a642',
+          'brass-light': '#e8e0a8',
+        },
         success: '#8b4a4d',
         warning: '#c47a7d',
         error: '#7d3d40',
@@ -64,6 +71,15 @@ module.exports = {
         'float': 'float 6s ease-in-out infinite',
         'wiggle': 'wiggle 1s ease-in-out infinite',
         'slow-gentle': 'slowGentle 5s ease-in-out infinite',
+        'slide-in-left': 'slideInLeft 1s ease-out',
+        'slide-in-right': 'slideInRight 1s ease-out',
+        'fade-in-up': 'fadeInUp 1s ease-out',
+        'bubble-rise-1': 'bubbleRise1 8s ease-in-out infinite',
+        'bubble-rise-2': 'bubbleRise2 10s ease-in-out infinite',
+        'bubble-rise-3': 'bubbleRise3 12s ease-in-out infinite',
+        'bubble-rise-4': 'bubbleRise4 9s ease-in-out infinite',
+        'bubble-rise-5': 'bubbleRise5 11s ease-in-out infinite',
+        'bubble-rise-6': 'bubbleRise6 13s ease-in-out infinite',
       },
       keyframes: {
         fadeIn: {
@@ -72,6 +88,18 @@ module.exports = {
         },
         slideUp: {
           '0%': { opacity: '0', transform: 'translateY(50px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        slideInLeft: {
+          '0%': { opacity: '0', transform: 'translateX(-100px)' },
+          '100%': { opacity: '1', transform: 'translateX(0)' },
+        },
+        slideInRight: {
+          '0%': { opacity: '0', transform: 'translateX(100px)' },
+          '100%': { opacity: '1', transform: 'translateX(0)' },
+        },
+        fadeInUp: {
+          '0%': { opacity: '0', transform: 'translateY(60px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
         bounceGentle: {
@@ -98,6 +126,102 @@ module.exports = {
           '50%': { 
             transform: 'translateY(-12px) scale(1.02)',
             opacity: '0.9'
+          },
+        },
+        bubbleRise1: {
+          '0%': { 
+            transform: 'translateY(100vh) translateX(0) scale(0.8)',
+            opacity: '0'
+          },
+          '10%': { 
+            opacity: '0.4'
+          },
+          '90%': { 
+            opacity: '0.4'
+          },
+          '100%': { 
+            transform: 'translateY(-100px) translateX(20px) scale(1.2)',
+            opacity: '0'
+          },
+        },
+        bubbleRise2: {
+          '0%': { 
+            transform: 'translateY(100vh) translateX(0) scale(1)',
+            opacity: '0'
+          },
+          '10%': { 
+            opacity: '0.3'
+          },
+          '90%': { 
+            opacity: '0.3'
+          },
+          '100%': { 
+            transform: 'translateY(-100px) translateX(-30px) scale(0.9)',
+            opacity: '0'
+          },
+        },
+        bubbleRise3: {
+          '0%': { 
+            transform: 'translateY(100vh) translateX(0) scale(0.7)',
+            opacity: '0'
+          },
+          '10%': { 
+            opacity: '0.35'
+          },
+          '90%': { 
+            opacity: '0.35'
+          },
+          '100%': { 
+            transform: 'translateY(-100px) translateX(40px) scale(1.1)',
+            opacity: '0'
+          },
+        },
+        bubbleRise4: {
+          '0%': { 
+            transform: 'translateY(100vh) translateX(0) scale(0.9)',
+            opacity: '0'
+          },
+          '10%': { 
+            opacity: '0.25'
+          },
+          '90%': { 
+            opacity: '0.25'
+          },
+          '100%': { 
+            transform: 'translateY(-100px) translateX(-25px) scale(1.15)',
+            opacity: '0'
+          },
+        },
+        bubbleRise5: {
+          '0%': { 
+            transform: 'translateY(100vh) translateX(0) scale(0.85)',
+            opacity: '0'
+          },
+          '10%': { 
+            opacity: '0.3'
+          },
+          '90%': { 
+            opacity: '0.3'
+          },
+          '100%': { 
+            transform: 'translateY(-100px) translateX(35px) scale(1.05)',
+            opacity: '0'
+          },
+        },
+        bubbleRise6: {
+          '0%': { 
+            transform: 'translateY(100vh) translateX(0) scale(0.75)',
+            opacity: '0'
+          },
+          '10%': { 
+            opacity: '0.4'
+          },
+          '90%': { 
+            opacity: '0.4'
+          },
+          '100%': { 
+            transform: 'translateY(-100px) translateX(-40px) scale(1.25)',
+            opacity: '0'
           },
         },
       },

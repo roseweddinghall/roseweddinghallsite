@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import OptimizedImage from './OptimizedImage';
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -83,10 +84,13 @@ const Navbar: React.FC = () => {
           {/* Center Logo */}
           <div className="flex items-center justify-center flex-1 h-36 overflow-hidden">
             <Link to="/" className="block flex items-start">
-              <img 
-                src="/logo.png.png" 
-                alt="Rose Wedding Hall" 
+              <OptimizedImage
+                src="/logo.png.png"
+                alt="Rose Wedding Hall"
                 className="w-auto object-contain"
+                priority={true}
+                loading="eager"
+                objectFit="contain"
                 style={{ background: 'transparent', height: '15rem' }}
               />
             </Link>
@@ -158,10 +162,13 @@ const Navbar: React.FC = () => {
           {/* Mobile Center Logo */}
           <div className="flex-1 flex justify-center">
             <Link to="/" className="flex-shrink-0">
-              <img 
-                src="/logo.png.png" 
-                alt="Rose Wedding Hall" 
+              <OptimizedImage
+                src="/logo.png.png"
+                alt="Rose Wedding Hall"
                 className="h-20 w-auto object-contain"
+                priority={true}
+                loading="eager"
+                objectFit="contain"
                 style={{ background: 'transparent' }}
               />
             </Link>

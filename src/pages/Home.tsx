@@ -1,44 +1,49 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import HeroSlider from '../components/HeroSlider';
+import ScrollSalonCard from '../components/ScrollSalonCard';
+import CreativeGallery from '../components/CreativeGallery';
 
 const Home: React.FC = () => {
-  const [openFAQ, setOpenFAQ] = useState<number | null>(null);
+  // Scroll animation için ref'ler
+  const salonSectionRef = useRef<HTMLDivElement>(null);
+  const statsSectionRef = useRef<HTMLDivElement>(null);
+  const instagramSectionRef = useRef<HTMLDivElement>(null);
 
-  const faqData = [
-    {
-      question: "Salon kapasiteniz nedir?",
-      answer: "4 farklı konseptteki salonlarımızda, 300 kişiden başlayarak 800 kişiye kadar misafir ağırlama kapasitesine sahibiz."
-    },
-    {
-      question: "Menü seçenekleriniz neler?",
-      answer: "Misafirlerinize özel olarak hazırlanan Kokteyl, Özel (Special), Beyaz Et ve Kırmızı Et olmak üzere zengin menü alternatifleri sunmaktayız. Düğün menünüzü kararlaştırmadan önce ücretsiz menü tadımı yapabilirsiniz."
-    },
-    {
-      question: "Rezervasyon için ne kadar önceden başvurmalıyız?",
-      answer: "Özellikle yoğun yaz dönemleri için en az 6 ay öncesinden rezervasyon yapmanızı öneririz. Ancak, düğün tarihinize yakın bir zamanda bile size en uygun alternatifleri sunmak için her zaman buradayız."
-    },
-    {
-      question: "Otopark veya ulaşım kolaylığı var mı?",
-      answer: "Evet, misafirleriniz için geniş ve ücretsiz otopark alanımız mevcuttur. Salonlarımıza tüm toplu taşıma araçlarıyla kolaylıkla ve rahatça ulaşım sağlanmaktadır."
-    },
-    {
-      question: "Ses, ışık ve havalandırma sistemleri ne durumdadır?",
-      answer: "Salonlarımızda en yeni teknolojiye sahip profesyonel ses ve ışık sistemleri ile tam kapasiteli modern bir havalandırma sistemi mevcuttur. Düğün boyunca konforlu bir ortam garanti edilmektedir."
-    },
-    {
-      question: "Düğün günü organizasyon yöneticisi hizmeti veriyor musunuz?",
-      answer: "Evet, hazırlık sürecinde ve düğün gününüz boyunca organizasyonun tüm akışını yönetecek, size özel bir düğün koçu görev almaktadır."
-    },
-    {
-      question: "Mevsimsel avantajlar veya indirimler sunuyor musunuz?",
-      answer: "Yoğun olmayan sezonlar (genellikle kış veya hafta içi günler) için özel paketler ve indirimli fiyat seçeneklerimiz mevcuttur. Güncel kampanyalarımız için lütfen bizimle iletişime geçin."
-    }
-  ];
+  // Intersection Observer ile scroll animasyonları
+  useEffect(() => {
+    const observers: IntersectionObserver[] = [];
 
-  const toggleFAQ = (index: number) => {
-    setOpenFAQ(openFAQ === index ? null : index);
-  };
+    const createObserver = (ref: React.RefObject<HTMLDivElement | null>, animationClass: string) => {
+      const element = ref.current;
+      if (!element) return;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add(animationClass);
+              entry.target.classList.remove('opacity-0');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+      );
+
+      observer.observe(element);
+      observers.push(observer);
+    };
+
+    createObserver(salonSectionRef, 'animate-slide-in-left');
+    createObserver(statsSectionRef, 'animate-fade-in-up');
+    createObserver(instagramSectionRef, 'animate-fade-in-up');
+
+    return () => {
+      observers.forEach((obs) => obs.disconnect());
+    };
+  }, []);
+
 
   const heroSlides = [
     {
@@ -60,150 +65,156 @@ const Home: React.FC = () => {
 
   const salonData = [
     {
-      branch: "Eryaman Şubesi",
+      branch: "Etimesgut",
       salons: [
         {
-          name: "Angel",
-          description: "Modern tasarımın güçlü çizgileriyle dikkat çeken ferah ve aydınlık bir salon. Büyük davetleriniz için şık, konforlu ve unutulmaz bir deneyim sunar.",
-          capacity: 660,
+          name: "Etimesgut Salon",
+          description: "Modern tasarımın güçlü çizgileriyle dikkat çeken ferah ve aydınlık salonlarımız, geleneksel sıcaklığı kaybetmeden sizlere şık, konforlu ve unutulmaz bir deneyim sunar.",
+          capacity: 600,
           image: "/images/angel.JPG"
-        },
-        {
-          name: "Amore", 
-          description: "Geleneksel sıcaklık, modern estetikle buluştu. En yakınlarınızla, en özel anlarınızı yaşayacağınız şık ve butik bir atmosfer.",
-          capacity: 220,
-          image: "/images/salon-amore-eryaman.jpg.JPG"
         }
       ]
     },
     {
-      branch: "İvedik Şubesi",
+      branch: "Yenimahalle",
       salons: [
         {
-          name: "Angel",
-          description: "Antik ve modern tasarımın buluştuğu detaylar ile 800 kişiye kadar eşsiz deneyim. Zarafetin özgünlük ile harmanı...",
+          name: "Yenimahalle Salon",
+          description: "Modern, antik ve bohem tarzların bir araya geldiği konseptlerimiz ile zarafetin özgünlük ile harmanı...",
           capacity: 800,
           image: "/images/salon-angel-ivedik.jpg"
-        },
-        {
-          name: "Amore",
-          description: "Bohem şıklığı ve sıcak dokunuşlarıyla 600 kişilik samimi bir ortam. Klasiğin şıklık ile buluşması...",
-          capacity: 600,
-          image: "/images/salon-amore-ivedik.jpg"
         }
       ]
     }
   ];
 
+  // Galeri görselleri - yaratıcı düzen için
+  // Görselleri public/images/ klasörüne yükleyin
+  // Layout seçenekleri: 'small', 'medium', 'large', 'wide', 'tall'
+  // Overlap seçenekleri: 'none', 'top-left', 'top-right', 'bottom-left', 'bottom-right'
+  const galleryImages = [
+    { src: "/images/Angel0.jpg", alt: "Düğün görseli 1", layout: 'small' as const, overlap: 'none' as const },
+    { src: "/images/Angel1.jpg", alt: "Düğün görseli 2", layout: 'small' as const, overlap: 'top-right' as const, rotation: -1.5 },
+    { src: "/images/Angel2.jpg", alt: "Düğün görseli 3", layout: 'small' as const, overlap: 'none' as const },
+    { src: "/images/Angel3.jpg", alt: "Düğün görseli 4", layout: 'small' as const, overlap: 'bottom-left' as const, rotation: 2 },
+    
+    // İkinci satır - 2 geniş görsel
+    { src: "/images/amore1.JPG", alt: "Düğün görseli 5", layout: 'wide' as const, overlap: 'none' as const },
+    { src: "/images/amore2.JPG", alt: "Düğün görseli 6", layout: 'wide' as const, overlap: 'none' as const },
+    
+    // Üçüncü satır - 4 küçük
+    { src: "/images/IMG_5499.JPG", alt: "Düğün görseli 7", layout: 'small' as const, overlap: 'none' as const },
+    { src: "/images/IMG_5500.JPG", alt: "Düğün görseli 8", layout: 'small' as const, overlap: 'top-left' as const, rotation: 1.5 },
+    { src: "/images/IMG_5501.JPG", alt: "Düğün görseli 9", layout: 'small' as const, overlap: 'none' as const },
+    { src: "/images/IMG_5502.JPG", alt: "Düğün görseli 10", layout: 'small' as const, overlap: 'bottom-right' as const, rotation: -2 },
+    
+    // Dördüncü satır - 1 uzun (tall) + 3 küçük (tall görsel 2 satır yükseklik kaplar)
+    { src: "/images/5A6A0494.JPG", alt: "Düğün görseli 11", layout: 'tall' as const, overlap: 'none' as const },
+    { src: "/images/5A6A0498.JPG", alt: "Düğün görseli 12", layout: 'small' as const, overlap: 'none' as const },
+    { src: "/images/5A6A0527.JPG", alt: "Düğün görseli 13", layout: 'small' as const, overlap: 'top-right' as const, rotation: -1 },
+    { src: "/images/Angel4.jpg", alt: "Düğün görseli 14", layout: 'small' as const, overlap: 'none' as const },
+    
+    // Beşinci satır - tall görselin altında 3 küçük (tall görsel 2 satır kapladığı için)
+    { src: "/images/5A6A0654.JPG", alt: "Düğün görseli 15", layout: 'small' as const, overlap: 'none' as const },
+    { src: "/images/5A6A0702.JPG", alt: "Düğün görseli 16", layout: 'small' as const, overlap: 'bottom-left' as const, rotation: 1 },
+    { src: "/images/5A6A0881.JPG", alt: "Düğün görseli 17", layout: 'small' as const, overlap: 'none' as const },
+  ];
+
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       {/* Hero Section with Slider */}
-      <section className="relative py-8 lg:py-12 overflow-hidden z-0">
+      <section className="relative py-8 lg:py-12 overflow-hidden z-0 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Hero Slider */}
           <HeroSlider slides={heroSlides} autoPlayInterval={5000} />
           
-          {/* Call to Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8 animate-slide-up">
+          {/* Call to Action Buttons - Lüks tasarım */}
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mt-12 animate-fade-in-up">
             <Link 
               to="/subelerimiz" 
-              className="bg-gradient-to-r from-primary to-primary-700 text-white px-8 py-4 rounded-full font-semibold hover:scale-105 transform transition-all duration-300 shadow-lg hover:shadow-xl text-center"
+              className="group relative bg-transparent border-2 border-primary/30 text-primary px-10 py-4 rounded-full font-bold text-lg hover:bg-primary/80 hover:text-white hover:border-primary/50 hover:scale-105 transform transition-all duration-300 shadow-md hover:shadow-primary/30"
             >
+              <span className="relative z-10 flex items-center justify-center gap-2">
               Salonları İncele
+                <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </span>
             </Link>
             <Link 
               to="/rezervasyon" 
-              className="border-2 border-primary/80 bg-white text-primary px-8 py-4 rounded-full font-semibold hover:bg-primary/10 transition-all duration-300 hover:scale-105 text-center"
+              className="group relative bg-primary text-white px-16 py-3 rounded-full font-bold text-lg shadow-md min-w-[280px]"
             >
-              Rezervasyon Yap
+              <span className="relative z-10 flex flex-col items-center justify-center gap-1">
+                <span className="text-sm font-medium">Fiyat Teklifi için</span>
+                <span>Size Ulaşalım</span>
+              </span>
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Salonlar Bölümü */}
-      <section className="py-16 bg-gradient-to-br from-gray-50 to-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+      {/* Yaratıcı Görsel Galeri Bölümü */}
+      <section className="pt-16 pb-10 bg-gradient-to-b from-white via-gray-50 to-white">
+        <div className="max-w-7xl mx-auto">
+          {/* Yaratıcı Grid Galeri - 4 Sütunlu, Farklı Boyutlar */}
+          {galleryImages.length > 0 ? (
+            <CreativeGallery images={galleryImages} />
+          ) : (
+            <div className="text-center py-20">
+              <p className="text-gray-500 text-lg mb-4">Görseller yükleniyor...</p>
+              <p className="text-gray-400 text-sm">
+                Görselleri <code className="bg-gray-100 px-2 py-1 rounded">public/images/</code> klasörüne yükleyin
+              </p>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Salonlar Bölümü - Lüks Tasarım */}
+      <section ref={salonSectionRef} className="pt-12 pb-16 bg-gradient-to-b from-white via-gray-50 to-white relative overflow-hidden">
+        {/* Dekoratif elementler */}
+        <div className="absolute top-20 left-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-12">
+            <h2 className="text-5xl md:text-6xl font-classic font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-600 to-primary-700">
                 Salonlarımız
-              </span>
             </h2>
-            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+            <div className="w-32 h-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent mx-auto mb-4"></div>
+            <p className="text-xl text-gray-700 max-w-3xl mx-auto font-light">
               Her biri özel tasarım ve konseptle hazırlanmış salonlarımızda, hayalinizdeki düğünü gerçekleştirin.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 lg:items-stretch">
             {salonData.map((branch, branchIndex) => (
-              <div key={branchIndex} className="space-y-6">
-                <div className="text-center mb-8">
-                  <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">{branch.branch}</h3>
-                  <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full"></div>
+              <div key={branchIndex} className="flex flex-col">
+                <div className="text-center mb-12 flex-shrink-0">
+                  <h3 
+                    className="text-4xl md:text-5xl font-classic font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-700 mb-4"
+                    style={{
+                      filter: 'drop-shadow(0 2px 4px rgba(164, 88, 90, 0.3)) drop-shadow(0 4px 8px rgba(164, 88, 90, 0.2))',
+                    }}
+                  >
+                    {branch.branch}
+                  </h3>
+                  <div className="w-24 h-1 bg-gradient-to-r from-primary/50 to-primary/80 mx-auto"></div>
                 </div>
                 
-                <div className="flex flex-col gap-6">
-                  {branch.salons.map((salon, salonIndex) => (
-                    <div key={salonIndex} className="group">
-                      <div className="bg-white rounded-2xl shadow-lg shadow-pink-200/50 hover:shadow-2xl hover:shadow-pink-300/60 transition-all duration-500 transform hover:-translate-y-3 hover:rotate-1 overflow-hidden">
-                        {/* Görsel Bölümü */}
-                        <div 
-                          className="relative h-64 bg-gradient-to-br from-pink-100 via-purple-50 to-rose-100 group-hover:from-pink-200 group-hover:via-purple-100 group-hover:to-rose-200 transition-all duration-700 bg-cover bg-center"
-                          style={{
-                            backgroundImage: salon.image ? `url(${salon.image})` : undefined,
-                            backgroundBlendMode: salon.image ? 'overlay' : undefined
-                          }}
-                        >
-                          {!salon.image && (
-                            <div className="absolute inset-0 flex items-center justify-center">
-                              <div className="text-center text-gray-500 group-hover:text-gray-700 transition-colors duration-300">
-                                <svg className="w-16 h-16 mx-auto mb-4 group-hover:scale-110 transition-transform duration-500" fill="currentColor" viewBox="0 0 24 24">
-                                  <path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" />
-                                </svg>
-                                <p className="text-sm font-medium">{salon.name} Salon Görseli</p>
-                              </div>
-                            </div>
-                          )}
-                          {/* Overlay for better text readability */}
-                          {salon.image && (
-                            <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-all duration-300"></div>
-                          )}
-                          {/* Kapasite Etiketi */}
-                          <div className="absolute top-4 right-4">
-                            <span className="bg-gradient-to-r from-primary-500 via-primary-600 to-primary-700 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg shadow-primary-300/50 hover:shadow-primary-400/60 transition-all duration-300 hover:scale-105">
-                              {salon.capacity} kişi
-                            </span>
-                          </div>
-                          {/* Salon İsmi */}
-                          <div className="absolute bottom-4 left-4">
-                            <h4 className="text-white text-xl font-bold bg-black/50 px-3 py-1 rounded-lg backdrop-blur-sm">
-                              {salon.name}
-                            </h4>
-                          </div>
-                        </div>
-
-                        {/* İçerik Bölümü */}
-                        <div className="p-6">
-                          <p className="text-gray-600 leading-relaxed text-sm">
-                            {salon.description}
-                          </p>
-                          
-                          <div className="mt-6 flex justify-between items-center">
-                            <div className="flex items-center text-primary">
-                              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                              </svg>
-                              <span className="text-sm font-medium">Kapasite: {salon.capacity} kişi</span>
-                            </div>
-                            <button className="bg-gradient-to-r from-primary-500 via-primary-600 to-primary-700 text-white px-6 py-2 rounded-lg text-sm font-semibold hover:shadow-lg hover:shadow-primary-300/60 transition-all duration-300 transform hover:scale-105 hover:-translate-y-0.5">
-                              Detayları Gör
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
+                <div className="flex-1 flex">
+                  {branch.salons.map((salon, salonIndex) => {
+                    const isLeft = salonIndex % 2 === 0;
+                    return (
+                      <ScrollSalonCard
+                        key={salonIndex}
+                        salon={salon}
+                        direction={isLeft ? 'left' : 'right'}
+                        priority={true}
+                      />
+                    );
+                  })}
                 </div>
               </div>
             ))}
@@ -211,209 +222,102 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Özellikler */}
-      <section className="py-16 bg-gradient-to-br from-secondary-50 via-primary-50 to-accent-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16 animate-fade-in">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
-                Neden Biz?
-              </span>
-            </h2>
-            <p className="text-xl text-gray-700 max-w-4xl mx-auto">
-              Düğün stresini bir kenara bırakın. Hayatınızın bu en özel gününde, her detayı sizin için düşündük ve size en iyi deneyimi sunmaya hazırız!
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center p-6 bg-gradient-to-br from-white to-primary-50 rounded-2xl shadow-lg shadow-primary-200/30 hover:shadow-2xl hover:shadow-primary-300/50 transform hover:scale-110 hover:-translate-y-2 transition-all duration-500 animate-slide-up group">
-              <div className="w-16 h-16 bg-gradient-to-br from-primary-500 via-primary-600 to-primary-700 rounded-full flex items-center justify-center mx-auto mb-4 animate-bounce-gentle group-hover:scale-110 group-hover:rotate-12 transition-transform duration-500">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-primary-700 transition-colors duration-300">Modern Salonlar</h3>
-              <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">
-                Çağdaş mimari ve ileri teknoloji altyapımızla, düğününüze yakışan, hem estetik hem de konforlu, unutulmaz bir atmosfer yaratıyoruz.
-              </p>
-            </div>
-
-            <div className="text-center p-6 bg-gradient-to-br from-white to-secondary-50 rounded-2xl shadow-lg shadow-secondary-200/30 hover:shadow-2xl hover:shadow-secondary-300/50 transform hover:scale-110 hover:-translate-y-2 transition-all duration-500 animate-slide-up group" style={{animationDelay: '0.2s'}}>
-              <div className="w-16 h-16 bg-gradient-to-br from-secondary-500 via-secondary-600 to-secondary-700 rounded-full flex items-center justify-center mx-auto mb-4 animate-bounce-gentle group-hover:scale-110 group-hover:rotate-12 transition-transform duration-500" style={{animationDelay: '0.5s'}}>
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-secondary-700 transition-colors duration-300">Uzman Ekip</h3>
-              <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">
-                Deneyimli ve işine tutkuyla bağlı profesyonel ekibimiz, organizasyonunuzun her aşamasında yanınızda. Hayalinizdeki düğünü gerçeğe dönüştürmek için titizlikle çalışıyoruz.
-              </p>
-            </div>
-
-            <div className="text-center p-6 bg-gradient-to-br from-white to-accent-50 rounded-2xl shadow-lg shadow-accent-200/30 hover:shadow-2xl hover:shadow-accent-300/50 transform hover:scale-110 hover:-translate-y-2 transition-all duration-500 animate-slide-up group" style={{animationDelay: '0.4s'}}>
-              <div className="w-16 h-16 bg-gradient-to-br from-accent-500 via-accent-600 to-accent-700 rounded-full flex items-center justify-center mx-auto mb-4 animate-bounce-gentle group-hover:scale-110 group-hover:rotate-12 transition-transform duration-500" style={{animationDelay: '1s'}}>
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-accent-700 transition-colors duration-300">Kalite Garantisi</h3>
-              <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">
-                Kurumsal standartlarımızdan ödün vermiyoruz. Sunduğumuz yüksek hizmet kalitesi ile düğününüzün en küçük aksaklık olmadan, kusursuz ve pürüzsüz geçmesini garanti altına alıyoruz.
-              </p>
-            </div>
-          </div>
+      {/* İstatistikler - Lüks */}
+      <section ref={statsSectionRef} className="py-12 bg-gradient-to-r from-primary/5 via-primary/8 to-primary/5 relative overflow-hidden opacity-0">
+        {/* Animasyonlu Yuvarlaklar/Baloncuklar */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {/* Büyük yuvarlaklar - farklı hızlarda yükselen */}
+          <div className="absolute w-32 h-32 rounded-full bg-primary/20 blur-xl animate-bubble-rise-1 left-[10%]" style={{ animationDelay: '0s' }}></div>
+          <div className="absolute w-40 h-40 rounded-full bg-primary/15 blur-2xl animate-bubble-rise-2 left-[25%]" style={{ animationDelay: '1.5s' }}></div>
+          <div className="absolute w-28 h-28 rounded-full bg-primary/25 blur-xl animate-bubble-rise-3 left-[45%]" style={{ animationDelay: '3s' }}></div>
+          <div className="absolute w-36 h-36 rounded-full bg-primary/18 blur-2xl animate-bubble-rise-4 left-[60%]" style={{ animationDelay: '2s' }}></div>
+          <div className="absolute w-24 h-24 rounded-full bg-primary/22 blur-xl animate-bubble-rise-5 left-[75%]" style={{ animationDelay: '4s' }}></div>
+          <div className="absolute w-44 h-44 rounded-full bg-primary/12 blur-2xl animate-bubble-rise-6 left-[85%]" style={{ animationDelay: '0.5s' }}></div>
+          
+          {/* Orta boy yuvarlaklar */}
+          <div className="absolute w-20 h-20 rounded-full bg-primary/20 blur-lg animate-bubble-rise-2 left-[15%]" style={{ animationDelay: '2.5s' }}></div>
+          <div className="absolute w-16 h-16 rounded-full bg-primary/25 blur-lg animate-bubble-rise-4 left-[35%]" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute w-22 h-22 rounded-full bg-primary/18 blur-lg animate-bubble-rise-1 left-[55%]" style={{ animationDelay: '3.5s' }}></div>
+          <div className="absolute w-18 h-18 rounded-full bg-primary/22 blur-lg animate-bubble-rise-3 left-[70%]" style={{ animationDelay: '1.8s' }}></div>
+          <div className="absolute w-26 h-26 rounded-full bg-primary/15 blur-lg animate-bubble-rise-5 left-[80%]" style={{ animationDelay: '0.8s' }}></div>
+          
+          {/* Küçük yuvarlaklar - daha hızlı */}
+          <div className="absolute w-12 h-12 rounded-full bg-primary/30 blur-md animate-bubble-rise-6 left-[20%]" style={{ animationDelay: '0.3s' }}></div>
+          <div className="absolute w-10 h-10 rounded-full bg-primary/28 blur-md animate-bubble-rise-3 left-[40%]" style={{ animationDelay: '2.2s' }}></div>
+          <div className="absolute w-14 h-14 rounded-full bg-primary/25 blur-md animate-bubble-rise-1 left-[50%]" style={{ animationDelay: '1.3s' }}></div>
+          <div className="absolute w-8 h-8 rounded-full bg-primary/32 blur-md animate-bubble-rise-4 left-[65%]" style={{ animationDelay: '3.2s' }}></div>
+          <div className="absolute w-16 h-16 rounded-full bg-primary/20 blur-md animate-bubble-rise-2 left-[90%]" style={{ animationDelay: '0.7s' }}></div>
+          
+          {/* Ekstra küçük detaylar */}
+          <div className="absolute w-6 h-6 rounded-full bg-primary/35 blur-sm animate-bubble-rise-5 left-[30%]" style={{ animationDelay: '1.5s' }}></div>
+          <div className="absolute w-7 h-7 rounded-full bg-primary/30 blur-sm animate-bubble-rise-3 left-[65%]" style={{ animationDelay: '2.8s' }}></div>
+          <div className="absolute w-5 h-5 rounded-full bg-primary/40 blur-sm animate-bubble-rise-1 left-[50%]" style={{ animationDelay: '0.4s' }}></div>
         </div>
-      </section>
-
-      {/* İstatistikler */}
-      <section className="py-16 bg-gradient-to-r from-primary via-secondary to-accent text-white relative overflow-hidden">
-        {/* Animated background elements */}
-        <div className="absolute top-10 left-10 w-32 h-32 bg-white/10 rounded-full animate-float"></div>
-        <div className="absolute bottom-10 right-10 w-24 h-24 bg-white/10 rounded-full animate-bounce-gentle"></div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div className="animate-fade-in transform hover:scale-110 transition-all duration-300">
-              <div className="text-4xl md:text-5xl font-bold mb-2 animate-pulse-slow">500+</div>
-              <div className="text-primary-100 font-medium">Mutlu Düğün</div>
+            {[
+              { number: "500+", label: "Mutlu Düğün" },
+              { number: "2", label: "Şube" },
+              { number: "8+", label: "Yıllık Deneyim" },
+              { number: "98%", label: "Müşteri Memnuniyeti" }
+            ].map((stat, index) => (
+              <div key={index} className="transform hover:scale-110 transition-all duration-300">
+                <div className="text-5xl md:text-6xl font-elegant font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-600 to-primary-700 animate-pulse-slow">
+                  {stat.number}
             </div>
-            <div className="animate-fade-in transform hover:scale-110 transition-all duration-300" style={{animationDelay: '0.2s'}}>
-              <div className="text-4xl md:text-5xl font-bold mb-2 animate-pulse-slow">2</div>
-              <div className="text-secondary-100 font-medium">Şube</div>
+                <div className="text-primary font-medium text-lg">{stat.label}</div>
             </div>
-            <div className="animate-fade-in transform hover:scale-110 transition-all duration-300" style={{animationDelay: '0.4s'}}>
-              <div className="text-4xl md:text-5xl font-bold mb-2 animate-pulse-slow">8+</div>
-              <div className="text-accent-100 font-medium">Yıllık Deneyim</div>
-            </div>
-            <div className="animate-fade-in transform hover:scale-110 transition-all duration-300" style={{animationDelay: '0.6s'}}>
-              <div className="text-4xl md:text-5xl font-bold mb-2 animate-pulse-slow">98%</div>
-              <div className="text-primary-100 font-medium">Müşteri Memnuniyeti</div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* FAQ Bölümü */}
-      <section className="py-16 bg-white">
+      {/* FAQ ve Instagram Bölümü - Yan Yana */}
+      <section ref={instagramSectionRef} className="py-12 bg-gradient-to-b from-gray-50 to-white opacity-0">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 lg:items-stretch">
+            {/* FAQ Bölümü - Sol Taraf */}
+            <div className="text-center flex flex-col">
+              <h2 className="text-xl md:text-2xl font-classic font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-600 to-primary-700 whitespace-nowrap">
                 💍 Düğününüze Dair Merak Ettikleriniz
-              </span>
             </h2>
-            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-              Salonlarımız hakkında en sık sorulan soruları yanıtladık.
-            </p>
-          </div>
-          
-          <div className="max-w-4xl mx-auto">
-            <div className="space-y-4">
-              {faqData.map((faq, index) => (
-                <div 
-                  key={index} 
-                  className="bg-white border border-pink-100 rounded-xl transition-all duration-500 transform hover:-translate-y-1 hover:border-pink-200"
-                  style={{
-                    boxShadow: '0 10px 15px -3px rgba(164, 88, 74, 0.4), 0 4px 6px -2px rgba(164, 88, 74, 0.05)'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.boxShadow = '0 25px 50px -12px rgba(164, 88, 74, 0.5), 0 10px 20px -5px rgba(164, 88, 74, 0.1)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.boxShadow = '0 10px 15px -3px rgba(164, 88, 74, 0.4), 0 4px 6px -2px rgba(164, 88, 74, 0.05)';
-                  }}
-                >
-                  <button
-                    onClick={() => toggleFAQ(index)}
-                    className="w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-pink-300 focus:ring-opacity-50 rounded-lg hover:bg-gradient-to-r hover:from-pink-50 hover:to-purple-50 transition-all duration-300 group"
-                  >
-                    <span className="text-lg font-semibold text-gray-900 pr-4 group-hover:text-gray-800 transition-colors duration-300">
-                      {faq.question}
-                    </span>
-                    <div className="flex-shrink-0">
-                      <svg
-                        className={`w-5 h-5 text-pink-500 transition-all duration-500 ${
-                          openFAQ === index ? 'rotate-180 scale-110' : 'group-hover:scale-110'
-                        }`}
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M19 9l-7 7-7-7"
-                        />
+              <div className="w-24 h-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent mx-auto mb-4"></div>
+              <p className="text-lg text-gray-700 mb-6 font-light">
+                Salonlarımız ve organizasyon süreciniz hakkında en sık sorulan soruları sizler için yanıtladık.
+              </p>
+              <Link
+                to="/sikca-sorulan-sorular"
+                className="inline-flex items-center justify-center bg-transparent border-2 border-primary/30 text-primary px-8 py-4 rounded-full font-bold text-base hover:bg-primary/80 hover:text-white hover:border-primary/50 hover:scale-105 transform transition-all duration-300 shadow-md hover:shadow-primary/30 mx-auto mt-auto"
+              >
+                <span>Tüm Soruları Görüntüle</span>
+                <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>
-                    </div>
-                  </button>
-                  <div
-                    className={`overflow-hidden transition-all duration-700 ease-in-out ${
-                      openFAQ === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-                    }`}
-                  >
-                    <div className="px-6 pb-5">
-                      <div className="border-t border-pink-100 pt-4">
-                        <p className="text-gray-600 leading-relaxed transition-colors duration-300">
-                          {faq.answer}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
+              </Link>
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Instagram Bölümü */}
-      <section className="py-16 bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+            {/* Instagram Bölümü - Sağ Taraf */}
+            <div className="text-center flex flex-col">
+              <h2 className="text-xl md:text-2xl font-classic font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-600 to-primary-700 whitespace-nowrap">
                 Instagram'da Bizi Takip Edin
-              </span>
             </h2>
-            <p className="text-xl text-gray-700 max-w-2xl mx-auto mb-8">
-              Düğünlerimizden, salonlarımızdan ve özel anlarımızdan kareleri Instagram hesabımızda paylaşıyoruz. 
-              Hayalini kurduğunuz düğününüz için ilham alın!
+              <div className="w-24 h-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent mx-auto mb-4"></div>
+              <p className="text-base text-gray-700 mb-6 font-light">
+                Düğünlerimizden, salonlarımızdan ve özel anlarımızdan kareleri Instagram hesabımızda paylaşıyoruz. Hayalini kurduğunuz düğününüz için ilham alın!
             </p>
             <a 
               href="https://www.instagram.com/rose_weddinghall" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="inline-flex items-center bg-gradient-to-r from-pink-500 to-purple-600 text-white px-8 py-4 rounded-full font-semibold hover:scale-105 transform transition-all duration-300 shadow-lg hover:shadow-xl"
+                className="inline-flex items-center justify-center bg-gradient-to-r from-pink-500 to-purple-600 text-white px-8 py-4 rounded-full font-bold text-base hover:scale-105 transform transition-all duration-300 shadow-xl hover:shadow-pink-500/50 mx-auto mt-auto"
             >
-              <svg className="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 mr-2 text-white" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
               </svg>
               Instagram'da Takip Et
             </a>
           </div>
-          
-          {/* Instagram Feed Simülasyonu */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {[1, 2, 3, 4].map((item) => (
-              <div key={item} className="aspect-square bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
-                <div className="w-full h-full flex items-center justify-center">
-                  <div className="text-center text-gray-500">
-                    <svg className="w-12 h-12 mx-auto mb-2" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                    </svg>
-                    <p className="text-sm">@rose_weddinghall</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-          
-          <div className="text-center mt-8">
-            <p className="text-gray-600 text-sm">
-              Gerçek Instagram gönderilerimizi görmek için hesabımızı ziyaret edin
-            </p>
           </div>
         </div>
       </section>

@@ -1,13 +1,8 @@
 import React, { useState, useEffect } from 'react';
-
-interface ImageWithLoading {
-  loaded: boolean;
-  error: boolean;
-}
+import OptimizedImage from '../components/OptimizedImage';
 
 const Gallery: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
-  const [imageStates, setImageStates] = useState<Record<number, ImageWithLoading>>({});
   const [selectedImage, setSelectedImage] = useState<{ id: number; src: string; title: string } | null>(null);
 
   const galleryData = [
@@ -134,54 +129,20 @@ const Gallery: React.FC = () => {
                   {/* Media Content */}
                   <div className="relative h-64 bg-gradient-to-br from-pink-100 via-purple-50 to-rose-100 group-hover:from-pink-200 group-hover:via-purple-100 group-hover:to-rose-200 transition-all duration-700 overflow-hidden">
                     {item.type === 'image' ? (
-                      <>
-                        {/* Loading Placeholder */}
-                        {!imageStates[item.id]?.loaded && !imageStates[item.id]?.error && (
-                          <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-pink-100 via-purple-50 to-rose-100">
-                            <div className="animate-pulse">
-                              <svg className="w-12 h-12 mx-auto text-gray-400" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" />
-                              </svg>
-                            </div>
-                          </div>
-                        )}
-                        {/* Actual Image */}
-                        <img 
-                          src={item.src} 
+                      <div
+                        onClick={() => setSelectedImage({ id: item.id, src: item.src, title: item.title })}
+                        className="cursor-pointer w-full h-full"
+                      >
+                        <OptimizedImage
+                          src={item.src}
                           alt={item.title}
+                          className="w-full h-full group-hover:scale-110 transition-transform duration-700"
+                          objectFit="cover"
                           loading="lazy"
-                          decoding="async"
-                          className={`w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 cursor-pointer ${
-                            imageStates[item.id]?.loaded ? 'opacity-100' : 'opacity-0'
-                          }`}
-                          onClick={() => setSelectedImage({ id: item.id, src: item.src, title: item.title })}
-                          onLoad={() => {
-                            setImageStates(prev => ({
-                              ...prev,
-                              [item.id]: { loaded: true, error: false }
-                            }));
-                          }}
-                          onError={(e) => {
-                            setImageStates(prev => ({
-                              ...prev,
-                              [item.id]: { loaded: false, error: true }
-                            }));
-                            const target = e.target as HTMLImageElement;
-                            target.style.display = 'none';
-                          }}
+                          placeholder="blur"
+                          priority={item.id <= 6} // İlk 6 görseli priority yap
                         />
-                        {/* Error Fallback */}
-                        {imageStates[item.id]?.error && (
-                          <div className="absolute inset-0 flex items-center justify-center">
-                            <div className="text-center text-gray-500">
-                              <svg className="w-16 h-16 mx-auto mb-4" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" />
-                              </svg>
-                              <p className="text-sm font-medium">Görsel yüklenemedi</p>
-                            </div>
-                          </div>
-                        )}
-                      </>
+                      </div>
                     ) : (
                       <video 
                         src={item.src} 
@@ -197,23 +158,7 @@ const Gallery: React.FC = () => {
                       />
                     )}
                     
-                    {/* Media Type Badge */}
-                    <div className="absolute top-4 left-4">
-                      <span className={`px-3 py-1 rounded-full text-xs font-bold shadow-lg ${
-                        item.type === 'video' 
-                          ? 'bg-gradient-to-r from-red-500 to-red-600 text-white' 
-                          : 'bg-gradient-to-r from-blue-500 to-blue-600 text-white'
-                      }`}>
-                        {item.type === 'video' ? 'VİDEO' : 'FOTOĞRAF'}
-                      </span>
-                    </div>
-
-                    {/* Category Badge */}
-                    <div className="absolute top-4 right-4">
-                      <span className="bg-black/50 text-white px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm">
-                        {categories.find(cat => cat.id === item.category)?.name}
-                      </span>
-                    </div>
+                    {/* Media badges removed as per request */}
                   </div>
 
                   {/* Content */}
@@ -288,10 +233,14 @@ const Gallery: React.FC = () => {
             className="relative max-w-7xl max-h-[90vh] w-full h-full flex items-center justify-center"
             onClick={(e) => e.stopPropagation()}
           >
-            <img
+            <OptimizedImage
               src={selectedImage.src}
               alt={selectedImage.title}
-              className="max-w-full max-h-[90vh] w-auto h-auto object-contain rounded-lg shadow-2xl"
+              className="max-w-full max-h-[90vh] w-auto h-auto rounded-lg shadow-2xl"
+              objectFit="contain"
+              loading="eager"
+              priority={true}
+              placeholder="blur"
             />
             
             {/* Image Title */}

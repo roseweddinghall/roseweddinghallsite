@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import OptimizedImage from '../components/OptimizedImage';
 
 interface Partnership {
   id: number;
@@ -12,32 +13,39 @@ interface Partnership {
 }
 
 const Partnerships: React.FC = () => {
-  const [logoErrors, setLogoErrors] = useState<Record<number, boolean>>({});
-
-  const handleLogoError = (partnerId: number) => {
-    setLogoErrors(prev => ({ ...prev, [partnerId]: true }));
-  };
+  // Logo error handling OptimizedImage component'i içinde yapılıyor
+  // renderError prop'u ile özel fallback gösteriliyor
 
   const partnerships: Partnership[] = [
-    {
-      id: 1,
-      name: "Duygu Gelinlik",
-      category: "Gelinlik",
-      description: "Özel tasarım gelinlik koleksiyonları ile düğününüze eşsiz bir dokunuş.",
-      phone: "03124419224",
-      website: "",
-      instagram: "@duygugelinlikmodaevi",
-      logo: "/images/partners/duygugelinlik.jpg.jpg"
-    },
     {
       id: 2,
       name: "Altınyıldız Classics",
       category: "Damatlık",
       description: "Hayatınızın en özel anına, en şık başlangıç: Damatlığın en doğru adresi!",
       phone: "0 (850) 455 56 57",
-      website: "",
+      website: "https://www.altinyildizclassics.com",
       instagram: "@altinyildizclassics",
       logo: "/images/partners/altinyildiz.jpg.jpg"
+    },
+    {
+      id: 6,
+      name: "Flex Akademi",
+      category: "Dans",
+      description: "Düğün dansından, hayatınızın en özel anına zarafet katacak profesyonel eğitimlerle adımlarınıza sihir katın.",
+      phone: "0 532 450 14 84",
+      website: "https://www.flexakademi.com",
+      instagram: "https://www.instagram.com/flexakademi",
+      logo: "images/partners/flexakademi.jpg"
+    },
+    {
+      id: 5,
+      name: "Buket Kuzey Studio",
+      category: "Saç / Makyaj",
+      description: "Sadece bir makyaj ve saç değil; size özel tasarlanmış bir dönüşüm hikayesi. Hayatınızın en özel gününde, uzman ellerimizle içinizdeki ışıltıyı yüzeye çıkarın.",
+      phone: "0 505 870 06 06",
+      website: "https://buketkuzey.com",
+      instagram: "@buketkuzeystudio",
+      logo: "/images/partners/buketkuzey.jpg.jpg"
     },
     {
       id: 3,
@@ -50,6 +58,16 @@ const Partnerships: React.FC = () => {
       logo: "/images/partners/bloomflower.jpg.jpg"
     },
     {
+      id: 1,
+      name: "Duygu Gelinlik",
+      category: "Gelinlik",
+      description: "Özel tasarım gelinlik koleksiyonları ile düğününüze eşsiz bir dokunuş.",
+      phone: "03124419224",
+      website: "",
+      instagram: "@duygugelinlikmodaevi",
+      logo: "/images/partners/duygugelinlik.jpg.jpg"
+    },
+    {
       id: 4,
       name: "Şeyda Çakır Gelinlik",
       category: "Gelinlik",
@@ -58,16 +76,6 @@ const Partnerships: React.FC = () => {
       website: "",
       instagram: "@seydacakir.gelinlik",
       logo: "/images/partners/seydacakir.jpg.jpg"
-    },
-    {
-      id: 5,
-      name: "Buket Kuzey Studio",
-      category: "Saç / Makyaj",
-      description: "Sadece bir makyaj ve saç değil; size özel tasarlanmış bir dönüşüm hikayesi. Hayatınızın en özel gününde, uzman ellerimizle içinizdeki ışıltıyı yüzeye çıkarın.",
-      phone: "0 505 870 06 06",
-      website: "",
-      instagram: "@buketkuzeystudio",
-      logo: "/images/partners/buketkuzey.jpg.jpg"
     }
   ];
 
@@ -111,12 +119,19 @@ const Partnerships: React.FC = () => {
                 {/* Logo */}
                 <div className="flex justify-center mb-4">
                   <div className="w-20 h-20 rounded-full bg-gray-100 border-2 border-primary/20 overflow-hidden flex items-center justify-center relative">
-                    {partner.logo && !logoErrors[partner.id] ? (
-                      <img 
-                        src={partner.logo} 
-                        alt={partner.name} 
-                        className="w-full h-full object-cover"
-                        onError={() => handleLogoError(partner.id)}
+                    {partner.logo ? (
+                      <OptimizedImage
+                        src={partner.logo}
+                        alt={partner.name}
+                        className="w-full h-full"
+                        objectFit="cover"
+                        loading="lazy"
+                        placeholder="empty"
+                        renderError={() => (
+                          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary/20 to-secondary/20">
+                            <span className="text-2xl font-bold text-primary">{partner.name.charAt(0)}</span>
+                          </div>
+                        )}
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary/20 to-secondary/20">
@@ -142,29 +157,29 @@ const Partnerships: React.FC = () => {
                     </svg>
                     <a href={`tel:${partner.phone}`} className="hover:text-primary transition-colors">{partner.phone}</a>
                   </div>
+                  {partner.website && (
+                    <div className="flex items-center text-gray-600">
+                      <svg className="w-5 h-5 mr-3 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.5c4.142 0 7.5 3.358 7.5 7.5s-3.358 7.5-7.5 7.5-7.5-3.358-7.5-7.5 3.358-7.5 7.5-7.5z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.5 12h15M12 4.5c1.657 2.167 2.5 4.833 2.5 7.5s-.843 5.333-2.5 7.5c-1.657-2.167-2.5-4.833-2.5-7.5s.843-5.333 2.5-7.5z" />
+                      </svg>
+                      <a href={partner.website} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
+                        {partner.website.replace(/^https?:\/\//, '')}
+                      </a>
+                    </div>
+                  )}
                   {partner.instagram && (
                     <div className="flex items-center text-gray-600">
                       <svg className="w-5 h-5 mr-3 text-primary" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                       </svg>
                       <a href={partner.instagram.startsWith('http') ? partner.instagram : `https://www.instagram.com/${partner.instagram.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
-                        {partner.instagram}
+                        {partner.instagram.replace('@', '')}
                       </a>
                     </div>
                   )}
                 </div>
                 
-                {/* İncele Butonu */}
-                {partner.instagram && (
-                  <a
-                    href={partner.instagram.startsWith('http') ? partner.instagram : `https://www.instagram.com/${partner.instagram.replace('@', '')}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full bg-gradient-to-r from-primary-500 via-primary-600 to-primary-700 text-white py-3 px-6 rounded-lg font-semibold hover:shadow-lg hover:shadow-primary-300/60 transition-all duration-300 transform hover:scale-105 hover:-translate-y-0.5 text-center block"
-                  >
-                    İncele
-                  </a>
-                )}
               </div>
             ))}
           </div>
