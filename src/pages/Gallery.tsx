@@ -1,83 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import OptimizedImage from '../components/OptimizedImage';
+import React from 'react';
 
 const Gallery: React.FC = () => {
-  const [selectedCategory, setSelectedCategory] = useState('all');
-  const [selectedImage, setSelectedImage] = useState<{ id: number; src: string; title: string } | null>(null);
-
-  const galleryData = [
-    // Angel Salon Görselleri
-    { id: 1, category: 'salon', title: 'Angel Salon', type: 'image', src: '/images/angel.JPG' },
-    { id: 2, category: 'salon', title: 'Angel Salon', type: 'image', src: '/images/Angel0.jpg' },
-    { id: 3, category: 'salon', title: 'Angel Salon', type: 'image', src: '/images/Angel1.jpg' },
-    { id: 4, category: 'salon', title: 'Angel Salon', type: 'image', src: '/images/Angel2.jpg' },
-    { id: 5, category: 'salon', title: 'Angel Salon', type: 'image', src: '/images/Angel3.jpg' },
-    { id: 6, category: 'salon', title: 'Angel Salon', type: 'image', src: '/images/Angel4.jpg' },
-    { id: 7, category: 'salon', title: 'Angel Salon', type: 'image', src: '/images/Angel5.jpg' },
-    { id: 8, category: 'salon', title: 'Angel Salon', type: 'image', src: '/images/Angel6.jpeg.jpg' },
-    { id: 9, category: 'salon', title: 'Angel Salon', type: 'image', src: '/images/Angel7.jpg' },
-    { id: 10, category: 'salon', title: 'Angel Salon', type: 'image', src: '/images/Angel8.jpg' },
-    { id: 11, category: 'salon', title: 'Angel Salon', type: 'image', src: '/images/Angel9.jpg' },
-    { id: 12, category: 'salon', title: 'Angel Salon', type: 'image', src: '/images/Angel10.jpg' },
-    { id: 13, category: 'salon', title: 'Angel Salon', type: 'image', src: '/images/Angel11.jpg' },
-    { id: 14, category: 'salon', title: 'Angel Salon', type: 'image', src: '/images/Angel12.jpg' },
-    { id: 15, category: 'salon', title: 'Angel Salon', type: 'image', src: '/images/Angel13.jpg' },
-    { id: 16, category: 'salon', title: 'Angel Salon', type: 'image', src: '/images/Angel14.jpg' },
-    { id: 17, category: 'salon', title: 'Angel Salon', type: 'image', src: '/images/Angel15.jpg' },
-    { id: 18, category: 'salon', title: 'Angel Salon', type: 'image', src: '/images/Angel16.jpg' },
-    { id: 19, category: 'salon', title: 'Angel Salon', type: 'image', src: '/images/Angel17.jpg' },
-    { id: 20, category: 'salon', title: 'Angel Salon', type: 'image', src: '/images/Angel18.jpg' },
-    { id: 21, category: 'salon', title: 'Angel Salon', type: 'image', src: '/images/Angel19.jpg' },
-    // Amore Salon Görselleri
-    { id: 22, category: 'salon', title: 'Amore Salon', type: 'image', src: '/images/amore1.JPG' },
-    { id: 23, category: 'salon', title: 'Amore Salon', type: 'image', src: '/images/amore2.JPG' },
-    { id: 24, category: 'salon', title: 'Amore Salon', type: 'image', src: '/images/amore3.JPG' },
-    { id: 25, category: 'salon', title: 'Amore Salon', type: 'image', src: '/images/amore4.JPG' },
-    // Düğün Görselleri
-    { id: 26, category: 'dugun', title: 'Düğün Anıları', type: 'image', src: '/images/IMG_5499.JPG' },
-    { id: 27, category: 'dugun', title: 'Düğün Anıları', type: 'image', src: '/images/IMG_5500.JPG' },
-    { id: 28, category: 'dugun', title: 'Düğün Anıları', type: 'image', src: '/images/IMG_5501.JPG' },
-    { id: 29, category: 'dugun', title: 'Düğün Anıları', type: 'image', src: '/images/IMG_5502.JPG' },
-    { id: 30, category: 'dugun', title: 'Düğün Anıları', type: 'image', src: '/images/IMG_5503.JPG' },
-    { id: 31, category: 'dugun', title: 'Düğün Anıları', type: 'image', src: '/images/IMG_5504.JPG' },
-    { id: 32, category: 'dugun', title: 'Düğün Anıları', type: 'image', src: '/images/IMG_5505.JPG' },
-    { id: 33, category: 'dugun', title: 'Düğün Anıları', type: 'image', src: '/images/5A6A0494.JPG' },
-    { id: 34, category: 'dugun', title: 'Düğün Anıları', type: 'image', src: '/images/5A6A0498.JPG' },
-    { id: 35, category: 'dugun', title: 'Düğün Anıları', type: 'image', src: '/images/5A6A0527.JPG' },
-    { id: 36, category: 'dugun', title: 'Düğün Anıları', type: 'image', src: '/images/5A6A0654.JPG' },
-    { id: 37, category: 'dugun', title: 'Düğün Anıları', type: 'image', src: '/images/5A6A0702.JPG' },
-    { id: 38, category: 'dugun', title: 'Düğün Anıları', type: 'image', src: '/images/5A6A0881.JPG' }
-  ];
-
-  const filteredGallery = selectedCategory === 'all' 
-    ? galleryData 
-    : galleryData.filter(item => item.category === selectedCategory);
-
-  const categories = [
-    { id: 'all', name: 'Tümü' },
-    { id: 'salon', name: 'Salonlar' },
-    { id: 'dugun', name: 'Düğünler' },
-    { id: 'detay', name: 'Detaylar' }
-  ];
-
-  // ESC tuşu ile modal'ı kapat
-  useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        setSelectedImage(null);
-      }
-    };
-
-    if (selectedImage) {
-      document.addEventListener('keydown', handleEscape);
-      document.body.style.overflow = 'hidden'; // Scroll'u engelle
-    }
-
-    return () => {
-      document.removeEventListener('keydown', handleEscape);
-      document.body.style.overflow = 'unset';
-    };
-  }, [selectedImage]);
 
   return (
     <div className="min-h-screen">
@@ -98,89 +21,52 @@ const Gallery: React.FC = () => {
         </div>
       </section>
 
-      {/* Filter Buttons */}
-      <section className="py-8 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap justify-center gap-4">
-            {categories.map((category) => (
-              <button
-                key={category.id}
-                onClick={() => setSelectedCategory(category.id)}
-                className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 ${
-                  selectedCategory === category.id
-                    ? 'bg-gradient-to-r from-pink-500 via-purple-500 to-rose-500 text-white shadow-lg shadow-pink-300/50'
-                    : 'bg-white text-gray-700 border border-gray-200 hover:shadow-lg hover:shadow-pink-200/40'
-                }`}
-              >
-                {category.name}
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Gallery Grid */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredGallery.map((item) => (
-              <div key={item.id} className="group">
-                <div className="bg-white rounded-2xl shadow-lg shadow-pink-200/40 hover:shadow-2xl hover:shadow-pink-300/60 transition-all duration-500 transform hover:-translate-y-2 overflow-hidden">
-                  {/* Media Content */}
-                  <div className="relative h-64 bg-gradient-to-br from-pink-100 via-purple-50 to-rose-100 group-hover:from-pink-200 group-hover:via-purple-100 group-hover:to-rose-200 transition-all duration-700 overflow-hidden">
-                    {item.type === 'image' ? (
-                      <div
-                        onClick={() => setSelectedImage({ id: item.id, src: item.src, title: item.title })}
-                        className="cursor-pointer w-full h-full"
-                      >
-                        <OptimizedImage
-                          src={item.src}
-                          alt={item.title}
-                          className="w-full h-full group-hover:scale-110 transition-transform duration-700"
-                          objectFit="cover"
-                          loading="lazy"
-                          placeholder="blur"
-                          priority={item.id <= 6} // İlk 6 görseli priority yap
-                        />
-                      </div>
-                    ) : (
-                      <video 
-                        src={item.src} 
-                        className="w-full h-full object-cover"
-                        controls
-                        preload="none"
-                        onError={(e) => {
-                          const target = e.target as HTMLVideoElement;
-                          target.style.display = 'none';
-                          const fallback = target.nextElementSibling as HTMLElement;
-                          if (fallback) fallback.style.display = 'flex';
-                        }}
-                      />
-                    )}
-                    
-                    {/* Media badges removed as per request */}
-                  </div>
-
-                  {/* Content */}
-                  <div className="p-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-purple-700 transition-colors duration-300">
-                      {item.title}
-                    </h3>
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-500 capitalize">
-                        {categories.find(cat => cat.id === item.category)?.name}
-                      </span>
-                      <button 
-                        onClick={() => setSelectedImage({ id: item.id, src: item.src, title: item.title })}
-                        className="text-purple-600 hover:text-purple-800 text-sm font-medium transition-colors duration-300"
-                      >
-                        Büyüt →
-                      </button>
-                    </div>
-                  </div>
+      {/* Coming Soon Message */}
+      <section className="py-6 md:py-8 lg:py-12">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="bg-gradient-to-br from-primary/5 via-primary/10 to-primary/5 rounded-2xl md:rounded-3xl p-6 sm:p-8 md:p-12 lg:p-16 shadow-lg border border-primary/20 animate-fade-in relative">
+            {/* Köşe kalpleri */}
+            <div className="absolute top-2 right-2 md:top-4 md:right-4 w-4 h-4 md:w-6 md:h-6 text-primary/40">
+              <svg className="w-full h-full" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+            </div>
+            <div className="absolute top-2 left-2 md:top-4 md:left-4 w-4 h-4 md:w-6 md:h-6 text-primary/40">
+              <svg className="w-full h-full" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+            </div>
+            <div className="absolute bottom-2 right-2 md:bottom-4 md:right-4 w-4 h-4 md:w-6 md:h-6 text-primary/40">
+              <svg className="w-full h-full" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+            </div>
+            <div className="absolute bottom-2 left-2 md:bottom-4 md:left-4 w-4 h-4 md:w-6 md:h-6 text-primary/40">
+              <svg className="w-full h-full" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+            </div>
+            <div className="mb-6 md:mb-8">
+              {/* Animasyonlu Loading Spinner */}
+              <div className="relative w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 mx-auto">
+                <div className="absolute inset-0 border-3 md:border-4 border-primary/20 rounded-full"></div>
+                <div className="absolute inset-0 border-3 md:border-4 border-transparent border-t-primary rounded-full animate-spin"></div>
+                <div className="absolute inset-2 border-3 md:border-4 border-primary/10 rounded-full"></div>
+                <div className="absolute inset-2 border-3 md:border-4 border-transparent border-t-primary/60 rounded-full animate-spin" style={{ animationDirection: 'reverse', animationDuration: '1.5s' }}></div>
+                {/* Merkez ikon */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <svg className="w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 text-primary/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
                 </div>
               </div>
-            ))}
+            </div>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary/50 mb-3 md:mb-4 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+              Galerimiz Hazırlanıyor...
+            </h2>
+            <p className="text-lg sm:text-xl md:text-2xl text-primary/40 font-light animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+              Görsellerimiz Çok Yakında Burada
+            </p>
           </div>
         </div>
       </section>
@@ -211,45 +97,6 @@ const Gallery: React.FC = () => {
         </div>
       </section>
 
-      {/* Image Modal */}
-      {selectedImage && (
-        <div 
-          className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm"
-          onClick={() => setSelectedImage(null)}
-        >
-          {/* Close Button */}
-          <button
-            onClick={() => setSelectedImage(null)}
-            className="absolute top-4 right-4 z-50 text-white hover:text-gray-300 transition-colors duration-300 bg-black/50 rounded-full p-3 hover:bg-black/70"
-            aria-label="Kapat"
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-
-          {/* Image Container */}
-          <div 
-            className="relative max-w-7xl max-h-[90vh] w-full h-full flex items-center justify-center"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <OptimizedImage
-              src={selectedImage.src}
-              alt={selectedImage.title}
-              className="max-w-full max-h-[90vh] w-auto h-auto rounded-lg shadow-2xl"
-              objectFit="contain"
-              loading="eager"
-              priority={true}
-              placeholder="blur"
-            />
-            
-            {/* Image Title */}
-            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/70 text-white px-6 py-3 rounded-full backdrop-blur-sm">
-              <p className="text-lg font-semibold">{selectedImage.title}</p>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

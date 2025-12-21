@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import OptimizedImage from './OptimizedImage';
 
 interface ScrollSalonCardProps {
@@ -100,14 +101,17 @@ const ScrollSalonCard: React.FC<ScrollSalonCardProps> = ({
         </div>
 
         {/* İçerik Bölümü - Lüks */}
-        <div className="p-8 md:p-10 bg-white flex flex-col flex-grow min-h-[180px]">
-          <p className="text-gray-600 leading-relaxed text-xs md:text-sm mb-6 font-light">
+        <div className="p-6 sm:p-8 md:p-10 bg-white flex flex-col flex-grow min-h-[160px] sm:min-h-[180px]">
+          <p className="text-gray-600 leading-relaxed text-xs sm:text-sm mb-4 sm:mb-6 font-light">
             {salon.description}
           </p>
           
-          <button className="w-full bg-transparent border-2 border-primary/30 text-primary px-8 py-3 rounded-full text-base font-bold hover:bg-primary/80 hover:text-white hover:border-primary/50 hover:shadow-lg hover:shadow-primary/30 transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 mt-auto">
+          <Link 
+            to="/subelerimiz"
+            className="w-full bg-transparent border-2 border-primary/30 text-primary px-6 sm:px-8 py-2.5 sm:py-3 rounded-full text-sm sm:text-base font-bold hover:bg-primary/80 hover:text-white hover:border-primary/50 hover:shadow-lg hover:shadow-primary/30 transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 mt-auto text-center block"
+          >
             Salonları İncele
-          </button>
+          </Link>
         </div>
       </div>
     </div>

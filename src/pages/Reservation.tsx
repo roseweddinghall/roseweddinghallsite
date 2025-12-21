@@ -46,8 +46,13 @@ ${formData.message}
 Bu rezervasyon talebi Rose Wedding Hall web sitesinden gönderilmiştir.
     `.trim();
     
+    // Şube seçimine göre mail adresini belirle
+    const emailAddress = formData.branch === 'eryaman' 
+      ? 'roseweddinghall06@gmail.com' 
+      : 'roseweddingivedik@gmail.com';
+    
     // Mailto linki oluştur
-    const mailtoLink = `mailto:roseweddingivedik@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const mailtoLink = `mailto:${emailAddress}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     
     // Mailto linkini aç
     window.location.href = mailtoLink;
@@ -55,18 +60,18 @@ Bu rezervasyon talebi Rose Wedding Hall web sitesinden gönderilmiştir.
 
   return (
     <div className="min-h-screen">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="bg-white rounded-2xl shadow-xl shadow-pink-200/50 overflow-hidden">
-          <div className="p-8 text-white text-center" style={{ backgroundColor: '#a4585a' }}>
-            <h2 className="text-3xl font-bold mb-2">Rezervasyon Talebi</h2>
-            <p className="text-white/90">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16">
+        <div className="bg-white rounded-xl sm:rounded-2xl shadow-xl shadow-pink-200/50 overflow-hidden">
+          <div className="p-4 sm:p-6 md:p-8 text-white text-center" style={{ backgroundColor: '#a4585a' }}>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-2">Rezervasyon Talebi</h2>
+            <p className="text-sm sm:text-base text-white/90">
               Aşağıdaki formu doldurarak rezervasyon talebinizi oluşturun. Detaylarınızı aldıktan sonra sizinle iletişime geçeceğiz.
             </p>
           </div>
 
-          <form onSubmit={handleSubmit} className="p-8 space-y-6">
+          <form onSubmit={handleSubmit} className="p-4 sm:p-6 md:p-8 space-y-4 sm:space-y-5 md:space-y-6">
             {/* Kişisel Bilgiler */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 md:gap-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
                   Ad Soyad *
@@ -78,7 +83,7 @@ Bu rezervasyon talebi Rose Wedding Hall web sitesinden gönderilmiştir.
                   required
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors text-sm sm:text-base"
                 />
               </div>
               <div>
@@ -92,7 +97,7 @@ Bu rezervasyon talebi Rose Wedding Hall web sitesinden gönderilmiştir.
                   required
                   value={formData.phone}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors text-sm sm:text-base"
                 />
               </div>
             </div>
@@ -108,15 +113,15 @@ Bu rezervasyon talebi Rose Wedding Hall web sitesinden gönderilmiştir.
                 required
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
+                className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors text-sm sm:text-base"
               />
             </div>
 
             {/* Etkinlik Detayları */}
-            <div className="border-t pt-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Etkinlik Detayları</h3>
+            <div className="border-t pt-4 sm:pt-5 md:pt-6">
+              <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-3 sm:mb-4">Etkinlik Detayları</h3>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 md:gap-6">
                 <div>
                   <label htmlFor="eventDate" className="block text-sm font-medium text-gray-700 mb-2">
                     Etkinlik Tarihi *
@@ -128,7 +133,7 @@ Bu rezervasyon talebi Rose Wedding Hall web sitesinden gönderilmiştir.
                     required
                     value={formData.eventDate}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors text-sm sm:text-base"
                   />
                 </div>
                 <div>
@@ -141,7 +146,7 @@ Bu rezervasyon talebi Rose Wedding Hall web sitesinden gönderilmiştir.
                     required
                     value={formData.eventType}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors text-sm sm:text-base"
                   >
                     <option value="">Seçiniz</option>
                     <option value="dugun">Düğün</option>
@@ -152,7 +157,7 @@ Bu rezervasyon talebi Rose Wedding Hall web sitesinden gönderilmiştir.
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 md:gap-6 mt-4 sm:mt-5 md:mt-6">
                 <div>
                   <label htmlFor="branch" className="block text-sm font-medium text-gray-700 mb-2">
                     Şube Seçimi *
@@ -163,7 +168,7 @@ Bu rezervasyon talebi Rose Wedding Hall web sitesinden gönderilmiştir.
                     required
                     value={formData.branch}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors text-sm sm:text-base"
                   >
                     <option value="">Şube Seçiniz</option>
                     <option value="eryaman">Eryaman Şubesi</option>
@@ -180,7 +185,7 @@ Bu rezervasyon talebi Rose Wedding Hall web sitesinden gönderilmiştir.
                     required
                     value={formData.salon}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors text-sm sm:text-base"
                   >
                     <option value="">Önce şube seçiniz</option>
                     {formData.branch === 'eryaman' && (
@@ -199,7 +204,7 @@ Bu rezervasyon talebi Rose Wedding Hall web sitesinden gönderilmiştir.
                 </div>
               </div>
 
-              <div className="mt-6">
+              <div className="mt-4 sm:mt-5 md:mt-6">
                 <label htmlFor="guestCount" className="block text-sm font-medium text-gray-700 mb-2">
                   Misafir Sayısı *
                 </label>
@@ -209,7 +214,7 @@ Bu rezervasyon talebi Rose Wedding Hall web sitesinden gönderilmiştir.
                   required
                   value={formData.guestCount}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors text-sm sm:text-base"
                 >
                   <option value="">Misafir sayısını seçiniz</option>
                   <option value="200-ve-alti">200 ve altı</option>
@@ -223,7 +228,7 @@ Bu rezervasyon talebi Rose Wedding Hall web sitesinden gönderilmiştir.
             </div>
 
             {/* Mesaj */}
-            <div className="border-t pt-6">
+            <div className="border-t pt-4 sm:pt-5 md:pt-6">
               <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
                 Ek Bilgiler ve Özel İstekleriniz
               </label>
@@ -233,16 +238,16 @@ Bu rezervasyon talebi Rose Wedding Hall web sitesinden gönderilmiştir.
                 rows={4}
                 value={formData.message}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
+                className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors text-sm sm:text-base"
                 placeholder="Düğününüz hakkında eklemek istediğiniz detayları, özel isteklerinizi yazabilirsiniz..."
               />
             </div>
 
             {/* Submit Button */}
-            <div className="pt-6">
+            <div className="pt-4 sm:pt-5 md:pt-6">
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-pink-500 via-purple-500 to-rose-500 text-white py-4 px-6 rounded-lg font-semibold hover:shadow-lg hover:shadow-pink-300/60 transition-all duration-300 transform hover:scale-105 hover:-translate-y-0.5"
+                className="w-full bg-gradient-to-r from-pink-500 via-purple-500 to-rose-500 text-white py-3 sm:py-4 px-4 sm:px-6 rounded-lg font-semibold text-sm sm:text-base hover:shadow-lg hover:shadow-pink-300/60 transition-all duration-300 transform hover:scale-105 hover:-translate-y-0.5"
               >
                 Rezervasyon Talebi Gönder
               </button>
@@ -251,16 +256,16 @@ Bu rezervasyon talebi Rose Wedding Hall web sitesinden gönderilmiştir.
         </div>
 
         {/* İletişim Bilgileri */}
-        <div className="mt-12 bg-gradient-to-r from-gray-50 to-pink-50 rounded-2xl p-8">
-          <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">Hızlı İletişim</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-center">
+        <div className="mt-8 sm:mt-10 md:mt-12 bg-gradient-to-r from-gray-50 to-pink-50 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8">
+          <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3 sm:mb-4 text-center">Hızlı İletişim</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 md:gap-6 text-center">
             <div>
-              <h4 className="font-semibold text-gray-800 mb-2">Eryaman Şubesi</h4>
-              <p className="text-gray-600">+90 538 622 30 50</p>
+              <h4 className="font-semibold text-gray-800 mb-2 text-sm sm:text-base">Eryaman Şubesi</h4>
+              <p className="text-sm sm:text-base text-gray-600 break-all">+90 538 622 30 50</p>
             </div>
             <div>
-              <h4 className="font-semibold text-gray-800 mb-2">İvedik Şubesi</h4>
-              <p className="text-gray-600">+90 546 624 25 95</p>
+              <h4 className="font-semibold text-gray-800 mb-2 text-sm sm:text-base">İvedik Şubesi</h4>
+              <p className="text-sm sm:text-base text-gray-600 break-all">+90 546 624 25 95</p>
             </div>
           </div>
         </div>

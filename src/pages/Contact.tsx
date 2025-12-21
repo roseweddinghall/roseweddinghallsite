@@ -22,12 +22,12 @@ const Contact: React.FC = () => {
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12">
           {/* Etimesgut Şubesi */}
           <div className="bg-white rounded-lg shadow-lg overflow-hidden text-center">
-            <div className="p-8 space-y-4">
-              <h2 className="text-3xl font-classic font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-600 to-primary-700 drop-shadow-[0_3px_10px_rgba(164,88,90,0.35)]">
+            <div className="p-4 sm:p-6 md:p-8 space-y-3 sm:space-y-4">
+              <h2 className="text-2xl sm:text-3xl font-classic font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-600 to-primary-700 drop-shadow-[0_3px_10px_rgba(164,88,90,0.35)]">
                 Etimesgut Şubesi
               </h2>
               <div className="flex flex-col items-center space-y-3 text-gray-600">
@@ -53,15 +53,15 @@ const Contact: React.FC = () => {
                   <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
-                  <a href="mailto:etimesgut@roseweddinghall.com" className="text-gray-600 hover:text-primary transition-colors">
-                    etimesgut@roseweddinghall.com
+                  <a href="mailto:roseweddinghall06@gmail.com" className="text-gray-600 hover:text-primary transition-colors">
+                    roseweddinghall06@gmail.com
                   </a>
                 </div>
               </div>
             </div>
-            <div className="h-64">
+            <div className="h-48 sm:h-56 md:h-64">
               <iframe
-                src="https://www.google.com/maps?q=Yeşilova,+4016.+Cad.+B+Blok+No:2/2/13,+06796+Etimesgut/Ankara&output=embed"
+                src="https://www.google.com/maps?q=Rose+Wedding+Hall+Etimesgut&output=embed&zoom=17&markers=color:red|Rose+Wedding+Hall+Etimesgut"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -75,8 +75,8 @@ const Contact: React.FC = () => {
 
           {/* Yenimahalle Şubesi */}
           <div className="bg-white rounded-lg shadow-lg overflow-hidden text-center">
-            <div className="p-8 space-y-4">
-              <h2 className="text-3xl font-classic font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-600 to-primary-700 drop-shadow-[0_3px_10px_rgba(164,88,90,0.35)]">
+            <div className="p-4 sm:p-6 md:p-8 space-y-3 sm:space-y-4">
+              <h2 className="text-2xl sm:text-3xl font-classic font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-600 to-primary-700 drop-shadow-[0_3px_10px_rgba(164,88,90,0.35)]">
                 Yenimahalle Şubesi
               </h2>
               <div className="flex flex-col items-center space-y-3 text-gray-600">
@@ -108,9 +108,9 @@ const Contact: React.FC = () => {
                 </div>
               </div>
             </div>
-            <div className="h-64">
+            <div className="h-48 sm:h-56 md:h-64">
               <iframe
-                src="https://www.google.com/maps?q=İvedik+OSB,+1439.+Sk.+No:+1+İç+Kapı:+121,+06378+Yenimahalle/Ankara&output=embed"
+                src="https://www.google.com/maps?q=1439.+Sokak+Rose+Wedding+Hall+İvedik&output=embed&zoom=17"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}

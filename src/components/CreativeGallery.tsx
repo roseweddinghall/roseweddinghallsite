@@ -14,19 +14,33 @@ interface CreativeGalleryProps {
 }
 
 const CreativeGallery: React.FC<CreativeGalleryProps> = ({ images }) => {
-  // İlk 8 görseli hemen görünür yap
+  // İlk 12 görseli hemen görünür yap (daha fazla görsel hızlı yüklensin)
   const [visibleImages, setVisibleImages] = useState<Set<number>>(
-    new Set(images.slice(0, 8).map((_, i) => i))
+    new Set(images.slice(0, 12).map((_, i) => i))
   );
   const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  // İlk görselleri agresif şekilde preload et
+  useEffect(() => {
+    images.slice(0, 12).forEach((image) => {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'image';
+      link.href = image.src;
+      if ('fetchPriority' in link) {
+        (link as any).fetchPriority = 'high';
+      }
+      document.head.appendChild(link);
+    });
+  }, [images]);
 
   useEffect(() => {
     const observers: IntersectionObserver[] = [];
 
     imageRefs.current.forEach((ref, index) => {
       if (!ref) return;
-      // İlk 8 görsel zaten görünür, observer'a gerek yok
-      if (index < 8) return;
+      // İlk 12 görsel zaten görünür, observer'a gerek yok
+      if (index < 12) return;
 
       const observer = new IntersectionObserver(
         (entries) => {
@@ -54,8 +68,8 @@ const CreativeGallery: React.FC<CreativeGalleryProps> = ({ images }) => {
     
     switch (layout) {
       case 'small':
-        // 1 sütun - küçük kare
-        return `${baseClasses} col-span-1`;
+        // 2 sütun - küçük kare (6 sütunlu grid'de 3 tane yan yana)
+        return `${baseClasses} col-span-2`;
       case 'medium':
         // 2 sütun - orta boyut kare
         return `${baseClasses} col-span-2`;
@@ -63,13 +77,13 @@ const CreativeGallery: React.FC<CreativeGalleryProps> = ({ images }) => {
         // 2 sütun - büyük kare
         return `${baseClasses} col-span-2`;
       case 'wide':
-        // 2 sütun genişlik
-        return `${baseClasses} col-span-2`;
+        // 3 sütun genişlik (6 sütunlu grid'de 2 tane yan yana)
+        return `${baseClasses} col-span-3`;
       case 'tall':
         // 1 sütun genişlik, 2 satır yükseklik
         return `${baseClasses} col-span-1 row-span-2`;
       default:
-        return `${baseClasses} col-span-1`;
+        return `${baseClasses} col-span-2`;
     }
   };
 
@@ -115,11 +129,11 @@ const CreativeGallery: React.FC<CreativeGalleryProps> = ({ images }) => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="max-w-7xl mx-auto px-2 sm:px-4 md:px-6 lg:px-8">
       <div 
-        className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6"
+        className="grid grid-cols-2 md:grid-cols-6 gap-2 sm:gap-3 md:gap-4 lg:gap-6"
         style={{
-          gridAutoRows: 'minmax(200px, auto)',
+          gridAutoRows: 'minmax(150px, auto)',
         }}
       >
         {images.map((image, index) => {
@@ -145,20 +159,31 @@ const CreativeGallery: React.FC<CreativeGalleryProps> = ({ images }) => {
                 ...overlapStyle,
               }}
             >
-              <div className="relative w-full h-full rounded-xl md:rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 bg-gray-100 border-2 border-luxury-gold/10 hover:border-luxury-gold/40 group-hover:scale-[1.02] group-hover:-translate-y-1">
+              <div 
+                className="relative w-full h-full rounded-xl md:rounded-2xl overflow-hidden transition-all duration-500 bg-gray-100 border-2 border-primary/20 hover:border-primary/60 group-hover:scale-[1.02] group-hover:-translate-y-1"
+                style={{
+                  boxShadow: '0 10px 25px -5px rgba(164, 88, 90, 0.4), 0 8px 10px -6px rgba(164, 88, 90, 0.3)',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.boxShadow = '0 20px 40px -5px rgba(164, 88, 90, 0.6), 0 15px 15px -6px rgba(164, 88, 90, 0.5)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.boxShadow = '0 10px 25px -5px rgba(164, 88, 90, 0.4), 0 8px 10px -6px rgba(164, 88, 90, 0.3)';
+                }}
+              >
                 <OptimizedImage
                   src={image.src}
                   alt={image.alt}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   objectFit="cover"
-                  loading={index < 12 ? 'eager' : 'lazy'}
-                  priority={index < 12}
+                  loading={index < 16 ? 'eager' : 'lazy'} // Daha fazla görseli eager yükle
+                  priority={index < 16} // İlk 16 görseli priority yap
                   placeholder="blur"
                 />
                 {/* Subtle overlay on hover */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                {/* Altın glow on hover */}
-                <div className="absolute inset-0 ring-2 ring-luxury-gold/0 group-hover:ring-luxury-gold/30 transition-all duration-500 rounded-xl md:rounded-2xl"></div>
+                {/* Primary glow on hover */}
+                <div className="absolute inset-0 ring-2 ring-primary/0 group-hover:ring-primary/50 transition-all duration-500 rounded-xl md:rounded-2xl"></div>
               </div>
             </div>
           );

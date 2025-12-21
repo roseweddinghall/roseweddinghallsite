@@ -99,13 +99,13 @@ const Partnerships: React.FC = () => {
       </section>
 
       {/* İş Birliği Kategorileri */}
-      <section className="py-16">
+      <section className="py-8 sm:py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
             {partnerships.map((partner) => (
               <div 
                 key={partner.id} 
-                className="bg-white rounded-lg shadow-lg p-6 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl group"
+                className="bg-white rounded-lg shadow-lg p-4 sm:p-5 md:p-6 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl group"
                 style={{
                   boxShadow: '0 10px 15px -3px rgba(164, 88, 90, 0.1), 0 4px 6px -2px rgba(164, 88, 90, 0.05)'
                 }}
@@ -117,8 +117,8 @@ const Partnerships: React.FC = () => {
                 }}
               >
                 {/* Logo */}
-                <div className="flex justify-center mb-4">
-                  <div className="w-20 h-20 rounded-full bg-gray-100 border-2 border-primary/20 overflow-hidden flex items-center justify-center relative">
+                <div className="flex justify-center mb-3 sm:mb-4">
+                  <div className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 rounded-full bg-gray-100 border-2 border-primary/20 overflow-hidden flex items-center justify-center relative">
                     {partner.logo ? (
                       <OptimizedImage
                         src={partner.logo}
@@ -129,28 +129,28 @@ const Partnerships: React.FC = () => {
                         placeholder="empty"
                         renderError={() => (
                           <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary/20 to-secondary/20">
-                            <span className="text-2xl font-bold text-primary">{partner.name.charAt(0)}</span>
+                            <span className="text-xl sm:text-2xl font-bold text-primary">{partner.name.charAt(0)}</span>
                           </div>
                         )}
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary/20 to-secondary/20">
-                        <span className="text-2xl font-bold text-primary">{partner.name.charAt(0)}</span>
+                        <span className="text-xl sm:text-2xl font-bold text-primary">{partner.name.charAt(0)}</span>
                       </div>
                     )}
                   </div>
                 </div>
 
-                <div className="mb-4 text-center">
-                  <span className="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium inline-block">
+                <div className="mb-3 sm:mb-4 text-center">
+                  <span className="bg-primary/10 text-primary px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium inline-block">
                     {partner.category}
                   </span>
                 </div>
                 
-                <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">{partner.name}</h3>
-                <p className="text-gray-600 mb-4">{partner.description}</p>
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3 text-center">{partner.name}</h3>
+                <p className="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4">{partner.description}</p>
                 
-                <div className="space-y-2 mb-6">
+                <div className="space-y-1.5 sm:space-y-2 mb-4 sm:mb-5 md:mb-6">
                   <div className="flex items-center text-gray-600">
                     <svg className="w-5 h-5 mr-3 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />

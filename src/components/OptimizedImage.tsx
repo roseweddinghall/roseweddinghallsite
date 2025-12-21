@@ -61,7 +61,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
 
     if (!containerRef.current) return;
 
-    // Intersection Observer oluştur
+    // Intersection Observer oluştur - daha erken yükleme için rootMargin artırıldı
     observerRef.current = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -72,7 +72,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
         });
       },
       {
-        rootMargin: '50px', // Viewport'tan 50px önce yüklemeye başla
+        rootMargin: '200px 0px', // Viewport'tan 200px önce yüklemeye başla (daha erken)
         threshold: 0.01,
       }
     );
@@ -165,17 +165,19 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
       className={`relative overflow-hidden ${className}`}
       style={style}
     >
-      {/* Placeholder - Blur effect */}
+      {/* Placeholder - Daha görünür ve renkli gradient */}
       {!isLoaded && !hasError && placeholder === 'blur' && (
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-200 via-gray-100 to-gray-200 animate-pulse">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-primary/5 to-gray-100 animate-pulse">
           <div className="absolute inset-0 flex items-center justify-center">
-            <svg
-              className="w-12 h-12 text-gray-400 opacity-50"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" />
-            </svg>
+            <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center">
+              <svg
+                className="w-8 h-8 text-primary/40"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" />
+              </svg>
+            </div>
           </div>
         </div>
       )}

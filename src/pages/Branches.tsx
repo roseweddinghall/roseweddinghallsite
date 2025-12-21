@@ -9,8 +9,7 @@ const Branches: React.FC = () => {
       phone: "+90 538 622 30 50",
       email: "roseweddinghall06@gmail.com",
       capacity: "660",
-      features: ["Yüksek Tavan", "Kolonsuz Mimari", "Açık / Kapalı Otopark"],
-      image: "/api/placeholder/400/300",
+      features: ["Yüksek Tavan", "Kolonsuz Mimari", "Açık / Kapalı Otopark", "Gelişmiş İklimlendirme Sistemi"],
       link: "/eryaman"
     },
     {
@@ -20,8 +19,7 @@ const Branches: React.FC = () => {
       phone: "+90 546 624 25 95",
       email: "roseweddingivedik@gmail.com",
       capacity: "800",
-      features: ["Özel Giriş", "Kolonsuz Mimari", "Geniş Pist", "Bride Odası", "Çocuk Oyun Alanı"],
-      image: "/api/placeholder/400/300",
+      features: ["Özel Giriş Yolu", "7 Metre Tavan Yüksekliği", "Kolonsuz Mimari", "Geniş Pist", "Bride Odası", "Çocuk Oyun Alanı", "Gelişmiş İklimlendirme Sistemi"],
       link: "/ivedik"
     }
   ];
@@ -46,55 +44,40 @@ const Branches: React.FC = () => {
       </section>
 
       {/* Şubeler Listesi */}
-      <section className="py-16">
+      <section className="py-8 sm:py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
             {branches.map((branch) => (
               <div key={branch.id} className="bg-white rounded-lg shadow-lg overflow-hidden text-center">
-                <div className="h-48 bg-gray-200 flex items-center justify-center">
-                  <div className="text-gray-500 text-center">
-                    <svg className="w-16 h-16 mx-auto mb-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" />
-                    </svg>
-                    <p className="text-sm">Salon Görseli</p>
-                  </div>
-                </div>
-                <div className="p-6 space-y-4">
-                  <h3 className="text-2xl font-classic font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-600 to-primary-700 drop-shadow-[0_3px_10px_rgba(164,88,90,0.35)]">
+                <div className="p-4 sm:p-6 space-y-3 sm:space-y-4">
+                  <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-classic font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-600 to-primary-700 drop-shadow-[0_3px_10px_rgba(164,88,90,0.35)] leading-normal pb-1 overflow-visible px-2">
                     {branch.name}
                   </h3>
-                  <p className="text-gray-600">
+                  <p className="text-sm sm:text-base text-gray-600">
                     <span className="block">{branch.address}</span>
                   </p>
-                  <p>
-                    <a href={`tel:${branch.phone}`} className="text-gray-600 hover:text-primary transition-colors">
+                  <p className="text-sm sm:text-base">
+                    <a href={`tel:${branch.phone}`} className="text-gray-600 hover:text-primary transition-colors break-all">
                       {branch.phone}
                     </a>
                   </p>
-                  <p>
-                    <a href={`mailto:${branch.email}`} className="text-gray-600 hover:text-primary transition-colors">
+                  <p className="text-sm sm:text-base">
+                    <a href={`mailto:${branch.email}`} className="text-gray-600 hover:text-primary transition-colors break-all">
                       {branch.email}
                     </a>
                   </p>
-                  <p className="text-gray-600">Maksimum Kapasite: {branch.capacity} kişi</p>
+                  <p className="text-sm sm:text-base text-gray-600">Maksimum Kapasite: {branch.capacity} kişi</p>
 
-                  <div className="mb-4">
-                    <h4 className="font-semibold text-gray-900 mb-2">Özellikler:</h4>
-                    <div className="flex flex-wrap justify-center gap-2">
+                  <div className="mb-2 sm:mb-4">
+                    <h4 className="font-semibold text-gray-900 mb-2 text-sm sm:text-base">Özellikler:</h4>
+                    <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2">
                       {branch.features.map((feature, index) => (
-                        <span key={index} className="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">
+                        <span key={index} className="bg-primary/10 text-primary px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm">
                           {feature}
                         </span>
                       ))}
                     </div>
                   </div>
-
-                  <a
-                    href={branch.link}
-                    className="w-full inline-flex items-center justify-center bg-primary text-white py-2 px-4 rounded-lg font-semibold hover:bg-primary/90 transition-colors"
-                  >
-                    İncele →
-                  </a>
                 </div>
               </div>
             ))}

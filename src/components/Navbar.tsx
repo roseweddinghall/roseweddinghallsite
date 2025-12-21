@@ -1,16 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import OptimizedImage from './OptimizedImage';
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isSubelerDropdownOpen, setIsSubelerDropdownOpen] = useState(false);
   const location = useLocation();
-
-  // Sayfa değiştiğinde dropdown'ı kapat
-  useEffect(() => {
-    setIsSubelerDropdownOpen(false);
-  }, [location.pathname]);
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -31,44 +25,16 @@ const Navbar: React.FC = () => {
             >
               Ana Sayfa
             </Link>
-            <div 
-              className="relative z-50"
-              onMouseEnter={() => setIsSubelerDropdownOpen(true)}
-              onMouseLeave={() => setIsSubelerDropdownOpen(false)}
+            <Link
+              to="/subelerimiz"
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105 ${
+                isActive('/subelerimiz')
+                  ? 'text-white bg-gradient-to-r from-primary to-primary-700 shadow-lg' 
+                  : 'text-gray-700 hover:text-primary hover:bg-gradient-to-r hover:from-primary/10 hover:to-primary-50'
+              }`}
             >
-              <Link
-                to="/subelerimiz"
-                className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105 ${
-                  isActive('/subelerimiz') || isActive('/eryaman') || isActive('/ivedik')
-                    ? 'text-white bg-gradient-to-r from-primary to-primary-700 shadow-lg' 
-                    : 'text-gray-700 hover:text-primary hover:bg-gradient-to-r hover:from-primary/10 hover:to-primary-50'
-                }`}
-              >
-                Şubelerimiz
-                <svg className="w-4 h-4 ml-1 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </Link>
-              
-              {isSubelerDropdownOpen && (
-                <div className="absolute top-full left-0 mt-2 bg-white rounded-lg shadow-xl border border-gray-200 z-[10000] min-w-[120px]">
-                  <Link
-                    to="/eryaman"
-                    className="block px-4 py-3 text-sm text-gray-700 hover:bg-primary/10 hover:text-primary transition-colors rounded-t-lg whitespace-nowrap"
-                    onClick={() => setIsSubelerDropdownOpen(false)}
-                  >
-                    Eryaman
-                  </Link>
-                  <Link
-                    to="/ivedik"
-                    className="block px-4 py-3 text-sm text-gray-700 hover:bg-primary/10 hover:text-primary transition-colors rounded-b-lg whitespace-nowrap"
-                    onClick={() => setIsSubelerDropdownOpen(false)}
-                  >
-                    İvedik
-                  </Link>
-                </div>
-              )}
-            </div>
+              Şubelerimiz
+            </Link>
             <Link
               to="/galeri"
               className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105 ${
@@ -193,54 +159,17 @@ const Navbar: React.FC = () => {
               >
                 Ana Sayfa
               </Link>
-              <div className="px-3 py-2">
-                <button
-                  onClick={() => setIsSubelerDropdownOpen(!isSubelerDropdownOpen)}
-                  className={`flex items-center justify-between w-full text-base font-medium transition-colors ${
-                    isActive('/subelerimiz') || isActive('/eryaman') || isActive('/ivedik')
-                      ? 'text-primary bg-primary/10' 
-                      : 'text-gray-700 hover:text-primary hover:bg-gray-100'
-                  }`}
-                >
-                  Şubelerimiz
-                  <svg className={`w-4 h-4 transition-transform ${isSubelerDropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-                
-                {isSubelerDropdownOpen && (
-                  <div className="mt-2 ml-4 space-y-1">
-                    <Link
-                      to="/eryaman"
-                      className={`block px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                        isActive('/eryaman') 
-                          ? 'text-primary bg-primary/10' 
-                          : 'text-gray-600 hover:text-primary hover:bg-gray-100'
-                      }`}
-                      onClick={() => {
-                        setIsMenuOpen(false);
-                        setIsSubelerDropdownOpen(false);
-                      }}
-                    >
-                      Eryaman
-                    </Link>
-                    <Link
-                      to="/ivedik"
-                      className={`block px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                        isActive('/ivedik') 
-                          ? 'text-primary bg-primary/10' 
-                          : 'text-gray-600 hover:text-primary hover:bg-gray-100'
-                      }`}
-                      onClick={() => {
-                        setIsMenuOpen(false);
-                        setIsSubelerDropdownOpen(false);
-                      }}
-                    >
-                      İvedik
-                    </Link>
-                  </div>
-                )}
-              </div>
+              <Link
+                to="/subelerimiz"
+                className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                  isActive('/subelerimiz') 
+                    ? 'text-primary bg-primary/10' 
+                    : 'text-gray-700 hover:text-primary hover:bg-gray-100'
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Şubelerimiz
+              </Link>
               <Link
                 to="/galeri"
                 className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${

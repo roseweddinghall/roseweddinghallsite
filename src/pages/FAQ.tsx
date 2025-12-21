@@ -41,40 +41,40 @@ const FAQ: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       {/* Hero Section */}
-      <section className="relative bg-white py-16 overflow-hidden">
+      <section className="relative bg-white py-8 sm:py-12 md:py-16 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-luxury-gold/5 via-transparent to-primary/5"></div>
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-classic font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-luxury-gold via-primary to-secondary">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-classic font-bold mb-4 sm:mb-5 md:mb-6 text-transparent bg-clip-text bg-gradient-to-r from-luxury-gold via-primary to-secondary px-2">
             💍 Düğününüze Dair Merak Ettikleriniz
           </h1>
-          <div className="w-32 h-1 bg-gradient-to-r from-transparent via-luxury-gold to-transparent mx-auto mb-6"></div>
-          <p className="text-xl text-gray-700 max-w-3xl mx-auto font-light">
+          <div className="w-24 sm:w-32 h-1 bg-gradient-to-r from-transparent via-luxury-gold to-transparent mx-auto mb-4 sm:mb-5 md:mb-6"></div>
+          <p className="text-base sm:text-lg md:text-xl text-gray-700 max-w-3xl mx-auto font-light px-4">
             Salonlarımız hakkında en sık sorulan soruları yanıtladık.
           </p>
         </div>
       </section>
 
       {/* FAQ Content */}
-      <section className="py-16 bg-gradient-to-b from-white to-gray-50">
+      <section className="py-8 sm:py-12 md:py-16 bg-gradient-to-b from-white to-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
-            <div className="space-y-6">
+            <div className="space-y-4 sm:space-y-6">
               {faqData.map((faq, index) => (
                 <div 
                   key={index} 
-                  className="bg-white border border-luxury-gold/20 rounded-2xl transition-all duration-500 transform hover:-translate-y-2 hover:border-luxury-gold/60 hover:shadow-2xl hover:shadow-luxury-gold/20"
+                  className="bg-white border border-luxury-gold/20 rounded-xl sm:rounded-2xl transition-all duration-500 transform hover:-translate-y-2 hover:border-luxury-gold/60 hover:shadow-2xl hover:shadow-luxury-gold/20"
                 >
                   <button
                     onClick={() => toggleFAQ(index)}
-                    className="w-full px-8 py-6 text-left flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-luxury-gold/50 rounded-2xl hover:bg-luxury-gold/5 transition-all duration-300 group"
+                    className="w-full px-4 sm:px-6 md:px-8 py-4 sm:py-5 md:py-6 text-left flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-luxury-gold/50 rounded-xl sm:rounded-2xl hover:bg-luxury-gold/5 transition-all duration-300 group"
                   >
-                    <span className="text-lg font-semibold text-primary pr-4 group-hover:text-luxury-gold transition-colors duration-300">
+                    <span className="text-sm sm:text-base md:text-lg font-semibold text-primary pr-3 sm:pr-4 group-hover:text-luxury-gold transition-colors duration-300">
                       {faq.question}
                     </span>
                     <div className="flex-shrink-0">
                       <svg
-                        className={`w-6 h-6 text-luxury-gold transition-all duration-500 ${
+                        className={`w-5 h-5 sm:w-6 sm:h-6 text-luxury-gold transition-all duration-500 ${
                           openFAQ === index ? 'rotate-180 scale-110' : 'group-hover:scale-110'
                         }`}
                         fill="none"
@@ -90,9 +90,9 @@ const FAQ: React.FC = () => {
                       openFAQ === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
                     }`}
                   >
-                    <div className="px-8 pb-6">
-                      <div className="border-t border-luxury-gold/20 pt-4">
-                        <p className="text-gray-600 leading-relaxed transition-colors duration-300 font-light">
+                    <div className="px-4 sm:px-6 md:px-8 pb-4 sm:pb-5 md:pb-6">
+                      <div className="border-t border-luxury-gold/20 pt-3 sm:pt-4">
+                        <p className="text-sm sm:text-base text-gray-600 leading-relaxed transition-colors duration-300 font-light">
                           {faq.answer}
                         </p>
                       </div>

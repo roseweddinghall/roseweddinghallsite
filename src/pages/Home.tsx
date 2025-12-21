@@ -82,42 +82,24 @@ const Home: React.FC = () => {
           name: "Yenimahalle Salon",
           description: "Modern, antik ve bohem tarzların bir araya geldiği konseptlerimiz ile zarafetin özgünlük ile harmanı...",
           capacity: 800,
-          image: "/images/salon-angel-ivedik.jpg"
+          image: "/images/salon-angel-ivedik.jpg.JPG"
         }
       ]
     }
   ];
 
-  // Galeri görselleri - yaratıcı düzen için
-  // Görselleri public/images/ klasörüne yükleyin
-  // Layout seçenekleri: 'small', 'medium', 'large', 'wide', 'tall'
-  // Overlap seçenekleri: 'none', 'top-left', 'top-right', 'bottom-left', 'bottom-right'
+  // Galeri görselleri - 3 satır: 2 yatay, 3 kare, 2 yatay
   const galleryImages = [
-    { src: "/images/Angel0.jpg", alt: "Düğün görseli 1", layout: 'small' as const, overlap: 'none' as const },
-    { src: "/images/Angel1.jpg", alt: "Düğün görseli 2", layout: 'small' as const, overlap: 'top-right' as const, rotation: -1.5 },
-    { src: "/images/Angel2.jpg", alt: "Düğün görseli 3", layout: 'small' as const, overlap: 'none' as const },
-    { src: "/images/Angel3.jpg", alt: "Düğün görseli 4", layout: 'small' as const, overlap: 'bottom-left' as const, rotation: 2 },
-    
-    // İkinci satır - 2 geniş görsel
-    { src: "/images/amore1.JPG", alt: "Düğün görseli 5", layout: 'wide' as const, overlap: 'none' as const },
-    { src: "/images/amore2.JPG", alt: "Düğün görseli 6", layout: 'wide' as const, overlap: 'none' as const },
-    
-    // Üçüncü satır - 4 küçük
-    { src: "/images/IMG_5499.JPG", alt: "Düğün görseli 7", layout: 'small' as const, overlap: 'none' as const },
-    { src: "/images/IMG_5500.JPG", alt: "Düğün görseli 8", layout: 'small' as const, overlap: 'top-left' as const, rotation: 1.5 },
-    { src: "/images/IMG_5501.JPG", alt: "Düğün görseli 9", layout: 'small' as const, overlap: 'none' as const },
-    { src: "/images/IMG_5502.JPG", alt: "Düğün görseli 10", layout: 'small' as const, overlap: 'bottom-right' as const, rotation: -2 },
-    
-    // Dördüncü satır - 1 uzun (tall) + 3 küçük (tall görsel 2 satır yükseklik kaplar)
-    { src: "/images/5A6A0494.JPG", alt: "Düğün görseli 11", layout: 'tall' as const, overlap: 'none' as const },
-    { src: "/images/5A6A0498.JPG", alt: "Düğün görseli 12", layout: 'small' as const, overlap: 'none' as const },
-    { src: "/images/5A6A0527.JPG", alt: "Düğün görseli 13", layout: 'small' as const, overlap: 'top-right' as const, rotation: -1 },
-    { src: "/images/Angel4.jpg", alt: "Düğün görseli 14", layout: 'small' as const, overlap: 'none' as const },
-    
-    // Beşinci satır - tall görselin altında 3 küçük (tall görsel 2 satır kapladığı için)
-    { src: "/images/5A6A0654.JPG", alt: "Düğün görseli 15", layout: 'small' as const, overlap: 'none' as const },
-    { src: "/images/5A6A0702.JPG", alt: "Düğün görseli 16", layout: 'small' as const, overlap: 'bottom-left' as const, rotation: 1 },
-    { src: "/images/5A6A0881.JPG", alt: "Düğün görseli 17", layout: 'small' as const, overlap: 'none' as const },
+    // İlk satır: 2 yatay görsel
+    { src: "/images/images1.jpg.JPG", alt: "Düğün görseli 1", layout: 'wide' as const, overlap: 'none' as const },
+    { src: "/images/images2.jpg.JPG", alt: "Düğün görseli 2", layout: 'wide' as const, overlap: 'none' as const },
+    // İkinci satır: 3 küçük kare
+    { src: "/images/images5.jpg.PNG", alt: "Düğün görseli 5", layout: 'small' as const, overlap: 'none' as const },
+    { src: "/images/images6.jpg.PNG", alt: "Düğün görseli 6", layout: 'small' as const, overlap: 'none' as const },
+    { src: "/images/images7.jpg.PNG", alt: "Düğün görseli 7", layout: 'small' as const, overlap: 'none' as const },
+    // Üçüncü satır: 2 yatay görsel
+    { src: "/images/images3.jpg.jpg", alt: "Düğün görseli 3", layout: 'wide' as const, overlap: 'none' as const },
+    { src: "/images/images4.jpg.png", alt: "Düğün görseli 4", layout: 'wide' as const, overlap: 'none' as const },
   ];
 
   return (
@@ -129,24 +111,24 @@ const Home: React.FC = () => {
           <HeroSlider slides={heroSlides} autoPlayInterval={5000} />
           
           {/* Call to Action Buttons - Lüks tasarım */}
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mt-12 animate-fade-in-up">
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mt-8 sm:mt-12 animate-fade-in-up px-4">
             <Link 
               to="/subelerimiz" 
-              className="group relative bg-transparent border-2 border-primary/30 text-primary px-10 py-4 rounded-full font-bold text-lg hover:bg-primary/80 hover:text-white hover:border-primary/50 hover:scale-105 transform transition-all duration-300 shadow-md hover:shadow-primary/30"
+              className="group relative bg-transparent border-2 border-primary/30 text-primary px-6 sm:px-10 py-3 sm:py-4 rounded-full font-bold text-base sm:text-lg hover:bg-primary/80 hover:text-white hover:border-primary/50 hover:scale-105 transform transition-all duration-300 shadow-md hover:shadow-primary/30 w-full sm:w-auto text-center"
             >
               <span className="relative z-10 flex items-center justify-center gap-2">
               Salonları İncele
-                <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </span>
             </Link>
             <Link 
               to="/rezervasyon" 
-              className="group relative bg-primary text-white px-16 py-3 rounded-full font-bold text-lg shadow-md min-w-[280px]"
+              className="group relative bg-primary text-white px-8 sm:px-16 py-3 rounded-full font-bold text-base sm:text-lg shadow-md w-full sm:w-auto sm:min-w-[280px] text-center"
             >
               <span className="relative z-10 flex flex-col items-center justify-center gap-1">
-                <span className="text-sm font-medium">Fiyat Teklifi için</span>
+                <span className="text-xs sm:text-sm font-medium">Fiyat Teklifi için</span>
                 <span>Size Ulaşalım</span>
               </span>
             </Link>
@@ -155,15 +137,15 @@ const Home: React.FC = () => {
       </section>
 
       {/* Yaratıcı Görsel Galeri Bölümü */}
-      <section className="pt-16 pb-10 bg-gradient-to-b from-white via-gray-50 to-white">
-        <div className="max-w-7xl mx-auto">
+      <section className="pt-8 sm:pt-12 md:pt-16 pb-6 sm:pb-8 md:pb-10 bg-gradient-to-b from-white via-gray-50 to-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Yaratıcı Grid Galeri - 4 Sütunlu, Farklı Boyutlar */}
           {galleryImages.length > 0 ? (
             <CreativeGallery images={galleryImages} />
           ) : (
-            <div className="text-center py-20">
-              <p className="text-gray-500 text-lg mb-4">Görseller yükleniyor...</p>
-              <p className="text-gray-400 text-sm">
+            <div className="text-center py-12 sm:py-16 md:py-20">
+              <p className="text-gray-500 text-base sm:text-lg mb-4">Görseller yükleniyor...</p>
+              <p className="text-gray-400 text-xs sm:text-sm">
                 Görselleri <code className="bg-gray-100 px-2 py-1 rounded">public/images/</code> klasörüne yükleyin
               </p>
             </div>
@@ -172,35 +154,35 @@ const Home: React.FC = () => {
       </section>
 
       {/* Salonlar Bölümü - Lüks Tasarım */}
-      <section ref={salonSectionRef} className="pt-12 pb-16 bg-gradient-to-b from-white via-gray-50 to-white relative overflow-hidden">
+      <section ref={salonSectionRef} className="pt-8 sm:pt-12 pb-10 sm:pb-12 md:pb-16 bg-gradient-to-b from-white via-gray-50 to-white relative overflow-hidden">
         {/* Dekoratif elementler */}
-        <div className="absolute top-20 left-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+        <div className="absolute top-20 left-10 w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 bg-primary/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-10 w-48 h-48 sm:w-64 sm:h-64 md:w-96 md:h-96 bg-primary/10 rounded-full blur-3xl"></div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-12">
-            <h2 className="text-5xl md:text-6xl font-classic font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-600 to-primary-700">
+          <div className="text-center mb-8 sm:mb-10 md:mb-12">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-classic font-bold mb-3 sm:mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-600 to-primary-700">
                 Salonlarımız
             </h2>
-            <div className="w-32 h-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent mx-auto mb-4"></div>
-            <p className="text-xl text-gray-700 max-w-3xl mx-auto font-light">
+            <div className="w-24 sm:w-32 h-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent mx-auto mb-3 sm:mb-4"></div>
+            <p className="text-base sm:text-lg md:text-xl text-gray-700 max-w-3xl mx-auto font-light px-4">
               Her biri özel tasarım ve konseptle hazırlanmış salonlarımızda, hayalinizdeki düğünü gerçekleştirin.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 lg:items-stretch">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 md:gap-16 lg:gap-24 lg:items-stretch">
             {salonData.map((branch, branchIndex) => (
               <div key={branchIndex} className="flex flex-col">
-                <div className="text-center mb-12 flex-shrink-0">
+                <div className="text-center mb-8 sm:mb-10 md:mb-12 flex-shrink-0">
                   <h3 
-                    className="text-4xl md:text-5xl font-classic font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-700 mb-4"
+                    className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-classic font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-700 mb-3 sm:mb-4"
                     style={{
                       filter: 'drop-shadow(0 2px 4px rgba(164, 88, 90, 0.3)) drop-shadow(0 4px 8px rgba(164, 88, 90, 0.2))',
                     }}
                   >
                     {branch.branch}
                   </h3>
-                  <div className="w-24 h-1 bg-gradient-to-r from-primary/50 to-primary/80 mx-auto"></div>
+                  <div className="w-20 sm:w-24 h-1 bg-gradient-to-r from-primary/50 to-primary/80 mx-auto"></div>
                 </div>
                 
                 <div className="flex-1 flex">
@@ -223,7 +205,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* İstatistikler - Lüks */}
-      <section ref={statsSectionRef} className="py-12 bg-gradient-to-r from-primary/5 via-primary/8 to-primary/5 relative overflow-hidden opacity-0">
+      <section ref={statsSectionRef} className="py-8 sm:py-10 md:py-12 bg-gradient-to-r from-primary/5 via-primary/8 to-primary/5 relative overflow-hidden opacity-0">
         {/* Animasyonlu Yuvarlaklar/Baloncuklar */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {/* Büyük yuvarlaklar - farklı hızlarda yükselen */}
@@ -255,18 +237,18 @@ const Home: React.FC = () => {
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 text-center">
             {[
-              { number: "500+", label: "Mutlu Düğün" },
+              { number: "300+", label: "Mutlu Düğün" },
               { number: "2", label: "Şube" },
               { number: "8+", label: "Yıllık Deneyim" },
-              { number: "98%", label: "Müşteri Memnuniyeti" }
+              { number: "92%", label: "Müşteri Memnuniyeti" }
             ].map((stat, index) => (
               <div key={index} className="transform hover:scale-110 transition-all duration-300">
-                <div className="text-5xl md:text-6xl font-elegant font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-600 to-primary-700 animate-pulse-slow">
+                <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-elegant font-bold mb-2 sm:mb-3 md:mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-600 to-primary-700 animate-pulse-slow">
                   {stat.number}
             </div>
-                <div className="text-primary font-medium text-lg">{stat.label}</div>
+                <div className="text-primary font-medium text-sm sm:text-base md:text-lg">{stat.label}</div>
             </div>
             ))}
           </div>
@@ -274,9 +256,9 @@ const Home: React.FC = () => {
       </section>
 
       {/* FAQ ve Instagram Bölümü - Yan Yana */}
-      <section ref={instagramSectionRef} className="py-12 bg-gradient-to-b from-gray-50 to-white opacity-0">
+      <section ref={instagramSectionRef} className="py-8 sm:py-10 md:py-12 bg-gradient-to-b from-gray-50 to-white opacity-0">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 lg:items-stretch">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 lg:items-stretch">
             {/* FAQ Bölümü - Sol Taraf */}
             <div className="text-center flex flex-col">
               <h2 className="text-xl md:text-2xl font-classic font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-600 to-primary-700 whitespace-nowrap">

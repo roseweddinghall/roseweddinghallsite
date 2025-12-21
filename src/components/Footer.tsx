@@ -5,22 +5,22 @@ import OptimizedImage from './OptimizedImage';
 const Footer: React.FC = () => {
   return (
     <footer className="bg-white border-t border-gray-200">
-      <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div className="max-w-7xl mx-auto py-8 sm:py-10 md:py-12 px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
           {/* Logo ve Açıklama */}
-          <div className="col-span-1 md:col-span-2">
+          <div className="col-span-1 sm:col-span-2 md:col-span-2">
             <Link to="/" className="block">
               <OptimizedImage
                 src="/logo.png.png"
                 alt="Rose Wedding Hall"
-                className="w-auto mb-4 object-contain"
+                className="w-auto mb-3 sm:mb-4 object-contain"
                 priority={false}
                 loading="lazy"
                 objectFit="contain"
-                style={{ background: 'transparent', height: '15rem' }}
+                style={{ background: 'transparent', height: '10rem', maxHeight: '12rem' }}
               />
             </Link>
-            <p className="mt-4 text-gray-600 max-w-md">
+            <p className="mt-3 sm:mt-4 text-sm sm:text-base text-gray-600 max-w-md">
               Hayallerinizdeki düğününüze ev sahipliği yapıyoruz. Modern ve şık tasarımımızla 
               unutulmaz anları birlikte yaşayalım.
             </p>
@@ -28,40 +28,40 @@ const Footer: React.FC = () => {
 
           {/* Hızlı Linkler */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Hızlı Linkler</h3>
-            <ul className="space-y-2">
+            <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-3 sm:mb-4">Hızlı Linkler</h3>
+            <ul className="space-y-1.5 sm:space-y-2">
               <li>
-                <Link to="/" className="text-gray-600 hover:text-primary transition-colors">
+                <Link to="/" className="text-sm sm:text-base text-gray-600 hover:text-primary transition-colors">
                   Ana Sayfa
                 </Link>
               </li>
               <li>
-                <Link to="/hakkimizda" className="text-gray-600 hover:text-primary transition-colors">
+                <Link to="/hakkimizda" className="text-sm sm:text-base text-gray-600 hover:text-primary transition-colors">
                   Hakkımızda
                 </Link>
               </li>
               <li>
-                <Link to="/subelerimiz" className="text-gray-600 hover:text-primary transition-colors">
+                <Link to="/subelerimiz" className="text-sm sm:text-base text-gray-600 hover:text-primary transition-colors">
                   Şubelerimiz
                 </Link>
               </li>
               <li>
-                <Link to="/galeri" className="text-gray-600 hover:text-primary transition-colors">
+                <Link to="/galeri" className="text-sm sm:text-base text-gray-600 hover:text-primary transition-colors">
                   Galeri
                 </Link>
               </li>
               <li>
-                <Link to="/yorumlar" className="text-gray-600 hover:text-primary transition-colors">
+                <Link to="/yorumlar" className="text-sm sm:text-base text-gray-600 hover:text-primary transition-colors">
                   Yorumlar
                 </Link>
               </li>
               <li>
-                <Link to="/is-birlikleri" className="text-gray-600 hover:text-primary transition-colors">
+                <Link to="/is-birlikleri" className="text-sm sm:text-base text-gray-600 hover:text-primary transition-colors">
                   İş Birlikleri
                 </Link>
               </li>
               <li>
-                <Link to="/iletisim" className="text-gray-600 hover:text-primary transition-colors">
+                <Link to="/iletisim" className="text-sm sm:text-base text-gray-600 hover:text-primary transition-colors">
                   İletişim
                 </Link>
               </li>
@@ -70,30 +70,30 @@ const Footer: React.FC = () => {
 
           {/* İletişim Bilgileri */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">İletişim</h3>
-            <div className="space-y-3 text-gray-600">
+            <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-3 sm:mb-4">İletişim</h3>
+            <div className="space-y-2 sm:space-y-3 text-gray-600">
               <div>
-                <p className="font-semibold text-gray-800 mb-1">Eryaman Şubesi</p>
-                <p className="text-sm">Yeşilova, 4016. Cad. B Blok No:2/2/13</p>
-                <p className="text-sm">06796 Etimesgut/Ankara</p>
-                <p className="text-sm font-medium">+90 538 622 30 50</p>
+                <p className="text-sm sm:text-base font-semibold text-gray-800 mb-1">Eryaman Şubesi</p>
+                <p className="text-xs sm:text-sm">Yeşilova, 4016. Cad. B Blok No:2/2/13</p>
+                <p className="text-xs sm:text-sm">06796 Etimesgut/Ankara</p>
+                <p className="text-xs sm:text-sm font-medium break-all">+90 538 622 30 50</p>
               </div>
-              <div className="pt-2">
-                <p className="font-semibold text-gray-800 mb-1">İvedik Şubesi</p>
-                <p className="text-sm">İvedik OSB, 1439. Sk. No: 1</p>
-                <p className="text-sm">İç Kapı: 121, 06378 Yenimahalle/Ankara</p>
-                <p className="text-sm font-medium">+90 546 624 25 95</p>
+              <div className="pt-1 sm:pt-2">
+                <p className="text-sm sm:text-base font-semibold text-gray-800 mb-1">İvedik Şubesi</p>
+                <p className="text-xs sm:text-sm">İvedik OSB, 1439. Sk. No: 1</p>
+                <p className="text-xs sm:text-sm">İç Kapı: 121, 06378 Yenimahalle/Ankara</p>
+                <p className="text-xs sm:text-sm font-medium break-all">+90 546 624 25 95</p>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="mt-8 pt-8 border-t border-gray-200">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-600 text-sm">
+        <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-gray-200">
+          <div className="flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+            <p className="text-gray-600 text-xs sm:text-sm mb-3 md:mb-0">
               © 2025 <span style={{fontFamily: 'Arial, sans-serif', fontWeight: 'bold', fontStyle: 'italic'}}>Rose Wedding Hall</span>. Tüm hakları saklıdır.
             </p>
-            <div className="mt-4 md:mt-0 flex space-x-6">
+            <div className="flex space-x-4 sm:space-x-6">
               <a 
                 href="https://www.instagram.com/rose_weddinghall" 
                 target="_blank" 

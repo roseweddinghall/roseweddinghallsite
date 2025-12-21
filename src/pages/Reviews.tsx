@@ -174,8 +174,21 @@ const Reviews: React.FC = () => {
           return timeB - timeA;
         });
 
-        // İlk 6 yorumu al
-        setReviews(mergedReviews.slice(0, 6));
+        // İlk 6 yorumu al ve yeniden sırala: 1, 3, 4, 2, 5, 6
+        const firstSix = mergedReviews.slice(0, 6);
+        if (firstSix.length >= 6) {
+          const reordered = [
+            firstSix[0], // 1
+            firstSix[2], // 3
+            firstSix[3], // 4
+            firstSix[1], // 2
+            firstSix[4], // 5
+            firstSix[5]  // 6
+          ];
+          setReviews(reordered);
+        } else {
+          setReviews(firstSix);
+        }
 
         // İstatistikleri güncelle
         if (mergedReviews.length > 0) {
@@ -189,8 +202,20 @@ const Reviews: React.FC = () => {
       } catch (err) {
         console.error('Yorumlar çekilirken hata oluştu:', err);
         setError('Yorumlar yüklenirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.');
-        // Hata durumunda fallback yorumları kullan
-        setReviews(fallbackReviews);
+        // Hata durumunda fallback yorumları kullan ve yeniden sırala: 1, 3, 4, 2, 5, 6
+        if (fallbackReviews.length >= 6) {
+          const reordered = [
+            fallbackReviews[0], // 1
+            fallbackReviews[2], // 3
+            fallbackReviews[3], // 4
+            fallbackReviews[1], // 2
+            fallbackReviews[4], // 5
+            fallbackReviews[5]  // 6
+          ];
+          setReviews(reordered);
+        } else {
+          setReviews(fallbackReviews);
+        }
       } finally {
         setLoading(false);
       }
@@ -260,61 +285,61 @@ const Reviews: React.FC = () => {
     };
   }, []);
 
-  // Fallback yorumlar (API çalışmazsa veya Place ID yoksa)
+  // Fallback yorumlar (API çalışmazsa veya Place ID yoksa) - Sıralama: 1, 3, 4, 2, 5, 6
   const fallbackReviews: Review[] = [
     {
       id: 1,
-      name: "Ayşe & Mehmet",
-      branch: "Eryaman Şubesi",
+      name: "İrem Ar",
       rating: 5,
-      date: "15 Aralık 2024",
-      comment: "Hayalimizdeki düğünü Rose Wedding Hall'da gerçekleştirdik. Mükemmel organizasyon ve harika hizmet! Ekibiniz gerçekten çok profesyonel. Her detayı düşünmüşler. Kesinlikle tavsiye ederim.",
-      avatar: "A"
-    },
-    {
-      id: 2,
-      name: "Fatma & Ali",
-      branch: "İvedik Şubesi",
-      rating: 5,
-      date: "8 Aralık 2024",
-      comment: "Profesyonel ekibi ve muhteşem salonlarıyla unutulmaz bir düğün yaşadık. Özellikle ses ve ışık sistemi harikaydı. Misafirlerimiz de çok beğendi. Teşekkürler Rose Wedding Hall!",
-      avatar: "F"
+      date: "2 ay önce",
+      comment:
+        "10 Eylül kınası olan İrem ben :) Pimpirikli biri olarak o kadar çok daraldım ki hadi hadi diye her seferinde beni alttan alıp bütün soru işaretlerimi çözdüler. Başta Yunus Bey ve Buse Hanım hakkını ödeyemem. Buse Hanım benimle kına salonunu süslemek için masa altlarına bile girdi ilgi alaka o kadar güzel ki asla olmaz deyip hayallerinizi suya düşürmüyorlar. Ve Amore kızları ve ekibi danslarımızla uyumumuzla harikaydı. Ne istediysem iki dk sonra hepsini yaptılar. Şarkılarımız o kadar akıcıydı ki asla oturmadım :)) tam da hayal ettiğim gibiydi her şey. Hayallerimi yaşattığınız ve prenses gibi hissettirdiğiniz için teşekkür ederim ❤️",
+      avatar: "İ"
     },
     {
       id: 3,
-      name: "Zeynep & Can",
-      branch: "Eryaman Şubesi",
+      name: "Beyza Kanık",
       rating: 5,
-      date: "2 Aralık 2024",
-      comment: "Her detayı düşünülmüş, kaliteli hizmet anlayışı. Düğünümüz mükemmeldi! Organizasyon ekibi çok yardımcı oldu. Salonlarımız çok şık ve modern. Mutlaka tekrar tercih ederiz.",
-      avatar: "Z"
+      date: "4 ay önce",
+      comment:
+        "18 Temmuz'da kınamızı Rose Wedding Hall'de yaptık. Özellikle belirtmek isterim ki Esra Hanım'ın ilgi alakası, her an her konuda yanımızda olması bizim için harika bir gece olmasını sağladı. Bir kez daha olsa yine Rose Wedding Hall'i tercih ederdik. Bize bu güzel geceyi yaşatan tüm ekibe teşekkür ediyoruz. İkramlar, gelin odamız, mekanın muazzam atmosferi, dekorasyonu; her bir detayıyla misafirlerimizden harika geri dönüşler aldık, mutlaka tavsiye ediyorum.",
+      avatar: "B"
     },
     {
       id: 4,
-      name: "Elif & Burak",
-      branch: "İvedik Şubesi",
+      name: "Kerime Yağmur Ç.",
       rating: 5,
-      date: "25 Kasım 2024",
-      comment: "Rose Wedding Hall ile çalışmak harika bir deneyimdi. Ekibiniz çok samimi ve yardımcı. Salonlarımız çok ferah ve aydınlık. Düğünümüz tam istediğimiz gibiydi. Çok teşekkürler!",
-      avatar: "E"
+      date: "5 ay önce",
+      comment:
+        "20 Haziran kına, 22 Haziran düğünüm oldu. Kemal Bey ve düğün nedimem olan Esra Hanım'a ne kadar teşekkür etsem azdır. O kadar ilgililerdi ki hiç yalnız hissetmedim. Terlediğimde, susadığımda ben söylemeden hemen çözdüler. Her konuda yeterli bilgilendirme yaptılar. Kına organizasyonundan Sevda Hanım, Kemal Bey ve üzerimde en çok emeği geçen nedimem Esra Hanım; her anlamda herkese çok teşekkür ederim. Kesinlikle tavsiye ediyorum, gözünüz kapalı güvenebilirsiniz. Fotoğraf çekiminden taze ikramlıklara, düğün orkestrası şefi Musa Bey'den garsonlara kadar herkes gözümün içine bakıyorlardı. Hepinizin tekrar emeğine sağlık; tekrar düğün yapsam yine size gelirdim, düğün yapacak herkese de gönülden tavsiye ediyorum.",
+      avatar: "K"
+    },
+    {
+      id: 2,
+      name: "Melek Şahin",
+      rating: 5,
+      date: "1 ay önce",
+      comment:
+        "05.09.2025 tarihindeki kınam için tutmuştuk. Her şey çok çok güzeldi; bizimle ilgilenmeleri, misafirlerimizle ilgilenmeleri, salonun görseli, efektleri, ambiyansı, ışıkları her şekliyle güzeldi. Bir gelin için bu günler tektir, özeldir; pişman oldum, eksik oldu dediğim hiçbir şey olmadı, çok içime sindi. Emeğiniz, ilgi alakanız için tekrar çok teşekkür ederim. Bir daha olsa bir daha sizinle, organizasyon ekibinizle çalışırım; hepinize ayrı ayrı çok teşekkür ederim.",
+      avatar: "M"
     },
     {
       id: 5,
-      name: "Selin & Emre",
-      branch: "Eryaman Şubesi",
+      name: "Furkan Baltat",
       rating: 5,
-      date: "18 Kasım 2024",
-      comment: "Mükemmel bir organizasyon! Her şey planlandığı gibi gitti. Salonlarımız çok şık, yemekler harikaydı. Misafirlerimiz de çok memnun kaldı. Rose Wedding Hall'a teşekkürler!",
-      avatar: "S"
+      date: "5 ay önce",
+      comment:
+        "18 Mayıs'ta düğünümüzü yaptık. Biz ve tüm misafirlerimiz salonun şıklığı ve zerafetini unutamadı. Kişi başı ordövr tabaklarından yaş pastaya kadar her şey çok lezzetliydi. Çalışanların güler yüzü ve ilgisi olmazsa olmazdı. Özellikle Yunus Bey'in sürecin en başından sonuna kadar ilgisi, samimiyeti, çift odaklı yaklaşımları harikaydı. Her şeyiniz harika olsun diyorsanız Yunus Bey ile tanışmalı; unutmayacağınız bir rüya yaşamak isterseniz Rose Wedding'te evlenmelisiniz :)",
+      avatar: "F"
     },
     {
       id: 6,
-      name: "Deniz & Oğuz",
-      branch: "İvedik Şubesi",
+      name: "Furkan Soyutürk",
       rating: 5,
-      date: "10 Kasım 2024",
-      comment: "Çok profesyonel bir ekiple çalıştık. Her detayı düşünmüşler. Salonlarımız çok modern ve şık. Düğünümüz unutulmazdı. Kesinlikle tavsiye ederim. Teşekkürler!",
-      avatar: "D"
+      date: "5 gün önce",
+      comment:
+        "22 Kasım'da düğünümüzü yaptığımız yer. Öncelikle salon şık ve klas olmasının yanı sıra oldukça da genişti. Yanlış bilmiyorsam kapasite 650-700 kişilere kadar çıkıyor. Absürt ve yorucu dekorlardan kaçınılmış, sadelik çok güzel yansıtılmış. Klasik Helenistik motifler ve beyaz renk çok güzel işlenmiş. Çalışanların hepsi ilgili ve güler yüzlüydü, hepsi de işlerinde profesyonel gözüküyor. Nedimelerden saz ekibine, kameramandan garsona tüm çalışanlardan memnun kaldık; herkesin emeğine sağlık.",
+      avatar: "F"
     }
   ];
 
@@ -391,7 +416,7 @@ const Reviews: React.FC = () => {
           )}
 
           {!loading && reviews.length > 0 && (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
               {reviews.map((review, index) => {
               const gradientColors = [
                 'from-pink-50 via-rose-50 to-pink-100',
@@ -413,7 +438,7 @@ const Reviews: React.FC = () => {
               return (
                 <div 
                   key={review.id} 
-                  className={`relative bg-gradient-to-br ${gradientColors[index % gradientColors.length]} rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 hover:scale-105 border-2 ${borderColors[index % borderColors.length]} group overflow-hidden`}
+                  className={`relative bg-gradient-to-br ${gradientColors[index % gradientColors.length]} rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 hover:scale-105 border-2 ${borderColors[index % borderColors.length]} group overflow-hidden flex flex-col h-full`}
                 >
                   {/* Decorative background element */}
                   <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#a4585a]/10 to-transparent rounded-full blur-2xl transform translate-x-1/2 -translate-y-1/2 group-hover:scale-150 transition-transform duration-700"></div>
@@ -425,7 +450,7 @@ const Reviews: React.FC = () => {
                     </svg>
           </div>
 
-                  <div className="relative z-10">
+                  <div className="relative z-10 flex flex-col h-full">
                     {/* Rating */}
                     <div className="flex items-center gap-2 mb-4">
                   <div className="flex text-yellow-400">
@@ -438,28 +463,28 @@ const Reviews: React.FC = () => {
                       <span className="text-xs font-medium text-gray-500 bg-white/50 px-2 py-1 rounded-full">Google</span>
                 </div>
                 
-                    {/* Comment */}
-                    <p className="text-gray-800 mb-6 leading-relaxed font-medium relative z-10">
+                    {/* Comment - flex-grow ile genişleyecek */}
+                    <p className="text-gray-800 mb-6 leading-relaxed font-medium relative z-10 flex-grow">
                   "{review.comment}"
                 </p>
                 
-                    {/* Author info */}
-                    <div className="flex items-center gap-3 pt-4 border-t border-white/50">
+                    {/* Author info - kartın altına sabitlendi */}
+                    <div className="flex items-center gap-3 pt-4 border-t border-white/50 mt-auto">
                       {review.profilePhoto ? (
                         <img 
                           src={review.profilePhoto} 
                           alt={review.name}
-                          className="w-12 h-12 rounded-full object-cover shadow-md group-hover:shadow-lg transition-shadow duration-300 ring-2 ring-white/50"
+                          className="w-12 h-12 rounded-full object-cover shadow-md group-hover:shadow-lg transition-shadow duration-300 ring-2 ring-white/50 flex-shrink-0"
                         />
                       ) : (
                         <div className="w-12 h-12 bg-gradient-to-br from-[#a4585a] to-primary rounded-full flex items-center justify-center flex-shrink-0 shadow-md group-hover:shadow-lg transition-shadow duration-300 ring-2 ring-white/50">
                           <span className="text-white font-bold text-lg">{review.avatar}</span>
                   </div>
                       )}
-                      <div className="flex-1">
-                        <p className="font-bold text-gray-900 text-sm">{review.name}</p>
+                      <div className="flex-1 min-w-0">
+                        <p className="font-bold text-gray-900 text-sm truncate">{review.name}</p>
                         {review.branch && (
-                          <p className="text-xs text-gray-600 font-medium">{review.branch}</p>
+                          <p className="text-xs text-gray-600 font-medium truncate">{review.branch}</p>
                         )}
                     <p className="text-xs text-gray-400">{review.date}</p>
                       </div>
