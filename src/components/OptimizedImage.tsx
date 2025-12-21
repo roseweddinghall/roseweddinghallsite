@@ -29,10 +29,10 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   renderError,
 }) => {
   const shouldLoadImmediately = priority || loading === 'eager';
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(shouldLoadImmediately ? false : false); // Priority görseller için hemen yükleme başlat
   const [hasError, setHasError] = useState(false);
   const [isInView, setIsInView] = useState(shouldLoadImmediately); // Priority görseller hemen yüklenir
-  const [canStartLoading, setCanStartLoading] = useState(shouldLoadImmediately);
+  const [canStartLoading, setCanStartLoading] = useState(shouldLoadImmediately); // Priority görseller hemen yüklenmeye başlar
   const containerRef = useRef<HTMLDivElement>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
   const releaseSlotRef = useRef<(() => void) | null>(null);
@@ -200,8 +200,8 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
           alt={alt}
           loading={priority ? 'eager' : loading}
           decoding={priority ? 'sync' : 'async'}
-          className={`w-full h-full transition-opacity duration-200 ${
-            isLoaded ? 'opacity-100' : 'opacity-0'
+          className={`w-full h-full transition-opacity duration-300 ${
+            isLoaded ? 'opacity-100' : priority ? 'opacity-100' : 'opacity-0'
           }`}
           style={{
             objectFit,
