@@ -108,7 +108,7 @@ const Navbar: React.FC = () => {
         </div>
 
         {/* Mobile Layout */}
-        <div className="md:hidden flex items-center justify-between h-28 relative z-50">
+        <div className="md:hidden flex items-center justify-between h-36 sm:h-40 relative z-50 overflow-hidden">
           {/* Mobile menu button */}
           <div className="flex items-center z-50">
             <button
@@ -128,12 +128,12 @@ const Navbar: React.FC = () => {
           </div>
 
           {/* Mobile Center Logo */}
-          <div className="flex-1 flex justify-center">
-            <Link to="/" className="flex-shrink-0">
+          <div className="flex-1 flex justify-center overflow-hidden h-full">
+            <Link to="/" className="flex-shrink-0 h-full flex items-center">
               <OptimizedImage
                 src="/logo.png.png"
                 alt="Rose Wedding Hall"
-                className="h-32 sm:h-36 w-auto object-contain"
+                className="h-full max-h-40 sm:max-h-44 w-auto object-contain object-top"
                 priority={true}
                 loading="eager"
                 objectFit="contain"
@@ -148,7 +148,7 @@ const Navbar: React.FC = () => {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden fixed inset-x-0 top-28 bg-white border-t border-gray-200 shadow-lg z-50 max-h-[calc(100vh-7rem)] overflow-y-auto">
+          <div className="md:hidden fixed inset-x-0 top-36 sm:top-40 bg-white border-t border-gray-200 shadow-lg z-50 max-h-[calc(100vh-9rem)] sm:max-h-[calc(100vh-10rem)] overflow-y-auto">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
               <Link
                 to="/"

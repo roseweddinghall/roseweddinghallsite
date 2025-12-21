@@ -79,22 +79,22 @@ const CreativeGallery: React.FC<CreativeGalleryProps> = ({ images }) => {
     
     switch (layout) {
       case 'small':
-        // Mobilde 1 sütun (daha küçük), desktop'ta 2 sütun (6 sütunlu grid'de 3 tane yan yana)
+        // Mobilde 1 sütun (alt alta), desktop'ta 2 sütun (6 sütunlu grid'de 3 tane yan yana)
         return `${baseClasses} col-span-1 md:col-span-2`;
       case 'medium':
-        // 2 sütun - orta boyut kare
-        return `${baseClasses} col-span-2`;
+        // Mobilde 1 sütun, desktop'ta 2 sütun
+        return `${baseClasses} col-span-1 md:col-span-2`;
       case 'large':
-        // 2 sütun - büyük kare
-        return `${baseClasses} col-span-2`;
+        // Mobilde 1 sütun, desktop'ta 2 sütun
+        return `${baseClasses} col-span-1 md:col-span-2`;
       case 'wide':
-        // Mobilde 2 sütun, desktop'ta 3 sütun genişlik (6 sütunlu grid'de 2 tane yan yana)
-        return `${baseClasses} col-span-2 md:col-span-3`;
+        // Mobilde 1 sütun (alt alta), desktop'ta 3 sütun genişlik (6 sütunlu grid'de 2 tane yan yana)
+        return `${baseClasses} col-span-1 md:col-span-3`;
       case 'tall':
-        // 1 sütun genişlik, 2 satır yükseklik
-        return `${baseClasses} col-span-1 row-span-2`;
+        // Mobilde 1 sütun, desktop'ta 1 sütun genişlik, 2 satır yükseklik
+        return `${baseClasses} col-span-1 md:col-span-1 md:row-span-2`;
       default:
-        return `${baseClasses} col-span-2`;
+        return `${baseClasses} col-span-1 md:col-span-2`;
     }
   };
 
@@ -142,9 +142,9 @@ const CreativeGallery: React.FC<CreativeGalleryProps> = ({ images }) => {
   return (
     <div className="max-w-7xl mx-auto px-2 sm:px-4 md:px-6 lg:px-8">
       <div 
-        className="grid grid-cols-3 md:grid-cols-6 gap-2 sm:gap-3 md:gap-4 lg:gap-6"
+        className="grid grid-cols-1 md:grid-cols-6 gap-3 sm:gap-3 md:gap-4 lg:gap-6"
         style={{
-          gridAutoRows: 'minmax(120px, auto)',
+          gridAutoRows: 'minmax(200px, auto)',
         }}
       >
         {images.map((image, index) => {
