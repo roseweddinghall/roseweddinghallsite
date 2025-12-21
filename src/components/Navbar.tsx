@@ -108,18 +108,20 @@ const Navbar: React.FC = () => {
         </div>
 
         {/* Mobile Layout */}
-        <div className="md:hidden flex items-center justify-between h-28">
+        <div className="md:hidden flex items-center justify-between h-28 relative z-50">
           {/* Mobile menu button */}
-          <div className="flex items-center">
+          <div className="flex items-center z-50">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-gray-700 hover:text-primary focus:outline-none focus:text-primary"
+              className="text-gray-700 hover:text-primary focus:outline-none focus:text-primary p-2 -ml-2"
+              aria-label="Menüyü aç/kapat"
+              type="button"
             >
-              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 {isMenuOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                 ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
                 )}
               </svg>
             </button>
@@ -131,7 +133,7 @@ const Navbar: React.FC = () => {
               <OptimizedImage
                 src="/logo.png.png"
                 alt="Rose Wedding Hall"
-                className="h-20 w-auto object-contain"
+                className="h-32 sm:h-36 w-auto object-contain"
                 priority={true}
                 loading="eager"
                 objectFit="contain"
@@ -146,11 +148,11 @@ const Navbar: React.FC = () => {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t">
+          <div className="md:hidden fixed inset-x-0 top-28 bg-white border-t border-gray-200 shadow-lg z-50 max-h-[calc(100vh-7rem)] overflow-y-auto">
+            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
               <Link
                 to="/"
-                className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                className={`block px-3 py-2.5 rounded-md text-base font-medium transition-colors ${
                   isActive('/') 
                     ? 'text-primary bg-primary/10' 
                     : 'text-gray-700 hover:text-primary hover:bg-gray-100'
@@ -161,7 +163,7 @@ const Navbar: React.FC = () => {
               </Link>
               <Link
                 to="/subelerimiz"
-                className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                className={`block px-3 py-2.5 rounded-md text-base font-medium transition-colors ${
                   isActive('/subelerimiz') 
                     ? 'text-primary bg-primary/10' 
                     : 'text-gray-700 hover:text-primary hover:bg-gray-100'
@@ -172,7 +174,7 @@ const Navbar: React.FC = () => {
               </Link>
               <Link
                 to="/galeri"
-                className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                className={`block px-3 py-2.5 rounded-md text-base font-medium transition-colors ${
                   isActive('/galeri') 
                     ? 'text-primary bg-primary/10' 
                     : 'text-gray-700 hover:text-primary hover:bg-gray-100'
@@ -183,7 +185,7 @@ const Navbar: React.FC = () => {
               </Link>
               <Link
                 to="/is-birlikleri"
-                className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                className={`block px-3 py-2.5 rounded-md text-base font-medium transition-colors ${
                   isActive('/is-birlikleri') 
                     ? 'text-primary bg-primary/10' 
                     : 'text-gray-700 hover:text-primary hover:bg-gray-100'
@@ -194,7 +196,7 @@ const Navbar: React.FC = () => {
               </Link>
               <Link
                 to="/yorumlar"
-                className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                className={`block px-3 py-2.5 rounded-md text-base font-medium transition-colors ${
                   isActive('/yorumlar') 
                     ? 'text-primary bg-primary/10' 
                     : 'text-gray-700 hover:text-primary hover:bg-gray-100'
@@ -205,7 +207,7 @@ const Navbar: React.FC = () => {
               </Link>
               <Link
                 to="/hakkimizda"
-                className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                className={`block px-3 py-2.5 rounded-md text-base font-medium transition-colors ${
                   isActive('/hakkimizda') 
                     ? 'text-primary bg-primary/10' 
                     : 'text-gray-700 hover:text-primary hover:bg-gray-100'
@@ -216,7 +218,7 @@ const Navbar: React.FC = () => {
               </Link>
               <Link
                 to="/iletisim"
-                className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                className={`block px-3 py-2.5 rounded-md text-base font-medium transition-colors ${
                   isActive('/iletisim') 
                     ? 'text-primary bg-primary/10' 
                     : 'text-gray-700 hover:text-primary hover:bg-gray-100'

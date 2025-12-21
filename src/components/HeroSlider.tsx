@@ -32,15 +32,18 @@ const HeroSlider: React.FC<HeroSliderProps> = ({
       link.as = 'image';
       link.href = slide.image;
       if ('fetchPriority' in link) {
-        (link as any).fetchPriority = index === 0 ? 'high' : 'auto';
+        (link as any).fetchPriority = index < 2 ? 'high' : 'auto'; // İlk 2 görseli high priority
       }
       document.head.appendChild(link);
 
-      // Image objesi ile de preload
+      // Image objesi ile de preload ve decode
       const img = new Image();
       img.src = slide.image;
-      if (index === 0) {
-        // İlk görseli decode et
+      if ('fetchPriority' in img) {
+        (img as any).fetchPriority = index < 2 ? 'high' : 'auto';
+      }
+      // İlk 2 görseli hemen decode et
+      if (index < 2) {
         img.decode().catch(() => {});
       }
     });

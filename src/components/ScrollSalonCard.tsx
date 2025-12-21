@@ -40,7 +40,7 @@ const ScrollSalonCard: React.FC<ScrollSalonCardProps> = ({
           }
         });
       },
-      { threshold: 0.1, rootMargin: '100px 0px -100px 0px' }
+      { threshold: 0.01, rootMargin: '400px 0px -100px 0px' } // Daha erken yükleme
     );
 
     const currentRef = cardRef.current;

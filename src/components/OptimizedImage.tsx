@@ -72,7 +72,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
         });
       },
       {
-        rootMargin: '200px 0px', // Viewport'tan 200px önce yüklemeye başla (daha erken)
+        rootMargin: '500px 0px', // Viewport'tan 500px önce yüklemeye başla (çok daha erken)
         threshold: 0.01,
       }
     );
@@ -89,6 +89,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   // Preload kritik görseller - hemen yükle
   useEffect(() => {
     if (priority && !isLoaded) {
+      // Preload link oluştur
       const link = document.createElement('link');
       link.rel = 'preload';
       link.as = 'image';
@@ -99,12 +100,22 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
       }
       document.head.appendChild(link);
 
-      // Hemen yüklemeyi başlat
+      // Hemen yüklemeyi başlat ve decode et
       const img = new Image();
       img.src = src;
-      img.decode().catch(() => {
-        // Decode hatası olsa bile devam et
-      });
+      // Decode işlemini başlat (görsel hazır olur)
+      img.decode()
+        .then(() => {
+          // Decode başarılı, görsel hazır
+        })
+        .catch(() => {
+          // Decode hatası olsa bile devam et
+        });
+
+      // fetchPriority attribute ekle (tarayıcı desteği varsa)
+      if ('fetchPriority' in img) {
+        (img as any).fetchPriority = 'high';
+      }
 
       return () => {
         if (document.head.contains(link)) {
@@ -165,13 +176,13 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
       className={`relative overflow-hidden ${className}`}
       style={style}
     >
-      {/* Placeholder - Daha görünür ve renkli gradient */}
+      {/* Placeholder - Daha hızlı ve hafif */}
       {!isLoaded && !hasError && placeholder === 'blur' && (
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-primary/5 to-gray-100 animate-pulse">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-gray-50 to-gray-100">
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center">
+            <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
               <svg
-                className="w-8 h-8 text-primary/40"
+                className="w-6 h-6 text-primary/30"
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >
@@ -188,8 +199,8 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
           src={src}
           alt={alt}
           loading={priority ? 'eager' : loading}
-          decoding="async"
-          className={`w-full h-full transition-opacity duration-300 ${
+          decoding={priority ? 'sync' : 'async'}
+          className={`w-full h-full transition-opacity duration-200 ${
             isLoaded ? 'opacity-100' : 'opacity-0'
           }`}
           style={{

@@ -364,30 +364,30 @@ const Reviews: React.FC = () => {
       {/* İstatistikler */}
       <section id="stats-section" className="py-10 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
-            <div className="bg-gradient-to-br from-pink-50 to-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-pink-100">
-              <div className="text-5xl font-bold bg-gradient-to-r from-[#a4585a] to-primary bg-clip-text text-transparent mb-3 transition-all duration-500">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 text-center">
+            <div className="bg-gradient-to-br from-pink-50 to-white rounded-xl p-4 sm:p-6 md:p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-pink-100">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#a4585a] to-primary bg-clip-text text-transparent mb-2 sm:mb-3 transition-all duration-500">
                 {stats.rating.toFixed(1)}
               </div>
-              <div className="text-gray-600 font-medium">Puan</div>
+              <div className="text-sm sm:text-base text-gray-600 font-medium">Puan</div>
             </div>
-            <div className="bg-gradient-to-br from-pink-50 to-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-pink-100">
-              <div className="text-5xl font-bold bg-gradient-to-r from-[#a4585a] to-primary bg-clip-text text-transparent mb-3 transition-all duration-500">
+            <div className="bg-gradient-to-br from-pink-50 to-white rounded-xl p-4 sm:p-6 md:p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-pink-100">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#a4585a] to-primary bg-clip-text text-transparent mb-2 sm:mb-3 transition-all duration-500">
                 {stats.reviews}+
               </div>
-              <div className="text-gray-600 font-medium">Yorum</div>
+              <div className="text-sm sm:text-base text-gray-600 font-medium">Yorum</div>
             </div>
-            <div className="bg-gradient-to-br from-pink-50 to-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-pink-100">
-              <div className="text-5xl font-bold bg-gradient-to-r from-[#a4585a] to-primary bg-clip-text text-transparent mb-3 transition-all duration-500">
+            <div className="bg-gradient-to-br from-pink-50 to-white rounded-xl p-4 sm:p-6 md:p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-pink-100">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#a4585a] to-primary bg-clip-text text-transparent mb-2 sm:mb-3 transition-all duration-500">
                 %{stats.satisfaction}
               </div>
-              <div className="text-gray-600 font-medium">Memnuniyet</div>
+              <div className="text-sm sm:text-base text-gray-600 font-medium">Memnuniyet</div>
             </div>
-            <div className="bg-gradient-to-br from-pink-50 to-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-pink-100">
-              <div className="text-5xl font-bold bg-gradient-to-r from-[#a4585a] to-primary bg-clip-text text-transparent mb-3 transition-all duration-500">
+            <div className="bg-gradient-to-br from-pink-50 to-white rounded-xl p-4 sm:p-6 md:p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-pink-100">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#a4585a] to-primary bg-clip-text text-transparent mb-2 sm:mb-3 transition-all duration-500">
                 {stats.weddings}+
               </div>
-              <div className="text-gray-600 font-medium">Mutlu Düğün</div>
+              <div className="text-sm sm:text-base text-gray-600 font-medium">Mutlu Düğün</div>
             </div>
           </div>
         </div>

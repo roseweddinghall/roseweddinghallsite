@@ -20,17 +20,28 @@ const CreativeGallery: React.FC<CreativeGalleryProps> = ({ images }) => {
   );
   const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  // İlk görselleri agresif şekilde preload et
+  // İlk görselleri agresif şekilde preload et - daha fazla görsel
   useEffect(() => {
-    images.slice(0, 12).forEach((image) => {
+    // İlk 7 görseli (tüm görünür görseller) preload et
+    images.slice(0, 7).forEach((image, index) => {
       const link = document.createElement('link');
       link.rel = 'preload';
       link.as = 'image';
       link.href = image.src;
       if ('fetchPriority' in link) {
-        (link as any).fetchPriority = 'high';
+        (link as any).fetchPriority = index < 3 ? 'high' : 'auto';
       }
       document.head.appendChild(link);
+
+      // İlk 3 görseli hemen decode et
+      if (index < 3) {
+        const img = new Image();
+        img.src = image.src;
+        if ('fetchPriority' in img) {
+          (img as any).fetchPriority = 'high';
+        }
+        img.decode().catch(() => {});
+      }
     });
   }, [images]);
 
@@ -51,7 +62,7 @@ const CreativeGallery: React.FC<CreativeGalleryProps> = ({ images }) => {
             }
           });
         },
-        { threshold: 0.1, rootMargin: '100px 0px' }
+        { threshold: 0.01, rootMargin: '300px 0px' } // Daha erken yükleme
       );
 
       observer.observe(ref);
@@ -68,8 +79,8 @@ const CreativeGallery: React.FC<CreativeGalleryProps> = ({ images }) => {
     
     switch (layout) {
       case 'small':
-        // 2 sütun - küçük kare (6 sütunlu grid'de 3 tane yan yana)
-        return `${baseClasses} col-span-2`;
+        // Mobilde 1 sütun (daha küçük), desktop'ta 2 sütun (6 sütunlu grid'de 3 tane yan yana)
+        return `${baseClasses} col-span-1 md:col-span-2`;
       case 'medium':
         // 2 sütun - orta boyut kare
         return `${baseClasses} col-span-2`;
@@ -77,8 +88,8 @@ const CreativeGallery: React.FC<CreativeGalleryProps> = ({ images }) => {
         // 2 sütun - büyük kare
         return `${baseClasses} col-span-2`;
       case 'wide':
-        // 3 sütun genişlik (6 sütunlu grid'de 2 tane yan yana)
-        return `${baseClasses} col-span-3`;
+        // Mobilde 2 sütun, desktop'ta 3 sütun genişlik (6 sütunlu grid'de 2 tane yan yana)
+        return `${baseClasses} col-span-2 md:col-span-3`;
       case 'tall':
         // 1 sütun genişlik, 2 satır yükseklik
         return `${baseClasses} col-span-1 row-span-2`;
@@ -131,9 +142,9 @@ const CreativeGallery: React.FC<CreativeGalleryProps> = ({ images }) => {
   return (
     <div className="max-w-7xl mx-auto px-2 sm:px-4 md:px-6 lg:px-8">
       <div 
-        className="grid grid-cols-2 md:grid-cols-6 gap-2 sm:gap-3 md:gap-4 lg:gap-6"
+        className="grid grid-cols-3 md:grid-cols-6 gap-2 sm:gap-3 md:gap-4 lg:gap-6"
         style={{
-          gridAutoRows: 'minmax(150px, auto)',
+          gridAutoRows: 'minmax(120px, auto)',
         }}
       >
         {images.map((image, index) => {
@@ -174,10 +185,10 @@ const CreativeGallery: React.FC<CreativeGalleryProps> = ({ images }) => {
                 <OptimizedImage
                   src={image.src}
                   alt={image.alt}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   objectFit="cover"
-                  loading={index < 16 ? 'eager' : 'lazy'} // Daha fazla görseli eager yükle
-                  priority={index < 16} // İlk 16 görseli priority yap
+                  loading={index < 7 ? 'eager' : 'lazy'} // İlk 7 görseli eager yükle (tüm görseller)
+                  priority={index < 3} // İlk 3 görseli priority yap
                   placeholder="blur"
                 />
                 {/* Subtle overlay on hover */}

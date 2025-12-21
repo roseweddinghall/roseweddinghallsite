@@ -1,6 +1,6 @@
 type Callback = () => void;
 
-const MAX_CONCURRENT = 8; // Daha hızlı yükleme için artırıldı
+const MAX_CONCURRENT = 12; // Daha hızlı yükleme için artırıldı
 let activeCount = 0;
 const queue: Callback[] = [];
 

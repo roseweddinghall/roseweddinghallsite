@@ -72,24 +72,24 @@ const Gallery: React.FC = () => {
       </section>
 
       {/* Call to Action */}
-      <section className="py-16 bg-gradient-to-r from-primary-500 via-primary-600 to-primary-700">
+      <section className="py-12 sm:py-14 md:py-16 bg-gradient-to-r from-primary-500 via-primary-600 to-primary-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3 sm:mb-4">
             Hayalinizdeki Düğünü Planlamaya Başlayın
           </h2>
-          <p className="text-xl text-primary-100 mb-8 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-primary-100 mb-6 sm:mb-7 md:mb-8 max-w-2xl mx-auto px-2">
             Galerideki örneklerden ilham alın ve sizin için en uygun salonu keşfedin.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
             <a
               href="/rezervasyon"
-              className="bg-white text-primary-600 px-8 py-4 rounded-full font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+              className="bg-white text-primary-600 px-6 sm:px-8 py-3 sm:py-4 rounded-full text-sm sm:text-base font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105"
             >
               Rezervasyon Yap
             </a>
             <a
               href="/subelerimiz"
-              className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-primary-600 transition-all duration-300 transform hover:scale-105"
+              className="border-2 border-white text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-sm sm:text-base font-semibold hover:bg-white hover:text-primary-600 transition-all duration-300 transform hover:scale-105"
             >
               Salonları İncele
             </a>
