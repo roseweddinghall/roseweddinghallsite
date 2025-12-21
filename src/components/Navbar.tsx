@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import OptimizedImage from './OptimizedImage';
 
@@ -7,6 +7,39 @@ const Navbar: React.FC = () => {
   const location = useLocation();
 
   const isActive = (path: string) => location.pathname === path;
+
+  // Logo'yu sayfa yüklendiğinde hemen preload et
+  useEffect(() => {
+    const logoPath = '/logo.png.png';
+    
+    // Preload link oluştur
+    const link = document.createElement('link');
+    link.rel = 'preload';
+    link.as = 'image';
+    link.href = logoPath;
+    if ('fetchPriority' in link) {
+      (link as any).fetchPriority = 'high';
+    }
+    document.head.appendChild(link);
+
+    // Hemen yüklemeyi başlat ve decode et
+    const img = new Image();
+    img.src = logoPath;
+    if ('fetchPriority' in img) {
+      (img as any).fetchPriority = 'high';
+    }
+    // Decode işlemini başlat
+    img.decode().catch(() => {
+      // Decode hatası olsa bile devam et
+    });
+
+    return () => {
+      // Cleanup
+      if (document.head.contains(link)) {
+        document.head.removeChild(link);
+      }
+    };
+  }, []);
 
   return (
     <nav className="bg-white backdrop-blur-sm relative z-50" style={{ boxShadow: '0 20px 25px -5px rgba(164, 88, 90, 0.3), 0 10px 10px -5px rgba(164, 88, 90, 0.2)' }}>
@@ -57,6 +90,7 @@ const Navbar: React.FC = () => {
                 priority={true}
                 loading="eager"
                 objectFit="contain"
+                placeholder="empty"
                 style={{ background: 'transparent', height: '15rem' }}
               />
             </Link>
@@ -137,6 +171,7 @@ const Navbar: React.FC = () => {
                 priority={true}
                 loading="eager"
                 objectFit="contain"
+                placeholder="empty"
                 style={{ background: 'transparent' }}
               />
             </Link>
