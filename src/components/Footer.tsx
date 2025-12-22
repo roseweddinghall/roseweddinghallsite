@@ -13,11 +13,11 @@ const Footer: React.FC = () => {
               <OptimizedImage
                 src="/logo.png.png"
                 alt="Rose Wedding Hall"
-                className="w-auto mb-3 sm:mb-4 object-contain"
+                className="w-auto mb-3 sm:mb-4 object-contain h-40 sm:h-44 md:h-48 lg:h-56"
                 priority={false}
                 loading="lazy"
                 objectFit="contain"
-                style={{ background: 'transparent', height: '10rem', maxHeight: '12rem' }}
+                style={{ background: 'transparent', maxHeight: '16rem' }}
               />
             </Link>
             <p className="mt-3 sm:mt-4 text-sm sm:text-base text-gray-600 max-w-md">
