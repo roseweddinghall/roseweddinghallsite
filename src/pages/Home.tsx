@@ -98,7 +98,7 @@ const Home: React.FC = () => {
     { src: "/images/images6.jpg.PNG", alt: "Düğün görseli 6", layout: 'small' as const, overlap: 'none' as const },
     { src: "/images/images7.jpg.PNG", alt: "Düğün görseli 7", layout: 'small' as const, overlap: 'none' as const },
     // Üçüncü satır: 2 yatay görsel
-    { src: "/images/images3.jpg.jpg", alt: "Düğün görseli 3", layout: 'wide' as const, overlap: 'none' as const },
+    { src: "/images/images3.jpg.jpeg", alt: "Düğün görseli 3", layout: 'wide' as const, overlap: 'none' as const },
     { src: "/images/images4.jpg.png", alt: "Düğün görseli 4", layout: 'wide' as const, overlap: 'none' as const },
   ];
 

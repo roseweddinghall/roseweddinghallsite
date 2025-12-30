@@ -70,7 +70,7 @@ const ScrollSalonCard: React.FC<ScrollSalonCardProps> = ({
     >
       <div className="bg-white rounded-3xl shadow-2xl hover:shadow-primary/20 transition-all duration-700 transform hover:-translate-y-4 border border-primary/10 hover:border-primary/30 overflow-hidden flex flex-col h-full">
         {/* Büyük Görsel Bölümü - Yatay Format (16:9) */}
-        <div className="relative w-full aspect-video overflow-hidden flex-shrink-0">
+        <div className="relative w-full aspect-video overflow-hidden flex-shrink-0 bg-gradient-to-br from-gray-200 via-gray-100 to-gray-200">
           {salon.image ? (
             <>
               <OptimizedImage
@@ -79,7 +79,7 @@ const ScrollSalonCard: React.FC<ScrollSalonCardProps> = ({
                 className="w-full h-full group-hover:scale-110 transition-transform duration-1000"
                 objectFit="cover"
                 loading={priority ? 'eager' : 'lazy'}
-                placeholder="blur"
+                placeholder="empty"
                 priority={priority}
               />
               {/* Lüks overlay */}

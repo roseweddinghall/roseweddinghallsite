@@ -46,7 +46,8 @@ const Branches: React.FC = () => {
       {/* Şubeler Listesi */}
       <section className="py-8 sm:py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+          {/* Şube Bilgileri Kartları */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-6 sm:mb-8">
             {branches.map((branch) => (
               <div key={branch.id} className="bg-white rounded-lg shadow-lg overflow-hidden text-center">
                 <div className="p-4 sm:p-6 space-y-3 sm:space-y-4">
@@ -78,6 +79,31 @@ const Branches: React.FC = () => {
                       ))}
                     </div>
                   </div>
+                </div>
+                {/* Ayırıcı Şerit */}
+                <div className="h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent mx-4"></div>
+              </div>
+            ))}
+          </div>
+
+          {/* Haritalar - Aynı Grid Yapısında */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+            {branches.map((branch) => (
+              <div key={branch.id} className="bg-white rounded-lg shadow-lg overflow-hidden">
+                <div className="h-48 sm:h-56 md:h-64">
+                  <iframe
+                    src={branch.id === 1 
+                      ? "https://www.google.com/maps?q=Rose+Wedding+Hall+Etimesgut&output=embed&zoom=17&markers=color:red|Rose+Wedding+Hall+Etimesgut"
+                      : "https://www.google.com/maps?q=1439.+Sokak+Rose+Wedding+Hall+İvedik&output=embed&zoom=17"
+                    }
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title={`${branch.name} Konumu`}
+                  ></iframe>
                 </div>
               </div>
             ))}

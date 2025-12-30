@@ -67,7 +67,7 @@ const About: React.FC = () => {
             </div>
             <div className="relative order-1 lg:order-2">
               {/* Görsel Container - Soluklaşma efekti */}
-              <div className="relative aspect-square rounded-lg overflow-hidden shadow-2xl">
+              <div className="relative aspect-square rounded-lg overflow-hidden shadow-2xl bg-gradient-to-br from-gray-200 via-gray-100 to-gray-200">
                 {/* Ana görsel */}
                 <OptimizedImage
                   src="/images/about-story.jpg.JPG"
@@ -75,7 +75,7 @@ const About: React.FC = () => {
                   className="w-full h-full"
                   objectFit="cover"
                   loading="lazy"
-                  placeholder="blur"
+                  placeholder="empty"
                 />
                 
                 {/* Sol üst köşeden soluklaşma - Beyaz gradient */}

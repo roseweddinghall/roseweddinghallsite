@@ -6,7 +6,7 @@ interface Partnership {
   name: string;
   category: string;
   description: string;
-  phone: string;
+  phone?: string;
   website: string;
   instagram: string | null;
   logo?: string;
@@ -21,31 +21,21 @@ const Partnerships: React.FC = () => {
       id: 2,
       name: "Altınyıldız Classics",
       category: "Damatlık",
-      description: "Hayatınızın en özel anına, en şık başlangıç: Damatlığın en doğru adresi!",
+      description: "Sadece bir takım elbise değil, sizi gecenin en özel erkeği hissettirecek tasarım smokinler ve usta işçilikle; hayatınızın en özel anına, en şık başlangıç: Damatlığın en doğru adresi!",
       phone: "0 (850) 455 56 57",
       website: "https://www.altinyildizclassics.com",
       instagram: "@altinyildizclassics",
       logo: "/images/partners/altinyildiz.jpg.jpg"
     },
     {
-      id: 6,
-      name: "Flex Akademi",
-      category: "Dans",
-      description: "Düğün dansından, hayatınızın en özel anına zarafet katacak profesyonel eğitimlerle adımlarınıza sihir katın.",
-      phone: "0 532 450 14 84",
-      website: "https://www.flexakademi.com",
-      instagram: "https://www.instagram.com/flexakademi",
-      logo: "images/partners/flexakademi.jpg"
-    },
-    {
-      id: 5,
-      name: "Buket Kuzey Studio",
-      category: "Saç / Makyaj",
-      description: "Sadece bir makyaj ve saç değil; size özel tasarlanmış bir dönüşüm hikayesi. Hayatınızın en özel gününde, uzman ellerimizle içinizdeki ışıltıyı yüzeye çıkarın.",
-      phone: "0 505 870 06 06",
-      website: "https://buketkuzey.com",
-      instagram: "@buketkuzeystudio",
-      logo: "/images/partners/buketkuzey.jpg.jpg"
+      id: 9,
+      name: "Batuhan Ağca",
+      category: "Fotoğraf / Video",
+      description: "Düğün salonundaki coşkudan dış çekimin büyüleyici atmosferine kadar; en mutlu gününüzü sinematik düğün klipleri ve eşsiz karelerle ölümsüzleştiren profesyonel bir bakış.",
+      phone: "0545 761 60 96",
+      website: "",
+      instagram: "@batuhanagcaphotographer",
+      logo: "/images/partners/batuhanagcaphotography.jpg.jpeg"
     },
     {
       id: 3,
@@ -58,24 +48,83 @@ const Partnerships: React.FC = () => {
       logo: "/images/partners/bloomflower.jpg.jpg"
     },
     {
+      id: 5,
+      name: "Buket Kuzey",
+      category: "Saç / Makyaj",
+      description: "Sadece bir makyaj ve saç değil; size özel tasarlanmış bir dönüşüm hikayesi. Hayatınızın en özel gününde, uzman ellerimizle içinizdeki ışıltıyı yüzeye çıkarın.",
+      phone: "0 505 870 06 06",
+      website: "https://buketkuzey.com",
+      instagram: "@buketkuzeystudio",
+      logo: "/images/partners/buketkuzey.jpg.jpg"
+    },
+    {
+      id: 11,
+      name: "Dina Organizasyon",
+      category: "Kına",
+      description: "Profesyonel nedime ekibinin büyüleyici dans şovlarından kına merasiminin tüm inceliklerine kadar her detayın düşünüldüğü; geleneksel ritüelleri modern bir sahne performuyla birleştirerek gecenizi masalsı bir şölene dönüştüren kusursuz bir eğlence.",
+      phone: "0543 486 01 06",
+      website: "",
+      instagram: "@dinadancevent",
+      logo: "/images/partners/dinaorganizasyon.jpg"
+    },
+    {
       id: 1,
       name: "Duygu Gelinlik",
       category: "Gelinlik",
-      description: "Özel tasarım gelinlik koleksiyonları ile düğününüze eşsiz bir dokunuş.",
+      description: "İster hazır modellerin zarafeti ister özel dikimin eşsizliği... Yıllardır omuz omuza çalıştığımız ve gelinlerimizi güvenle emanet ettiğimiz Duygu Gelin, tecrübesiyle hayallerinizi giydiriyor.",
       phone: "03124419224",
       website: "",
       instagram: "@duygugelinlikmodaevi",
       logo: "/images/partners/duygugelinlik.jpg.jpg"
     },
     {
+      id: 8,
+      name: "Esra Atay",
+      category: "Gelin Saç Aksesuarı",
+      description: "En özel gününüzde zarafetinizi taçlandıracak modern ve romantik saç aksesuarları için Esra Atay'ın büyüleyici koleksiyonunu keşfedin",
+      website: "https://esraatay.com",
+      instagram: "@esraatayofficial",
+      logo: "/images/partners/esraatay.jpg.jpeg"
+    },
+    {
+      id: 6,
+      name: "Flex Akademi",
+      category: "Dans",
+      description: "Düğün dansından, hayatınızın en özel anına zarafet katacak profesyonel eğitimlerle adımlarınıza sihir katın.",
+      phone: "0 532 450 14 84",
+      website: "https://www.flexakademi.com",
+      instagram: "@flexakademi",
+      logo: "images/partners/flexakademi.jpg"
+    },
+    {
       id: 4,
-      name: "Şeyda Çakır Gelinlik",
+      name: "Şeyda Çakır",
       category: "Gelinlik",
       description: "Özel atölyede hassas işçilik ile düğün seremoninize kişisel bir manifesto katın. Sadece size ısmarlanmış bir zarafet...",
       phone: "0543 762 41 62",
       website: "",
       instagram: "@seydacakir.gelinlik",
       logo: "/images/partners/seydacakir.jpg.jpg"
+    },
+    {
+      id: 7,
+      name: "Şüheda Karataş",
+      category: "Türban Tasarım / Makyaj",
+      description: "Gelinliğinizin detaylarıyla bütünleşen modern türban tasarımları ve yüz hatlarınızı kusursuzca ortaya çıkaran kalıcı makyaj uygulamalarıyla zarafetinizi taçlandırın.",
+      phone: "0539 742 24 12",
+      website: "",
+      instagram: "@suhedaakaratas",
+      logo: "/images/partners/suhedaakaratas.jpg.jpeg"
+    },
+    {
+      id: 10,
+      name: "Taşyürek Organizasyon",
+      category: "Müzik / Dans",
+      description: "Sahne enerjisiyle geceye ritim katan orkestra ve bando ekibinin yanı sıra; tasavvuf ve halk oyunlarıyla geleneklerimizi en güzel şekilde yaşatan Taşyürek Organizasyon ile eşsiz bir atmosfer.",
+      phone: "0501 331 72 71",
+      website: "",
+      instagram: "@tasyurek_organizasyon",
+      logo: "/images/partners/tasyurekorganizasyon.jpg"
     }
   ];
 
@@ -151,12 +200,14 @@ const Partnerships: React.FC = () => {
                 <p className="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4">{partner.description}</p>
                 
                 <div className="space-y-1.5 sm:space-y-2 mb-4 sm:mb-5 md:mb-6">
-                  <div className="flex items-center text-gray-600">
-                    <svg className="w-5 h-5 mr-3 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                    </svg>
-                    <a href={`tel:${partner.phone}`} className="hover:text-primary transition-colors">{partner.phone}</a>
-                  </div>
+                  {partner.phone && (
+                    <div className="flex items-center text-gray-600">
+                      <svg className="w-5 h-5 mr-3 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                      </svg>
+                      <a href={`tel:${partner.phone}`} className="hover:text-primary transition-colors">{partner.phone}</a>
+                    </div>
+                  )}
                   {partner.website && (
                     <div className="flex items-center text-gray-600">
                       <svg className="w-5 h-5 mr-3 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">

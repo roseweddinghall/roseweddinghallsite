@@ -166,7 +166,7 @@ const Yenimahalle: React.FC = () => {
                 key={image.id}
                 type="button"
                 onClick={() => setSelectedImage(image.src)}
-                className="relative group aspect-square rounded-2xl overflow-hidden shadow-lg shadow-primary/10 hover:shadow-2xl hover:shadow-primary/25 transition-all duration-500"
+                className="relative group aspect-square rounded-2xl overflow-hidden shadow-lg shadow-primary/10 hover:shadow-2xl hover:shadow-primary/25 transition-all duration-500 bg-gradient-to-br from-gray-200 via-gray-100 to-gray-200"
               >
                 <OptimizedImage
                   src={image.src}
@@ -174,7 +174,7 @@ const Yenimahalle: React.FC = () => {
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   objectFit="cover"
                   loading="lazy"
-                  placeholder="blur"
+                  placeholder="empty"
                 />
                 <span className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/0 to-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
               </button>

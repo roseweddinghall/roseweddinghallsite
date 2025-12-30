@@ -81,7 +81,7 @@ const ScrollImage: React.FC<ScrollImageProps> = ({
       }}
     >
       <div
-        className={`relative ${height} overflow-hidden rounded-3xl shadow-2xl border-4 border-luxury-gold/10 group-hover:border-luxury-gold/40 transition-all duration-500 bg-gray-100`}
+        className={`relative ${height} overflow-hidden rounded-3xl shadow-2xl border-4 border-luxury-gold/10 group-hover:border-luxury-gold/40 transition-all duration-500 bg-gradient-to-br from-gray-200 via-gray-100 to-gray-200`}
       >
         <OptimizedImage
           src={src}
@@ -89,7 +89,7 @@ const ScrollImage: React.FC<ScrollImageProps> = ({
           className="w-full h-full group-hover:scale-110 transition-transform duration-700"
           objectFit="cover"
           loading="lazy"
-          placeholder="blur"
+          placeholder="empty"
           priority={priority}
         />
         {/* Minimal overlay - açık arka plan için */}

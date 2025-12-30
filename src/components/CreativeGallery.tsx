@@ -171,7 +171,7 @@ const CreativeGallery: React.FC<CreativeGalleryProps> = ({ images }) => {
               }}
             >
               <div 
-                className="relative w-full h-full rounded-xl md:rounded-2xl overflow-hidden transition-all duration-500 bg-gray-100 border-2 border-primary/20 hover:border-primary/60 group-hover:scale-[1.02] group-hover:-translate-y-1"
+                className="relative w-full h-full rounded-xl md:rounded-2xl overflow-hidden transition-all duration-500 bg-gradient-to-br from-gray-200 via-gray-100 to-gray-200 border-2 border-primary/20 hover:border-primary/60 group-hover:scale-[1.02] group-hover:-translate-y-1"
                 style={{
                   boxShadow: '0 10px 25px -5px rgba(164, 88, 90, 0.4), 0 8px 10px -6px rgba(164, 88, 90, 0.3)',
                 }}
@@ -189,7 +189,7 @@ const CreativeGallery: React.FC<CreativeGalleryProps> = ({ images }) => {
                   objectFit="cover"
                   loading={index < 7 ? 'eager' : 'lazy'} // İlk 7 görseli eager yükle (tüm görseller)
                   priority={index < 3} // İlk 3 görseli priority yap
-                  placeholder="blur"
+                  placeholder="empty"
                 />
                 {/* Subtle overlay on hover */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>

@@ -99,7 +99,7 @@ const HeroSlider: React.FC<HeroSliderProps> = ({
   if (slides.length === 0) return null;
 
   return (
-    <div className="relative w-full h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] xl:h-[800px] overflow-hidden rounded-xl sm:rounded-2xl shadow-2xl">
+    <div className="relative w-full h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] xl:h-[800px] overflow-hidden rounded-xl sm:rounded-2xl shadow-2xl bg-gradient-to-br from-gray-200 via-gray-100 to-gray-200">
       {/* Slides */}
       {slides.map((slide, index) => (
         <div
@@ -116,7 +116,7 @@ const HeroSlider: React.FC<HeroSliderProps> = ({
             objectFit="cover"
             priority={true}
             loading="eager"
-            placeholder="blur"
+            placeholder="empty"
             style={{
               objectPosition: 'center',
             }}
