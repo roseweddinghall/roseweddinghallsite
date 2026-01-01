@@ -17,3 +17,253 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@layer utilities {
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+}
+
+@keyframes blob {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+
+.animate-blob {
+  animation: blob 7s infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+@layer utilities {
+
+  /* Border only - Fading Rose gradient */
+  .btn-ghost-gradient {
+    position: relative !important;
+    background: transparent !important;
+    border: none !important;
+    transition: all 0.3s ease !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .btn-ghost-gradient::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    padding: 1px;
+    background: linear-gradient(to right, #a4585a 0%, rgba(164, 88, 90, 0) 100%);
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  /* Separate text gradient utility */
+  .text-gradient,
+  .text-gradient span,
+  .text-gradient p,
+  .text-gradient svg {
+    background: linear-gradient(to right, #a4585a, #f6b0b0) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    color: transparent !important;
+    transition: all 0.3s ease !important;
+  }
+
+  /* Force white text when needed */
+  .text-white-important {
+    -webkit-text-fill-color: white !important;
+    color: white !important;
+  }
+
+  /* New: Simple ghost for initial navbar (only text changes, border stays gradient) */
+  .btn-ghost-simple:hover {
+    background: transparent !important;
+  }
+
+  .btn-ghost-simple:hover span,
+  .btn-ghost-simple:hover p,
+  .btn-ghost-simple:hover {
+    -webkit-text-fill-color: white !important;
+    color: white !important;
+    background: none !important;
+  }
+
+  /* Refined: Scrolled navbar (bg becomes gradient, text becomes white, border hides) */
+  .btn-ghost-scrolled:hover {
+    background: linear-gradient(to right, #a4585a, #f6b0b0) !important;
+    border: none !important;
+  }
+
+  .btn-ghost-scrolled:hover span,
+  .btn-ghost-scrolled:hover p,
+  .btn-ghost-scrolled:hover {
+    -webkit-text-fill-color: white !important;
+    color: white !important;
+    background-clip: border-box !important;
+  }
+
+  /* Hide border only for scrolled state */
+  .btn-ghost-scrolled:hover::before {
+    opacity: 0;
+  }
+
+  /* Keep border for simple state */
+  .btn-ghost-simple:hover::before {
+    opacity: 1;
+  }
+
+  /* Solid Gradient: Solid Gradient -> White bg + Gradient Text on Hover */
+  .btn-solid-gradient {
+    background: linear-gradient(to right, #a4585a, #f6b0b0) !important;
+    color: white !important;
+    border: 1px solid transparent !important;
+    transition: all 0.3s ease !important;
+  }
+
+  .btn-solid-gradient:hover {
+    background: white !important;
+    background-clip: border-box !important;
+  }
+
+  .btn-solid-gradient:hover span,
+  .btn-solid-gradient:hover p,
+  .btn-solid-gradient:hover svg,
+  .btn-solid-gradient:hover {
+    background: linear-gradient(to right, #a4585a, #f6b0b0) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    color: transparent !important;
+  }
+
+  /* Gradient border for cards - Fixed Structure & Visibility */
+  .gradient-border {
+    position: relative !important;
+    border: none !important;
+  }
+
+  .gradient-border::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(to bottom right, #a4585a, #f6b0b0) !important;
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  /* White background button with gradient border and text */
+  .btn-white-gradient {
+    position: relative !important;
+    background: white !important;
+    border: none !important;
+    transition: all 0.3s ease !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .btn-white-gradient::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    padding: 1.5px;
+    background: linear-gradient(to right, #a4585a, #f6b0b0);
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .btn-white-gradient:hover {
+    background: linear-gradient(to right, #a4585a, #f6b0b0) !important;
+    color: white !important;
+  }
+
+  .btn-white-gradient:hover::before {
+    opacity: 0;
+  }
+
+  /* Ensure text becomes white on hover even with text-gradient class */
+  .btn-white-gradient:hover span,
+  .btn-white-gradient:hover p {
+    -webkit-text-fill-color: white !important;
+    color: white !important;
+  }
+
+  /* Fade in up animation for feature tags */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-feature {
+    animation: fadeInUp 0.5s ease backwards;
+  }
+}

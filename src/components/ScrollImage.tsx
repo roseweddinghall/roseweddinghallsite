@@ -81,21 +81,31 @@ const ScrollImage: React.FC<ScrollImageProps> = ({
       }}
     >
       <div
-        className={`relative ${height} overflow-hidden rounded-3xl shadow-2xl border-4 border-luxury-gold/10 group-hover:border-luxury-gold/40 transition-all duration-500 bg-gradient-to-br from-gray-200 via-gray-100 to-gray-200`}
+        className={`relative ${height} overflow-hidden rounded-3xl transition-all duration-700 bg-gradient-to-br from-primary-softest/30 via-primary-softer/20 to-primary-soft/30`}
+        style={{
+          boxShadow: '0 8px 30px -8px rgba(164, 88, 90, 0.15), 0 4px 12px -4px rgba(164, 88, 90, 0.1)',
+        }}
       >
         <OptimizedImage
           src={src}
           alt={alt}
-          className="w-full h-full group-hover:scale-110 transition-transform duration-700"
+          className="w-full h-full group-hover:scale-105 transition-transform duration-700"
           objectFit="cover"
           loading="lazy"
           placeholder="empty"
           priority={priority}
         />
-        {/* Minimal overlay - açık arka plan için */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent group-hover:from-black/5 transition-all duration-500"></div>
-        {/* Altın glow efekti */}
-        <div className="absolute inset-0 shadow-inner shadow-luxury-gold/10 group-hover:shadow-luxury-gold/30 transition-all duration-500 rounded-3xl"></div>
+        {/* Isomorphic Labs tarzı yumuşak gradient overlay */}
+        <div 
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: 'radial-gradient(circle at 50% 50%, rgba(164, 88, 90, 0.06) 0%, transparent 65%)',
+          }}
+        ></div>
+        {/* Alt kısımda soluk fade */}
+        <div className="absolute inset-0 bg-gradient-to-t from-primary/5 via-transparent to-transparent"></div>
+        {/* Kenarlarda soluk glow */}
+        <div className="absolute inset-0 ring-1 ring-primary/5 group-hover:ring-primary/15 transition-all duration-700 rounded-3xl"></div>
       </div>
     </div>
   );

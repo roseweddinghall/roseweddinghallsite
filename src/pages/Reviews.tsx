@@ -41,15 +41,15 @@ const Reviews: React.FC = () => {
         // Netlify Function URL'si
         const functionUrl = '/.netlify/functions/fetch-google-reviews';
         const findPlaceUrl = '/.netlify/functions/find-place-id';
-        
+
         // İki şube adresleri ve arama terimleri
         const branchSearches = [
-          { 
+          {
             query: 'Rose Wedding Hall Eryaman',
             address: 'Yeşilova, 4016. Cad. B Blok No:2/2/13, 06796 Etimesgut/Ankara',
             name: 'Eryaman Şubesi'
           },
-          { 
+          {
             query: 'Rose Wedding Hall İvedik',
             address: 'İvedik OSB, 1439. Sk. No: 1 İç Kapı: 121, 06378 Yenimahalle/Ankara',
             name: 'İvedik Şubesi'
@@ -80,7 +80,7 @@ const Reviews: React.FC = () => {
                     return { placeId: data.placeId, branchName: branch.name };
                   }
                 }
-                
+
                 // Bulunamazsa adres ile ara
                 response = await fetch(`${findPlaceUrl}?query=${encodeURIComponent(branch.address)}`);
                 if (response.ok) {
@@ -89,7 +89,7 @@ const Reviews: React.FC = () => {
                     return { placeId: data.placeId, branchName: branch.name };
                   }
                 }
-                
+
                 return null;
               } catch (err) {
                 console.error(`Place ID bulunamadı: ${branch.name}`, err);
@@ -100,7 +100,7 @@ const Reviews: React.FC = () => {
             const foundPlaces = await Promise.all(placeIdPromises);
             const validPlaces = foundPlaces.filter(Boolean) as Array<{ placeId: string; branchName: string }>;
             placeIds = validPlaces.map(p => p.placeId);
-            
+
             // Branch mapping'i sakla (daha sonra kullanmak için)
             if (validPlaces.length > 0) {
               // Place ID'leri branch isimleriyle eşleştir
@@ -134,7 +134,7 @@ const Reviews: React.FC = () => {
         } catch (e) {
           // Ignore
         }
-        
+
         // Eğer mapping yoksa ve envPlaceIds varsa, branch isimlerini index'e göre ata
         if (Object.keys(branchMapping).length === 0 && placeIds.length > 0) {
           branchMapping = placeIds.reduce((acc, placeId, index) => {
@@ -151,7 +151,7 @@ const Reviews: React.FC = () => {
               throw new Error(`HTTP error! status: ${response.status}`);
             }
             const data: GoogleReviewsResponse = await response.json();
-            
+
             // Branch bilgisini ekle (mapping'den veya index'e göre)
             const branchName = branchMapping[placeId] || (index === 0 ? 'Eryaman Şubesi' : 'İvedik Şubesi');
             return data.reviews.map(review => ({
@@ -234,7 +234,7 @@ const Reviews: React.FC = () => {
       (entries) => {
         if (entries[0].isIntersecting && !statsRef.current) {
           statsRef.current = true;
-          
+
           // Animated counting
           const duration = 2000; // 2 seconds
           const steps = 60;
@@ -346,16 +346,20 @@ const Reviews: React.FC = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-white py-10 overflow-hidden">
-        {/* Soft gradient in bottom right corner */}
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-[#a4585a]/10 via-pink-50/5 to-transparent rounded-full blur-3xl transform translate-x-1/2 translate-y-1/2"></div>
-        
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 animate-fade-in text-gray-900">Müşteri Yorumları</h1>
-          <div className="max-w-3xl mx-auto">
-            <p className="text-sm md:text-base text-gray-700 font-light leading-relaxed tracking-wide animate-slide-up">
-              <span className="font-medium text-[#a4585a]">Mutlu çiftlerimizin deneyimlerini </span>
-              ve Rose Wedding Hall hakkındaki görüşlerini keşfedin.
+      <section className="pt-32 pb-16 lg:pt-48 lg:pb-24 bg-gradient-to-br from-mint-softest via-mint-light to-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl">
+            <div className="flex items-center gap-2 mb-6">
+              <span className="w-2 h-2 bg-gray-800 rounded-sm"></span>
+              <span className="text-xs font-iso font-medium uppercase tracking-wider text-gray-600">
+                YORUMLAR
+              </span>
+            </div>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-medium text-gray-900 leading-tight mb-6">
+              Bizimle 'Evet' diyenlerin unutulmaz anılarına ve yorumlarına göz atın.
+            </h1>
+            <p className="text-lg text-gray-600 leading-relaxed">
+              <span className="text-gray-900 font-medium">Mutlu çiftlerimizin deneyimlerini</span> ve Rose Wedding Hall hakkındaki görüşlerini keşfedin.
             </p>
           </div>
         </div>
@@ -418,109 +422,124 @@ const Reviews: React.FC = () => {
           {!loading && reviews.length > 0 && (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
               {reviews.map((review, index) => {
-              const gradientColors = [
-                'from-pink-50 via-rose-50 to-pink-100',
-                'from-purple-50 via-pink-50 to-rose-100',
-                'from-rose-50 via-pink-50 to-purple-100',
-                'from-pink-100 via-rose-50 to-pink-50',
-                'from-rose-50 via-purple-50 to-pink-100',
-                'from-pink-50 via-rose-100 to-pink-50'
-              ];
-              const borderColors = [
-                'border-pink-200',
-                'border-rose-200',
-                'border-purple-200',
-                'border-pink-300',
-                'border-rose-300',
-                'border-purple-300'
-              ];
-              
-              return (
-                <div 
-                  key={review.id} 
-                  className={`relative bg-gradient-to-br ${gradientColors[index % gradientColors.length]} rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 hover:scale-105 border-2 ${borderColors[index % borderColors.length]} group overflow-hidden flex flex-col h-full`}
-                >
-                  {/* Decorative background element */}
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#a4585a]/10 to-transparent rounded-full blur-2xl transform translate-x-1/2 -translate-y-1/2 group-hover:scale-150 transition-transform duration-700"></div>
-                  
-                  {/* Quote icon */}
-                  <div className="absolute top-4 right-4 opacity-20 group-hover:opacity-30 transition-opacity duration-300">
-                    <svg className="w-12 h-12 text-[#a4585a]" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.996 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.984zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
-                    </svg>
-          </div>
+                const gradientColors = [
+                  'from-pink-50 via-rose-50 to-pink-100',
+                  'from-purple-50 via-pink-50 to-rose-100',
+                  'from-rose-50 via-pink-50 to-purple-100',
+                  'from-pink-100 via-rose-50 to-pink-50',
+                  'from-rose-50 via-purple-50 to-pink-100',
+                  'from-pink-50 via-rose-100 to-pink-50'
+                ];
+                const borderColors = [
+                  'border-pink-200',
+                  'border-rose-200',
+                  'border-purple-200',
+                  'border-pink-300',
+                  'border-rose-300',
+                  'border-purple-300'
+                ];
 
-                  <div className="relative z-10 flex flex-col h-full">
-                    {/* Rating */}
-                    <div className="flex items-center gap-2 mb-4">
-                  <div className="flex text-yellow-400">
-                    {[...Array(review.rating)].map((_, i) => (
-                          <svg key={i} className="w-5 h-5 fill-current drop-shadow-sm" viewBox="0 0 20 20">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                return (
+                  <div
+                    key={review.id}
+                    className={`relative bg-gradient-to-br ${gradientColors[index % gradientColors.length]} rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 hover:scale-105 border-2 ${borderColors[index % borderColors.length]} group overflow-hidden flex flex-col h-full`}
+                  >
+                    {/* Decorative background element */}
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#a4585a]/10 to-transparent rounded-full blur-2xl transform translate-x-1/2 -translate-y-1/2 group-hover:scale-150 transition-transform duration-700"></div>
+
+                    {/* Quote icon */}
+                    <div className="absolute top-4 right-4 opacity-20 group-hover:opacity-30 transition-opacity duration-300">
+                      <svg className="w-12 h-12 text-[#a4585a]" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.996 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.984zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
                       </svg>
-                    ))}
-                  </div>
-                      <span className="text-xs font-medium text-gray-500 bg-white/50 px-2 py-1 rounded-full">Google</span>
-                </div>
-                
-                    {/* Comment - flex-grow ile genişleyecek */}
-                    <p className="text-gray-800 mb-6 leading-relaxed font-medium relative z-10 flex-grow">
-                  "{review.comment}"
-                </p>
-                
-                    {/* Author info - kartın altına sabitlendi */}
-                    <div className="flex items-center gap-3 pt-4 border-t border-white/50 mt-auto">
-                      {review.profilePhoto ? (
-                        <img 
-                          src={review.profilePhoto} 
-                          alt={review.name}
-                          className="w-12 h-12 rounded-full object-cover shadow-md group-hover:shadow-lg transition-shadow duration-300 ring-2 ring-white/50 flex-shrink-0"
-                        />
-                      ) : (
-                        <div className="w-12 h-12 bg-gradient-to-br from-[#a4585a] to-primary rounded-full flex items-center justify-center flex-shrink-0 shadow-md group-hover:shadow-lg transition-shadow duration-300 ring-2 ring-white/50">
-                          <span className="text-white font-bold text-lg">{review.avatar}</span>
-                  </div>
-                      )}
-                      <div className="flex-1 min-w-0">
-                        <p className="font-bold text-gray-900 text-sm truncate">{review.name}</p>
-                        {review.branch && (
-                          <p className="text-xs text-gray-600 font-medium truncate">{review.branch}</p>
+                    </div>
+
+                    <div className="relative z-10 flex flex-col h-full">
+                      {/* Rating */}
+                      <div className="flex items-center gap-2 mb-4">
+                        <div className="flex text-yellow-400">
+                          {[...Array(review.rating)].map((_, i) => (
+                            <svg key={i} className="w-5 h-5 fill-current drop-shadow-sm" viewBox="0 0 20 20">
+                              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                          ))}
+                        </div>
+                        <span className="text-xs font-medium text-gray-500 bg-white/50 px-2 py-1 rounded-full">Google</span>
+                      </div>
+
+                      {/* Comment - flex-grow ile genişleyecek */}
+                      <p className="text-gray-800 mb-6 leading-relaxed font-medium relative z-10 flex-grow">
+                        "{review.comment}"
+                      </p>
+
+                      {/* Author info - kartın altına sabitlendi */}
+                      <div className="flex items-center gap-3 pt-4 border-t border-white/50 mt-auto">
+                        {review.profilePhoto ? (
+                          <img
+                            src={review.profilePhoto}
+                            alt={review.name}
+                            className="w-12 h-12 rounded-full object-cover shadow-md group-hover:shadow-lg transition-shadow duration-300 ring-2 ring-white/50 flex-shrink-0"
+                          />
+                        ) : (
+                          <div className="w-12 h-12 bg-gradient-to-br from-[#a4585a] to-primary rounded-full flex items-center justify-center flex-shrink-0 shadow-md group-hover:shadow-lg transition-shadow duration-300 ring-2 ring-white/50">
+                            <span className="text-white font-bold text-lg">{review.avatar}</span>
+                          </div>
                         )}
-                    <p className="text-xs text-gray-400">{review.date}</p>
+                        <div className="flex-1 min-w-0">
+                          <p className="font-bold text-gray-900 text-sm truncate">{review.name}</p>
+                          {review.branch && (
+                            <p className="text-xs text-gray-600 font-medium truncate">{review.branch}</p>
+                          )}
+                          <p className="text-xs text-gray-400">{review.date}</p>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
-              </div>
+                );
+              })}
+            </div>
           )}
         </div>
       </section>
 
       {/* Google Link */}
-      <section className="py-16 bg-gradient-to-r from-primary-500 to-primary-700">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-white mb-4">
+      {/* More Reviews CTA */}
+      <section className="py-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-white via-rose-50 to-pink-100 opacity-70"></div>
+        <div className="absolute -top-24 -left-24 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-blob"></div>
+        <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-pink-200/20 rounded-full blur-3xl animate-blob animation-delay-2000"></div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+          <div className="inline-block px-4 py-1.5 bg-white shadow-sm border border-rose-100 rounded-full text-xs font-iso font-semibold tracking-widest text-[#a4585a] mb-8 uppercase animate-float">
+            DENEYİMLERİNİZ BİZE IŞIK TUTUYOR
+          </div>
+          <h2 className="text-4xl md:text-5xl font-display font-medium text-gray-900 mb-6">
             Daha Fazla Yorum Görün
           </h2>
-          <p className="text-xl text-primary-100 mb-8 max-w-2xl mx-auto">
-            Google'da tüm yorumlarımızı inceleyin ve deneyimlerimizi keşfedin.
+          <p className="text-lg text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
+            Google'ın şeffaf ve gerçek kullanıcı deneyimleriyle tüm yorumlarımızı inceleyin,
+            mutluluğumuza ortak olan yüzlerce çiftin hikayesini keşfedin.
           </p>
-          <a 
-            href="https://share.google/gFFiCt1KwUuGM2kRo" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="inline-flex items-center bg-white text-primary-600 px-8 py-4 rounded-full font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105"
-          >
-            <svg className="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-            </svg>
-            Google'da Tüm Yorumları Gör
-          </a>
+
+          <div className="relative inline-block group">
+            <div className="absolute -inset-1 bg-gradient-to-r from-[#a4585a] to-[#f6b0b0] rounded-full blur opacity-40 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+            <a
+              href="https://share.google/gFFiCt1KwUuGM2kRo"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative flex items-center bg-white text-gray-900 px-10 py-5 rounded-full font-display font-medium text-lg hover:text-[#a4585a] transition-all duration-300 transform"
+            >
+              <div className="mr-4 p-2 bg-gray-50 rounded-full group-hover:bg-rose-50 transition-colors">
+                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
+                  <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
+                  <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05" />
+                  <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" />
+                </svg>
+              </div>
+              Google'da Tüm Yorumları Gör
+            </a>
+          </div>
         </div>
       </section>
     </div>

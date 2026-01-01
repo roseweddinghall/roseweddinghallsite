@@ -19,7 +19,9 @@ git init
 git remote add origin https://github.com/roseweddinghall/roseweddinghallsite.git
 ```
 
-### 3. Tüm Dosyaları Stage'e Ekle
+### 3. Tüm Dosyaları- [/] Prepare files for push <!-- id: 0 -->
+    - [/] Stage all changes <!-- id: 1 -->
+    - [ ] Create a commit <!-- id: 2 -->
 ```bash
 git add .
 ```

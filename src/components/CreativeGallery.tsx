@@ -40,7 +40,7 @@ const CreativeGallery: React.FC<CreativeGalleryProps> = ({ images }) => {
         if ('fetchPriority' in img) {
           (img as any).fetchPriority = 'high';
         }
-        img.decode().catch(() => {});
+        img.decode().catch(() => { });
       }
     });
   }, [images]);
@@ -76,7 +76,7 @@ const CreativeGallery: React.FC<CreativeGalleryProps> = ({ images }) => {
 
   const getLayoutClasses = (layout: string = 'small', index: number): string => {
     const baseClasses = 'relative group cursor-pointer transition-all duration-700';
-    
+
     switch (layout) {
       case 'small':
         // Mobilde 1 sütun (alt alta), desktop'ta 2 sütun (6 sütunlu grid'de 3 tane yan yana)
@@ -117,7 +117,7 @@ const CreativeGallery: React.FC<CreativeGalleryProps> = ({ images }) => {
 
   const getOverlapStyle = (overlap: string = 'none', index: number): React.CSSProperties => {
     const baseStyle: React.CSSProperties = {};
-    
+
     switch (overlap) {
       case 'top-left':
         return { ...baseStyle, marginTop: '-25px', marginLeft: '-15px', zIndex: 10 + index };
@@ -141,7 +141,7 @@ const CreativeGallery: React.FC<CreativeGalleryProps> = ({ images }) => {
 
   return (
     <div className="max-w-7xl mx-auto px-2 sm:px-4 md:px-6 lg:px-8">
-      <div 
+      <div
         className="grid grid-cols-1 md:grid-cols-6 gap-3 sm:gap-3 md:gap-4 lg:gap-6"
         style={{
           gridAutoRows: 'minmax(200px, auto)',
@@ -162,39 +162,48 @@ const CreativeGallery: React.FC<CreativeGalleryProps> = ({ images }) => {
               }}
               className={`${layoutClasses} ${aspectRatio}`}
               style={{
-                transform: isVisible 
-                  ? `translateY(0) rotate(${rotation}deg)` 
+                transform: isVisible
+                  ? `translateY(0) rotate(${rotation}deg)`
                   : `translateY(40px) rotate(${rotation}deg)`,
                 opacity: isVisible ? 1 : 0,
                 transition: `transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) ${index * 0.05}s, opacity 0.8s ease-out ${index * 0.05}s`,
                 ...overlapStyle,
               }}
             >
-              <div 
-                className="relative w-full h-full rounded-xl md:rounded-2xl overflow-hidden transition-all duration-500 bg-gradient-to-br from-gray-200 via-gray-100 to-gray-200 border-2 border-primary/20 hover:border-primary/60 group-hover:scale-[1.02] group-hover:-translate-y-1"
+              <div
+                className="relative w-full h-full rounded-2xl overflow-hidden transition-all duration-700 bg-white"
                 style={{
-                  boxShadow: '0 10px 25px -5px rgba(164, 88, 90, 0.4), 0 8px 10px -6px rgba(164, 88, 90, 0.3)',
+                  boxShadow: '0 10px 30px -5px rgba(164, 88, 90, 0.2), 0 8px 10px -6px rgba(164, 88, 90, 0.1)',
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.boxShadow = '0 20px 40px -5px rgba(164, 88, 90, 0.6), 0 15px 15px -6px rgba(164, 88, 90, 0.5)';
+                  e.currentTarget.style.boxShadow = '0 25px 50px -12px rgba(164, 88, 90, 0.3), 0 12px 20px -8px rgba(164, 88, 90, 0.2)';
+                  e.currentTarget.style.transform = 'translateY(-5px)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.boxShadow = '0 10px 25px -5px rgba(164, 88, 90, 0.4), 0 8px 10px -6px rgba(164, 88, 90, 0.3)';
+                  e.currentTarget.style.boxShadow = '0 10px 30px -5px rgba(164, 88, 90, 0.2), 0 8px 10px -6px rgba(164, 88, 90, 0.1)';
+                  e.currentTarget.style.transform = 'translateY(0)';
                 }}
               >
                 <OptimizedImage
                   src={image.src}
                   alt={image.alt}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   objectFit="cover"
-                  loading={index < 7 ? 'eager' : 'lazy'} // İlk 7 görseli eager yükle (tüm görseller)
-                  priority={index < 3} // İlk 3 görseli priority yap
+                  loading={index < 7 ? 'eager' : 'lazy'}
+                  priority={index < 3}
                   placeholder="empty"
                 />
-                {/* Subtle overlay on hover */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                {/* Primary glow on hover */}
-                <div className="absolute inset-0 ring-2 ring-primary/0 group-hover:ring-primary/50 transition-all duration-500 rounded-xl md:rounded-2xl"></div>
+                {/* Isomorphic Labs tarzı yumuşak gradient overlay - soluk geçiş */}
+                <div
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    background: 'radial-gradient(circle at 50% 50%, rgba(164, 88, 90, 0.08) 0%, transparent 60%)',
+                  }}
+                ></div>
+                {/* Alt kısımda soluk fade */}
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                {/* Kenarlarda soluk glow */}
+                <div className="absolute inset-0 ring-1 ring-primary/5 group-hover:ring-primary/20 transition-all duration-700 rounded-3xl"></div>
               </div>
             </div>
           );

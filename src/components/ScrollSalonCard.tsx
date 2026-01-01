@@ -64,28 +64,34 @@ const ScrollSalonCard: React.FC<ScrollSalonCardProps> = ({
   return (
     <div
       ref={cardRef}
-      className={`group transition-all duration-1000 h-full flex-1 ${
-        isVisible || priority ? 'opacity-100' : 'opacity-0'
-      } ${getTransformClass()}`}
+      className={`group transition-all duration-1000 h-full flex-1 ${isVisible || priority ? 'opacity-100' : 'opacity-0'
+        } ${getTransformClass()}`}
     >
-      <div className="bg-white rounded-3xl shadow-2xl hover:shadow-primary/20 transition-all duration-700 transform hover:-translate-y-4 border border-primary/10 hover:border-primary/30 overflow-hidden flex flex-col h-full">
+      <div className="bg-white rounded-3xl shadow-lg hover:shadow-xl transition-all duration-700 transform hover:-translate-y-2 border border-primary/5 hover:border-primary/15 overflow-hidden flex flex-col h-full" style={{ boxShadow: '0 8px 30px -8px rgba(164, 88, 90, 0.12), 0 4px 12px -4px rgba(164, 88, 90, 0.08)' }}>
         {/* Büyük Görsel Bölümü - Yatay Format (16:9) */}
-        <div className="relative w-full aspect-video overflow-hidden flex-shrink-0 bg-gradient-to-br from-gray-200 via-gray-100 to-gray-200">
+        <div className="relative w-full aspect-video overflow-hidden flex-shrink-0 bg-gradient-to-br from-primary-softest/30 via-primary-softer/20 to-primary-soft/30 rounded-t-3xl">
           {salon.image ? (
             <>
               <OptimizedImage
                 src={salon.image}
                 alt={`${salon.name} Salon`}
-                className="w-full h-full group-hover:scale-110 transition-transform duration-1000"
+                className="w-full h-full group-hover:scale-105 transition-transform duration-700"
                 objectFit="cover"
                 loading={priority ? 'eager' : 'lazy'}
                 placeholder="empty"
                 priority={priority}
               />
-              {/* Lüks overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent group-hover:from-black/70 transition-all duration-500"></div>
-              {/* Primary glow efekti */}
-              <div className="absolute inset-0 shadow-inner shadow-primary/10 group-hover:shadow-primary/20 transition-shadow duration-500"></div>
+              {/* Isomorphic Labs tarzı yumuşak gradient overlay */}
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background: 'radial-gradient(circle at 50% 50%, rgba(164, 88, 90, 0.06) 0%, transparent 65%)',
+                }}
+              ></div>
+              {/* Alt kısımda soluk fade */}
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/6 via-transparent to-transparent"></div>
+              {/* Kenarlarda soluk glow */}
+              <div className="absolute inset-0 ring-1 ring-primary/5 group-hover:ring-primary/15 transition-all duration-700"></div>
             </>
           ) : (
             <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-800 to-black">
@@ -97,7 +103,7 @@ const ScrollSalonCard: React.FC<ScrollSalonCardProps> = ({
               </div>
             </div>
           )}
-          
+
         </div>
 
         {/* İçerik Bölümü - Lüks */}
@@ -105,10 +111,10 @@ const ScrollSalonCard: React.FC<ScrollSalonCardProps> = ({
           <p className="text-gray-600 leading-relaxed text-xs sm:text-sm mb-4 sm:mb-6 font-light">
             {salon.description}
           </p>
-          
-          <Link 
+
+          <Link
             to="/subelerimiz"
-            className="w-full bg-transparent border-2 border-primary/30 text-primary px-6 sm:px-8 py-2.5 sm:py-3 rounded-full text-sm sm:text-base font-bold hover:bg-primary/80 hover:text-white hover:border-primary/50 hover:shadow-lg hover:shadow-primary/30 transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 mt-auto text-center block"
+            className="w-full bg-transparent border-2 border-primary/30 text-primary px-6 sm:px-8 py-2.5 sm:py-3 rounded-full text-sm sm:text-base font-bold hover:bg-gradient-to-r hover:from-[#a4585a] hover:to-[#f6b0b0] hover:text-white hover:border-transparent hover:shadow-lg hover:shadow-primary/30 transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 mt-auto text-center block"
           >
             Salonları İncele
           </Link>

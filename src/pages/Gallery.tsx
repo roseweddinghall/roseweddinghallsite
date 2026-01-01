@@ -5,8 +5,8 @@ interface GalleryImage {
   id: number;
   src: string;
   alt: string;
-  branch: string; // Şube adı (örn: "Etimesgut", "Yenimahalle")
-  salon: string; // Salon adı (örn: "Angel", "Amore")
+  branch: string;
+  salon: string;
   layout?: 'small' | 'medium' | 'large' | 'wide' | 'tall';
 }
 
@@ -14,79 +14,58 @@ const Gallery: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
 
   // Galeri görselleri - Buraya görsellerinizi ekleyebilirsiniz
-  // Görsellerinizi public/images/Gallery/ klasörüne yükleyin
-  // Dosya isimleri: etimesgutangel1.jpg, etimesgutangel2.jpg, yenimahalleamore1.jpg, yenimahalleamore2.jpg gibi
   const galleryImages: GalleryImage[] = [
     // Örnek: Görsellerinizi buraya ekleyin
-    // { id: 1, src: '/images/Gallery/etimesgutangel1.jpg', alt: 'Etimesgut Angel Salon görseli 1', branch: 'Etimesgut', salon: 'Angel', layout: 'large' },
-    // { id: 2, src: '/images/Gallery/etimesgutangel2.jpg', alt: 'Etimesgut Angel Salon görseli 2', branch: 'Etimesgut', salon: 'Angel', layout: 'small' },
-    // { id: 3, src: '/images/Gallery/yenimahalleamore1.jpg', alt: 'Yenimahalle Amore Salon görseli 1', branch: 'Yenimahalle', salon: 'Amore', layout: 'tall' },
-    // ... yaklaşık 10 görsel
+    // { id: 1, src: '/images/Gallery/etimesgutangel1.jpg', alt: 'Etimesgut Angel Salon', branch: 'Etimesgut', salon: 'Angel', layout: 'large' },
   ];
 
   const getLayoutClasses = (layout: string = 'medium'): string => {
     switch (layout) {
-      case 'small':
-        return 'col-span-1 md:col-span-1';
-      case 'medium':
-        return 'col-span-1 md:col-span-2';
-      case 'large':
-        return 'col-span-1 md:col-span-3';
-      case 'wide':
-        return 'col-span-1 md:col-span-3';
-      case 'tall':
-        return 'col-span-1 md:col-span-2 md:row-span-2';
-      default:
-        return 'col-span-1 md:col-span-2';
+      case 'small': return 'col-span-1';
+      case 'medium': return 'col-span-1 md:col-span-2';
+      case 'large': return 'col-span-1 md:col-span-3';
+      case 'wide': return 'col-span-1 md:col-span-3';
+      case 'tall': return 'col-span-1 md:col-span-2 md:row-span-2';
+      default: return 'col-span-1 md:col-span-2';
     }
   };
 
   const getAspectRatio = (layout: string = 'medium'): string => {
     switch (layout) {
-      case 'small':
-        return 'aspect-square';
-      case 'medium':
-        return 'aspect-square';
-      case 'large':
-        return 'aspect-square';
-      case 'wide':
-        return 'aspect-[2/1]';
-      case 'tall':
-        return 'aspect-[1/2]';
-      default:
-        return 'aspect-square';
+      case 'small': return 'aspect-square';
+      case 'wide': return 'aspect-[2/1]';
+      case 'tall': return 'aspect-[1/2]';
+      default: return 'aspect-square';
     }
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-white font-iso">
       {/* Hero Section */}
-      <section className="relative bg-white py-4 sm:py-6 overflow-hidden">
-        {/* Soft gradient in bottom right corner */}
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-[#a4585a]/10 via-pink-50/5 to-transparent rounded-full blur-3xl transform translate-x-1/2 translate-y-1/2"></div>
-        
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-2 sm:mb-3 animate-fade-in text-gray-900">Galeri</h1>
-          <div className="max-w-3xl mx-auto">
-            <p className="text-sm md:text-base text-gray-700 font-light leading-relaxed tracking-wide animate-slide-up">
-              Salonlarımız, düğünlerimiz ve 
-              <span className="font-medium text-[#a4585a]"> unutulmaz anlarımızdan öne çıkan kareleri </span>
-              keşfedin. Hayalinizdeki düğün için ilham alın.
+      <section className="pt-32 pb-16 lg:pt-48 lg:pb-24 bg-gradient-to-br from-mint-softest via-mint-light to-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl">
+            <div className="flex items-center gap-2 mb-6">
+              <span className="w-2 h-2 bg-gray-800 rounded-sm"></span>
+              <span className="text-xs font-iso font-medium uppercase tracking-wider text-gray-600">
+                GALERİ
+              </span>
+            </div>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-medium text-gray-900 leading-tight mb-6">
+              Unutulmaz anlardan öne çıkan kareler.
+            </h1>
+            <p className="text-lg text-gray-600 leading-relaxed">
+              Salonlarımız, düğünlerimiz ve özel anlarımızdan görsellerle hayalinizdeki düğün için ilham alın.
             </p>
           </div>
         </div>
       </section>
 
       {/* Gallery Section */}
-      <section className="py-8 sm:py-12 md:py-16">
+      <section className="py-4 lg:py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {galleryImages.length > 0 ? (
-            <div 
-              className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6"
-              style={{
-                gridAutoRows: 'minmax(200px, auto)',
-              }}
-            >
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6">
               {galleryImages.map((image) => {
                 const layoutClasses = getLayoutClasses(image.layout);
                 const aspectRatio = getAspectRatio(image.layout);
@@ -96,64 +75,47 @@ const Gallery: React.FC = () => {
                     key={image.id}
                     type="button"
                     onClick={() => setSelectedImage(image)}
-                    className={`${layoutClasses} ${aspectRatio} relative group rounded-xl md:rounded-2xl overflow-hidden transition-all duration-500 bg-gradient-to-br from-gray-200 via-gray-100 to-gray-200`}
-                    style={{
-                      boxShadow: '0 10px 25px -5px rgba(164, 88, 90, 0.4), 0 8px 10px -6px rgba(164, 88, 90, 0.3)',
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.boxShadow = '0 20px 40px -5px rgba(164, 88, 90, 0.6), 0 15px 15px -6px rgba(164, 88, 90, 0.5)';
-                      e.currentTarget.style.transform = 'translateY(-4px)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.boxShadow = '0 10px 25px -5px rgba(164, 88, 90, 0.4), 0 8px 10px -6px rgba(164, 88, 90, 0.3)';
-                      e.currentTarget.style.transform = 'translateY(0)';
-                    }}
+                    className={`${layoutClasses} ${aspectRatio} relative group rounded-lg overflow-hidden border border-iso-border hover:border-gray-300 transition-all duration-500 hover:shadow-xl`}
                   >
                     <OptimizedImage
                       src={image.src}
                       alt={image.alt}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                       objectFit="cover"
                       loading="lazy"
                       placeholder="empty"
                     />
-                    {/* Overlay on hover */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    {/* Şube ve Salon Bilgisi */}
-                    <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 bg-gradient-to-t from-black/80 to-transparent">
-                      <p className="text-white text-sm sm:text-base font-semibold text-center">
-                        {image.branch} / {image.salon} Salon
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                      <p className="text-white text-sm font-iso font-medium">
+                        {image.branch} / {image.salon}
                       </p>
-            </div>
-                    {/* Primary glow on hover */}
-                    <div className="absolute inset-0 ring-2 ring-[#a4585a]/0 group-hover:ring-[#a4585a]/50 transition-all duration-500 rounded-xl md:rounded-2xl"></div>
+                    </div>
                   </button>
                 );
               })}
             </div>
           ) : (
-            <div className="text-center py-12 sm:py-16 md:py-20">
-              <div className="bg-gradient-to-br from-primary/5 via-primary/10 to-primary/5 rounded-2xl md:rounded-3xl p-6 sm:p-8 md:p-12 lg:p-16 shadow-lg border border-primary/20">
-            <div className="mb-6 md:mb-8">
-              <div className="relative w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 mx-auto">
-                <div className="absolute inset-0 border-3 md:border-4 border-primary/20 rounded-full"></div>
-                <div className="absolute inset-0 border-3 md:border-4 border-transparent border-t-primary rounded-full animate-spin"></div>
-                <div className="absolute inset-2 border-3 md:border-4 border-primary/10 rounded-full"></div>
-                <div className="absolute inset-2 border-3 md:border-4 border-transparent border-t-primary/60 rounded-full animate-spin" style={{ animationDirection: 'reverse', animationDuration: '1.5s' }}></div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <svg className="w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 text-primary/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
+            <div className="text-center py-6 lg:py-10 animate-fade-in">
+              <div className="bg-iso-light border border-iso-border rounded-lg p-12 lg:p-16 max-w-2xl mx-auto flex flex-col items-center">
+                <div className="w-20 h-20 mb-8 relative">
+                  <div className="absolute inset-0 bg-mint-300 rounded-full opacity-20 animate-ping"></div>
+                  <div className="relative w-full h-full bg-white border border-iso-border rounded-2xl flex items-center justify-center shadow-lg">
+                    <div className="w-8 h-8 border-2 border-mint-500 border-t-transparent rounded-full animate-spin"></div>
+                  </div>
+                </div>
+                <h2 className="text-2xl lg:text-3xl font-display font-medium text-gradient mb-4">
+                  Galeri Görselleri Hazırlanıyor
+                </h2>
+                <p className="text-gray-500 max-w-sm mx-auto leading-relaxed">
+                  En özel anlardan derlediğimiz seçkimiz çok yakında tüm detaylarıyla burada olacak.
+                </p>
+                <div className="mt-8 flex gap-2">
+                  <div className="w-1.5 h-1.5 bg-mint-400 rounded-full animate-bounce" style={{ animationDelay: '0s' }}></div>
+                  <div className="w-1.5 h-1.5 bg-mint-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                  <div className="w-1.5 h-1.5 bg-mint-400 rounded-full animate-bounce" style={{ animationDelay: '0.4s' }}></div>
                 </div>
               </div>
-            </div>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary/50 mb-3 md:mb-4">
-                  Galeri Görselleri Yükleniyor...
-            </h2>
-                <p className="text-lg sm:text-xl md:text-2xl text-primary/40 font-light">
-                  Görselleriniz Çok Yakında Burada
-                </p>
-          </div>
             </div>
           )}
         </div>
@@ -162,21 +124,21 @@ const Gallery: React.FC = () => {
       {/* Lightbox Modal */}
       {selectedImage && (
         <div
-          className="fixed inset-0 z-[9999] bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6"
+          className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-sm flex items-center justify-center p-4"
           onClick={() => setSelectedImage(null)}
         >
           <div className="relative max-w-6xl w-full max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
             <button
               type="button"
               onClick={() => setSelectedImage(null)}
-              className="absolute -top-10 right-0 text-white hover:text-[#a4585a] transition-colors z-10"
+              className="absolute -top-12 right-0 w-10 h-10 flex items-center justify-center border border-white/20 text-white hover:bg-white/10 transition-colors"
               aria-label="Kapat"
             >
-              <svg className="w-8 h-8 sm:w-10 sm:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
-            <div className="rounded-2xl overflow-hidden shadow-2xl bg-black/50" style={{ boxShadow: '0 25px 50px -12px rgba(164, 88, 90, 0.5)' }}>
+            <div className="rounded-lg overflow-hidden">
               <OptimizedImage
                 src={selectedImage.src}
                 alt={selectedImage.alt}
@@ -185,10 +147,9 @@ const Gallery: React.FC = () => {
                 loading="eager"
                 placeholder="empty"
               />
-              {/* Şube ve Salon Bilgisi - Lightbox'ta */}
-              <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 bg-gradient-to-t from-black/90 to-transparent">
-                <p className="text-white text-lg sm:text-xl font-semibold text-center">
-                  {selectedImage.branch} / {selectedImage.salon} Salon
+              <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
+                <p className="text-white text-lg font-iso font-medium">
+                  {selectedImage.branch} / {selectedImage.salon}
                 </p>
               </div>
             </div>

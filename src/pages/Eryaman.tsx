@@ -22,15 +22,23 @@ const Etimesgut: React.FC = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-white py-10 overflow-hidden">
+      <section className="relative bg-white pt-32 pb-16 lg:pt-48 lg:pb-24 overflow-hidden">
         {/* Soft gradient in bottom right corner */}
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-[#a4585a]/10 via-pink-50/5 to-transparent rounded-full blur-3xl transform translate-x-1/2 translate-y-1/2"></div>
-        
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 animate-fade-in text-gray-900">Etimesgut Şubesi</h1>
-          <div className="max-w-3xl mx-auto">
-            <p className="text-sm md:text-base text-gray-700 font-light leading-relaxed tracking-wide animate-slide-up">
-              <span className="font-medium text-[#a4585a]">Modern mimarisi ve geniş alanıyla </span>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-mint-softest/40 via-mint-light/20 to-transparent rounded-full blur-3xl transform translate-x-1/2 translate-y-1/2"></div>
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl">
+            <div className="flex items-center gap-2 mb-6">
+              <span className="w-2 h-2 bg-gray-800 rounded-sm"></span>
+              <span className="text-xs font-iso font-medium uppercase tracking-wider text-gray-600">
+                ŞUBELERİMİZ
+              </span>
+            </div>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-medium text-gradient leading-tight mb-6">
+              Etimesgut Şubesi
+            </h1>
+            <p className="text-lg text-gray-600 leading-relaxed max-w-2xl">
+              <span className="font-medium text-gray-900">Modern mimarisi ve geniş alanıyla </span>
               düğününüzün en özel anlarını yaşayacağınız Etimesgut şubemiz.
             </p>
           </div>
@@ -45,10 +53,10 @@ const Etimesgut: React.FC = () => {
             <div className="order-2 lg:order-1">
               <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-5 md:mb-6">Etimesgut Şubesi</h2>
               <p className="text-sm sm:text-base md:text-lg text-gray-600 mb-6 sm:mb-7 md:mb-8">
-                Etimesgut şubemiz, modern mimarisi ve geniş alanıyla düğün organizasyonlarınız için ideal bir mekan sunar. 
+                Etimesgut şubemiz, modern mimarisi ve geniş alanıyla düğün organizasyonlarınız için ideal bir mekan sunar.
                 Yüksek tavanı ve kolonsuz mimarisi sayesinde ferah bir atmosfer yaratır.
               </p>
-              
+
               <div className="space-y-4 sm:space-y-5 md:space-y-6">
                 <div className="flex items-start">
                   <div className="bg-primary/10 p-2 sm:p-3 rounded-lg mr-3 sm:mr-4 flex-shrink-0">
@@ -154,17 +162,36 @@ const Etimesgut: React.FC = () => {
                 key={image.id}
                 type="button"
                 onClick={() => setSelectedImage(image.src)}
-                className="relative group aspect-square rounded-2xl overflow-hidden shadow-lg shadow-primary/10 hover:shadow-2xl hover:shadow-primary/25 transition-all duration-500 bg-gradient-to-br from-gray-200 via-gray-100 to-gray-200"
+                className="relative group aspect-square rounded-3xl overflow-hidden transition-all duration-700 bg-gradient-to-br from-primary-softest/30 via-primary-softer/20 to-primary-soft/30"
+                style={{
+                  boxShadow: '0 8px 30px -8px rgba(164, 88, 90, 0.15), 0 4px 12px -4px rgba(164, 88, 90, 0.1)',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.boxShadow = '0 16px 50px -12px rgba(164, 88, 90, 0.25), 0 8px 20px -8px rgba(164, 88, 90, 0.15)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.boxShadow = '0 8px 30px -8px rgba(164, 88, 90, 0.15), 0 4px 12px -4px rgba(164, 88, 90, 0.1)';
+                }}
               >
                 <OptimizedImage
                   src={image.src}
                   alt={image.alt}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   objectFit="cover"
                   loading="lazy"
                   placeholder="empty"
                 />
-                <span className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/0 to-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+                {/* Isomorphic Labs tarzı yumuşak gradient overlay */}
+                <div
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    background: 'radial-gradient(circle at 50% 50%, rgba(164, 88, 90, 0.08) 0%, transparent 60%)',
+                  }}
+                ></div>
+                {/* Alt kısımda soluk fade */}
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                {/* Kenarlarda soluk glow */}
+                <div className="absolute inset-0 ring-1 ring-primary/5 group-hover:ring-primary/20 transition-all duration-700 rounded-3xl"></div>
               </button>
             ))}
           </div>
@@ -178,10 +205,10 @@ const Etimesgut: React.FC = () => {
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2 sm:mb-3 md:mb-4">Konumumuz ve İletişim</h2>
             <p className="text-base sm:text-lg md:text-xl text-gray-600 px-4">Etimesgut şubemizin konumunu haritada görüntüleyebilir ve bizimle iletişime geçebilirsiniz</p>
           </div>
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
             {/* Harita Bölümü */}
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+            <div className="bg-white rounded-3xl shadow-lg overflow-hidden" style={{ boxShadow: '0 8px 30px -8px rgba(164, 88, 90, 0.12), 0 4px 12px -4px rgba(164, 88, 90, 0.08)' }}>
               <div className="h-64 sm:h-80 md:h-96">
                 <iframe
                   src="https://www.google.com/maps?q=Rose+Wedding+Hall+Etimesgut&output=embed&zoom=17&markers=color:red|Rose+Wedding+Hall+Etimesgut"
@@ -197,17 +224,17 @@ const Etimesgut: React.FC = () => {
               <div className="p-4 sm:p-5 md:p-6">
                 <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">Etimesgut Şubesi</h3>
                 <p className="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4 break-words">Yeşilova, 4016. Cad. B Blok No:2/2/13, 06796 Etimesgut/Ankara</p>
-                <a 
-                  href="https://share.google/s73VdxD4h4IF37TVJ" 
-                  target="_blank" 
+                <a
+                  href="https://share.google/s73VdxD4h4IF37TVJ"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center bg-primary text-white px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-lg text-sm sm:text-base font-semibold hover:bg-primary-700 transition-colors duration-300"
                 >
                   <svg className="w-4 h-4 sm:w-5 sm:h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-                    <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                    <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-                    <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                    <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
+                    <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
+                    <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05" />
+                    <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" />
                   </svg>
                   Google Maps'te Gör
                 </a>
@@ -229,7 +256,7 @@ const Etimesgut: React.FC = () => {
                     +90 538 622 30 50
                   </a>
                 </div>
-                
+
                 <div className="text-center">
                   <div className="bg-primary/10 p-4 sm:p-5 md:p-6 rounded-full w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 mx-auto mb-3 sm:mb-4 flex items-center justify-center">
                     <svg className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -241,7 +268,7 @@ const Etimesgut: React.FC = () => {
                     roseweddinghall06@gmail.com
                   </a>
                 </div>
-                
+
                 <div className="text-center">
                   <div className="bg-primary/10 p-6 rounded-full w-20 h-20 mx-auto mb-4 flex items-center justify-center">
                     <svg className="w-10 h-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -277,7 +304,7 @@ const Etimesgut: React.FC = () => {
             <OptimizedImage
               src={selectedImage}
               alt="Etimesgut salon görseli"
-              className="w-full h-full rounded-2xl shadow-2xl"
+              className="w-full h-full rounded-3xl shadow-2xl"
               objectFit="contain"
               loading="eager"
               placeholder="blur"

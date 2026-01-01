@@ -10,20 +10,25 @@ module.exports = {
         'brush': ['Alex Brush', 'cursive'],
         'elegant': ['Playfair Display', 'serif'],
         'classic': ['Cormorant Garamond', 'serif'],
+        'iso': ['Inter', 'system-ui', 'sans-serif'],
+        'display': ['Outfit', 'sans-serif'],
       },
       colors: {
         primary: {
           DEFAULT: '#a4585a',
-          50: '#f7f3f3',
-          100: '#ede6e7',
-          200: '#dccfd1',
-          300: '#c6aeb2',
-          400: '#b18a8f',
+          50: '#faf7f7',
+          100: '#f5eeee',
+          200: '#eadcdd',
+          300: '#d9c4c6',
+          400: '#c4a8ab',
           500: '#a4585a',
           600: '#94474a',
           700: '#7d3d40',
           800: '#683339',
           900: '#572c30',
+          soft: '#d9b8ba',
+          softer: '#e8d3d5',
+          softest: '#f2e6e7',
         },
         secondary: {
           DEFAULT: '#8b4a4d',
@@ -50,6 +55,32 @@ module.exports = {
           700: '#9c575a',
           800: '#84484b',
           900: '#6e3c3f',
+        },
+        // Isomorphic Labs tarzı mint/sage yeşil tonları
+        mint: {
+          DEFAULT: '#a4585a',
+          50: '#fdf2f2',
+          100: '#fce7e7',
+          200: '#fad4d4',
+          300: '#f6b0b0',
+          400: '#f08585',
+          500: '#a4585a', // Base Color
+          600: '#8e4c4e',
+          700: '#7a3e40',
+          800: '#663234',
+          900: '#52282a',
+          light: '#fdf2f2',
+          soft: '#fae6e7',
+          softer: '#fad4d4',
+          softest: '#fce7e7',
+        },
+        // Isomorphic Labs koyu tonlar
+        iso: {
+          dark: '#1a1a1a',
+          darker: '#0d0d0d',
+          gray: '#4a4a4a',
+          light: '#fafafa',
+          border: '#e5e5e5',
         },
         luxury: {
           gold: '#d4af37',
@@ -119,107 +150,107 @@ module.exports = {
           '50%': { transform: 'rotate(3deg)' },
         },
         slowGentle: {
-          '0%, 100%': { 
+          '0%, 100%': {
             transform: 'translateY(0px) scale(1)',
             opacity: '1'
           },
-          '50%': { 
+          '50%': {
             transform: 'translateY(-12px) scale(1.02)',
             opacity: '0.9'
           },
         },
         bubbleRise1: {
-          '0%': { 
+          '0%': {
             transform: 'translateY(100vh) translateX(0) scale(0.8)',
             opacity: '0'
           },
-          '10%': { 
+          '10%': {
             opacity: '0.4'
           },
-          '90%': { 
+          '90%': {
             opacity: '0.4'
           },
-          '100%': { 
+          '100%': {
             transform: 'translateY(-100px) translateX(20px) scale(1.2)',
             opacity: '0'
           },
         },
         bubbleRise2: {
-          '0%': { 
+          '0%': {
             transform: 'translateY(100vh) translateX(0) scale(1)',
             opacity: '0'
           },
-          '10%': { 
+          '10%': {
             opacity: '0.3'
           },
-          '90%': { 
+          '90%': {
             opacity: '0.3'
           },
-          '100%': { 
+          '100%': {
             transform: 'translateY(-100px) translateX(-30px) scale(0.9)',
             opacity: '0'
           },
         },
         bubbleRise3: {
-          '0%': { 
+          '0%': {
             transform: 'translateY(100vh) translateX(0) scale(0.7)',
             opacity: '0'
           },
-          '10%': { 
+          '10%': {
             opacity: '0.35'
           },
-          '90%': { 
+          '90%': {
             opacity: '0.35'
           },
-          '100%': { 
+          '100%': {
             transform: 'translateY(-100px) translateX(40px) scale(1.1)',
             opacity: '0'
           },
         },
         bubbleRise4: {
-          '0%': { 
+          '0%': {
             transform: 'translateY(100vh) translateX(0) scale(0.9)',
             opacity: '0'
           },
-          '10%': { 
+          '10%': {
             opacity: '0.25'
           },
-          '90%': { 
+          '90%': {
             opacity: '0.25'
           },
-          '100%': { 
+          '100%': {
             transform: 'translateY(-100px) translateX(-25px) scale(1.15)',
             opacity: '0'
           },
         },
         bubbleRise5: {
-          '0%': { 
+          '0%': {
             transform: 'translateY(100vh) translateX(0) scale(0.85)',
             opacity: '0'
           },
-          '10%': { 
+          '10%': {
             opacity: '0.3'
           },
-          '90%': { 
+          '90%': {
             opacity: '0.3'
           },
-          '100%': { 
+          '100%': {
             transform: 'translateY(-100px) translateX(35px) scale(1.05)',
             opacity: '0'
           },
         },
         bubbleRise6: {
-          '0%': { 
+          '0%': {
             transform: 'translateY(100vh) translateX(0) scale(0.75)',
             opacity: '0'
           },
-          '10%': { 
+          '10%': {
             opacity: '0.4'
           },
-          '90%': { 
+          '90%': {
             opacity: '0.4'
           },
-          '100%': { 
+          '100%': {
             transform: 'translateY(-100px) translateX(-40px) scale(1.25)',
             opacity: '0'
           },
