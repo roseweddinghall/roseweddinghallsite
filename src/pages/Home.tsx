@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+
 import HeroSlider from '../components/HeroSlider';
 import IsoButton from '../components/IsoButton';
 import IsoCard from '../components/IsoCard';

@@ -1,6 +1,6 @@
 import React from 'react';
 import OptimizedImage from '../components/OptimizedImage';
-import IsoButton from '../components/IsoButton';
+
 
 const About: React.FC = () => {
   const whyUsFeatures = [
