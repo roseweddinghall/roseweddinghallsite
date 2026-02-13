@@ -22,9 +22,9 @@ const Etimesgut: React.FC = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-white pt-32 pb-16 lg:pt-48 lg:pb-24 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-rose-50/50 via-white to-rose-50/30 pt-32 pb-16 lg:pt-48 lg:pb-24 overflow-hidden border-b border-rose-100/50">
         {/* Soft gradient in bottom right corner */}
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-mint-softest/40 via-mint-light/20 to-transparent rounded-full blur-3xl transform translate-x-1/2 translate-y-1/2"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-rose-100/20 via-white to-transparent rounded-full blur-3xl transform translate-x-1/2 translate-y-1/2"></div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">

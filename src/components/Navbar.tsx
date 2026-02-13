@@ -19,7 +19,7 @@ const Navbar: React.FC = () => {
 
   // Logo preload
   useEffect(() => {
-    const logoPath = '/logo.png.png';
+    const logoPath = '/logo.png';
     const link = document.createElement('link');
     link.rel = 'preload';
     link.as = 'image';
@@ -89,14 +89,11 @@ const Navbar: React.FC = () => {
           </div>
 
           {/* Ortada Logo - 2x büyük */}
-          <Link to="/" className="flex items-center justify-center mx-8">
+          <Link to="/" className="flex items-center justify-center mx-8 overflow-hidden">
             <img
-              src="/logo.png.png"
+              src="/logo.png"
               alt="Rose Wedding Hall"
-              className="h-28 w-auto object-contain transition-all duration-300"
-              style={{
-                mixBlendMode: 'multiply'
-              }}
+              className="h-32 w-auto object-contain transition-all duration-300 transform scale-[1.6]"
               loading="eager"
               fetchPriority="high"
               decoding="sync"
@@ -122,7 +119,7 @@ const Navbar: React.FC = () => {
           {/* Mobile menu button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className={`p-2 focus:outline-none transition-colors ${isScrolled ? 'text-gray-800' : 'text-white'
+            className={`p-2 focus:outline-none transition-colors ${isScrolled ? 'text-[#a4585a]' : 'text-[#a4585a]'
               }`}
             aria-label="Menüyü aç/kapat"
           >
@@ -136,14 +133,11 @@ const Navbar: React.FC = () => {
           </button>
 
           {/* Mobile Center Logo */}
-          <Link to="/" className="flex items-center">
+          <Link to="/" className="flex items-center overflow-hidden">
             <img
-              src="/logo.png.png"
+              src="/logo.png"
               alt="Rose Wedding Hall"
-              className="h-16 w-auto object-contain"
-              style={{
-                mixBlendMode: 'multiply'
-              }}
+              className="h-20 w-auto object-contain transform scale-[1.4]"
               loading="eager"
               fetchPriority="high"
               decoding="sync"
@@ -156,24 +150,20 @@ const Navbar: React.FC = () => {
 
         {/* Mobile Menu */}
         <div
-          className={`lg:hidden transition-all duration-300 overflow-hidden ${isMenuOpen ? 'max-h-screen pb-4' : 'max-h-0'
-            } ${isScrolled ? 'bg-white' : 'bg-black/80 backdrop-blur-sm'}`}
+          className={`lg:hidden transition-all duration-500 ease-in-out overflow-hidden ${isMenuOpen ? 'max-h-screen border-t border-gray-100' : 'max-h-0'
+            } bg-white/95 backdrop-blur-md`}
         >
-          <div className="flex flex-col gap-2 pt-2 px-2">
+          <div className="flex flex-col gap-3 py-6 px-4">
             {allLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
                 className={`
-                  px-4 py-3 text-xs font-iso font-medium tracking-wider text-center
-                  border rounded-full transition-all duration-300
-                  ${isScrolled
-                    ? isActive(link.path)
-                      ? 'bg-gray-900 text-white border-gray-900'
-                      : 'bg-transparent text-gray-800 border-gray-800 hover:bg-gray-800 hover:text-white'
-                    : isActive(link.path)
-                      ? 'bg-white text-gray-900 border-white'
-                      : 'bg-transparent text-white border-white/70 hover:bg-white hover:text-gray-900'
+                  px-4 py-3 text-xs font-iso font-bold uppercase tracking-widest text-center
+                  rounded-full transition-all duration-300
+                  ${isActive(link.path)
+                    ? 'btn-solid-gradient'
+                    : 'bg-white gradient-border text-gradient shadow-sm shadow-pink-50'
                   }
                 `}
                 onClick={() => setIsMenuOpen(false)}

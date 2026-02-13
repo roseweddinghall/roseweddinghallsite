@@ -14,34 +14,30 @@ interface CreativeGalleryProps {
 }
 
 const CreativeGallery: React.FC<CreativeGalleryProps> = ({ images }) => {
-  // İlk 12 görseli hemen görünür yap (daha fazla görsel hızlı yüklensin)
+  // İlk 6 görseli hemen görünür yap (bant genişliğini korumak için azaltıldı)
   const [visibleImages, setVisibleImages] = useState<Set<number>>(
-    new Set(images.slice(0, 12).map((_, i) => i))
+    new Set(images.slice(0, 6).map((_, i) => i))
   );
   const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  // İlk görselleri agresif şekilde preload et - daha fazla görsel
+  // Sadece ilk 3 görseli preload et
   useEffect(() => {
-    // İlk 7 görseli (tüm görünür görseller) preload et
-    images.slice(0, 7).forEach((image, index) => {
+    images.slice(0, 3).forEach((image, index) => {
       const link = document.createElement('link');
       link.rel = 'preload';
       link.as = 'image';
       link.href = image.src;
       if ('fetchPriority' in link) {
-        (link as any).fetchPriority = index < 3 ? 'high' : 'auto';
+        (link as any).fetchPriority = 'high';
       }
       document.head.appendChild(link);
 
-      // İlk 3 görseli hemen decode et
-      if (index < 3) {
-        const img = new Image();
-        img.src = image.src;
-        if ('fetchPriority' in img) {
-          (img as any).fetchPriority = 'high';
-        }
-        img.decode().catch(() => { });
+      const img = new Image();
+      img.src = image.src;
+      if ('fetchPriority' in img) {
+        (img as any).fetchPriority = 'high';
       }
+      img.decode().catch(() => { });
     });
   }, [images]);
 

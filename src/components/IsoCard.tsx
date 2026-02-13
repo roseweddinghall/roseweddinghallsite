@@ -2,11 +2,12 @@ import React from 'react';
 
 interface IsoCardProps {
     label?: string;
-    title: string;
+    title?: string;
     description?: string;
     children?: React.ReactNode;
     className?: string;
     onClick?: () => void;
+    gradientBorder?: boolean;
 }
 
 const IsoCard: React.FC<IsoCardProps> = ({
@@ -16,13 +17,14 @@ const IsoCard: React.FC<IsoCardProps> = ({
     children,
     className = '',
     onClick,
+    gradientBorder = false,
 }) => {
     return (
         <div
             className={`
         bg-white border border-iso-border rounded-lg p-6 sm:p-8
         transition-all duration-300 ease-out
-        hover:shadow-lg hover:border-gray-300
+        ${gradientBorder ? 'gradient-border' : 'hover:shadow-lg hover:border-gray-300'}
         ${onClick ? 'cursor-pointer' : ''}
         ${className}
       `}
@@ -37,9 +39,11 @@ const IsoCard: React.FC<IsoCardProps> = ({
                 </div>
             )}
 
-            <h3 className="text-xl sm:text-2xl md:text-3xl font-display font-medium text-gray-900 mb-3 leading-tight">
-                {title}
-            </h3>
+            {title && (
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-display font-medium text-gray-900 mb-3 leading-tight">
+                    {title}
+                </h3>
+            )}
 
             {description && (
                 <p className="text-gray-600 font-iso text-sm sm:text-base leading-relaxed mb-4">

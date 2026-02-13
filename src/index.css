@@ -100,6 +100,23 @@ code {
     transition: opacity 0.3s ease;
   }
 
+  .btn-ghost-gradient:hover {
+    background: linear-gradient(to right, #a4585a, #f6b0b0) !important;
+    color: white !important;
+  }
+
+  .btn-ghost-gradient:hover::before {
+    opacity: 0;
+  }
+
+  .btn-ghost-gradient:hover span,
+  .btn-ghost-gradient:hover p,
+  .btn-ghost-gradient:hover svg {
+    -webkit-text-fill-color: white !important;
+    color: white !important;
+    background: none !important;
+  }
+
   /* Separate text gradient utility */
   .text-gradient,
   .text-gradient span,
@@ -119,9 +136,10 @@ code {
     color: white !important;
   }
 
-  /* New: Simple ghost for initial navbar (only text changes, border stays gradient) */
+  /* New: Simple ghost for initial navbar (bg becomes gradient on hover) */
   .btn-ghost-simple:hover {
-    background: transparent !important;
+    background: linear-gradient(to right, #a4585a, #f6b0b0) !important;
+    border-color: transparent !important;
   }
 
   .btn-ghost-simple:hover span,
@@ -129,7 +147,11 @@ code {
   .btn-ghost-simple:hover {
     -webkit-text-fill-color: white !important;
     color: white !important;
-    background: none !important;
+    background-clip: border-box !important;
+  }
+
+  .btn-ghost-simple:hover::before {
+    opacity: 0;
   }
 
   /* Refined: Scrolled navbar (bg becomes gradient, text becomes white, border hides) */

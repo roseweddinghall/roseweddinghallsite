@@ -346,52 +346,52 @@ const Reviews: React.FC = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="pt-32 pb-16 lg:pt-48 lg:pb-24 bg-gradient-to-br from-mint-softest via-mint-light to-white">
+      <section className="pt-32 pb-16 lg:pt-48 lg:pb-24 bg-gradient-to-br from-rose-50/50 via-white to-rose-50/30 border-b border-rose-100/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <div className="flex items-center gap-2 mb-6">
-              <span className="w-2 h-2 bg-gray-800 rounded-sm"></span>
-              <span className="text-xs font-iso font-medium uppercase tracking-wider text-gray-600">
-                YORUMLAR
+              <span className="w-2 h-2 bg-primary rounded-sm shadow-sm"></span>
+              <span className="text-xs font-iso font-semibold uppercase tracking-widest text-[#a4585a]">
+                MÜŞTERİ DENEYİMLERİ
               </span>
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-medium text-gray-900 leading-tight mb-6">
-              Bizimle 'Evet' diyenlerin unutulmaz anılarına ve yorumlarına göz atın.
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-medium text-gradient leading-tight mb-6">
+              Bizimle 'Evet' diyenlerin hikayelerini keşfedin.
             </h1>
-            <p className="text-lg text-gray-600 leading-relaxed">
-              <span className="text-gray-900 font-medium">Mutlu çiftlerimizin deneyimlerini</span> ve Rose Wedding Hall hakkındaki görüşlerini keşfedin.
+            <p className="text-lg text-gray-600 leading-relaxed max-w-2xl">
+              Rose Wedding Hall'da unutulmaz bir deneyim yaşayan çiftlerimizin samimi görüşleri ve puanları.
             </p>
           </div>
         </div>
       </section>
 
       {/* İstatistikler */}
-      <section id="stats-section" className="py-10 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 text-center">
-            <div className="bg-gradient-to-br from-pink-50 to-white rounded-xl p-4 sm:p-6 md:p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-pink-100">
-              <div className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#a4585a] to-primary bg-clip-text text-transparent mb-2 sm:mb-3 transition-all duration-500">
+      <section id="stats-section" className="py-16 bg-white overflow-hidden relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
+            <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm hover:shadow-xl transition-all duration-500 border border-gray-100 flex flex-col items-center justify-center transform hover:-translate-y-2 animate-float">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-gradient mb-2">
                 {stats.rating.toFixed(1)}
               </div>
-              <div className="text-sm sm:text-base text-gray-600 font-medium">Puan</div>
+              <div className="text-xs sm:text-sm text-gray-500 uppercase tracking-widest font-semibold">PUANLAMA</div>
             </div>
-            <div className="bg-gradient-to-br from-pink-50 to-white rounded-xl p-4 sm:p-6 md:p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-pink-100">
-              <div className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#a4585a] to-primary bg-clip-text text-transparent mb-2 sm:mb-3 transition-all duration-500">
+            <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm hover:shadow-xl transition-all duration-500 border border-gray-100 flex flex-col items-center justify-center transform hover:-translate-y-2 animate-float animation-delay-2000">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-gradient mb-2">
                 {stats.reviews}+
               </div>
-              <div className="text-sm sm:text-base text-gray-600 font-medium">Yorum</div>
+              <div className="text-xs sm:text-sm text-gray-500 uppercase tracking-widest font-semibold">GERÇEK YORUM</div>
             </div>
-            <div className="bg-gradient-to-br from-pink-50 to-white rounded-xl p-4 sm:p-6 md:p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-pink-100">
-              <div className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#a4585a] to-primary bg-clip-text text-transparent mb-2 sm:mb-3 transition-all duration-500">
+            <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm hover:shadow-xl transition-all duration-500 border border-gray-100 flex flex-col items-center justify-center transform hover:-translate-y-2 animate-float" style={{ animationDelay: '1s' }}>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-gradient mb-2">
                 %{stats.satisfaction}
               </div>
-              <div className="text-sm sm:text-base text-gray-600 font-medium">Memnuniyet</div>
+              <div className="text-xs sm:text-sm text-gray-500 uppercase tracking-widest font-semibold">MEMNUNİYET</div>
             </div>
-            <div className="bg-gradient-to-br from-pink-50 to-white rounded-xl p-4 sm:p-6 md:p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-pink-100">
-              <div className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#a4585a] to-primary bg-clip-text text-transparent mb-2 sm:mb-3 transition-all duration-500">
+            <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm hover:shadow-xl transition-all duration-500 border border-gray-100 flex flex-col items-center justify-center transform hover:-translate-y-2 animate-float" style={{ animationDelay: '1.5s' }}>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-gradient mb-2">
                 {stats.weddings}+
               </div>
-              <div className="text-sm sm:text-base text-gray-600 font-medium">Mutlu Düğün</div>
+              <div className="text-xs sm:text-sm text-gray-500 uppercase tracking-widest font-semibold">MUTLU DÜĞÜN</div>
             </div>
           </div>
         </div>
@@ -420,77 +420,58 @@ const Reviews: React.FC = () => {
           )}
 
           {!loading && reviews.length > 0 && (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {reviews.map((review, index) => {
-                const gradientColors = [
-                  'from-pink-50 via-rose-50 to-pink-100',
-                  'from-purple-50 via-pink-50 to-rose-100',
-                  'from-rose-50 via-pink-50 to-purple-100',
-                  'from-pink-100 via-rose-50 to-pink-50',
-                  'from-rose-50 via-purple-50 to-pink-100',
-                  'from-pink-50 via-rose-100 to-pink-50'
-                ];
-                const borderColors = [
-                  'border-pink-200',
-                  'border-rose-200',
-                  'border-purple-200',
-                  'border-pink-300',
-                  'border-rose-300',
-                  'border-purple-300'
-                ];
-
                 return (
                   <div
                     key={review.id}
-                    className={`relative bg-gradient-to-br ${gradientColors[index % gradientColors.length]} rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 hover:scale-105 border-2 ${borderColors[index % borderColors.length]} group overflow-hidden flex flex-col h-full`}
+                    className="group relative bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-500 border border-gray-100 hover:border-primary/20 flex flex-col h-full"
                   >
-                    {/* Decorative background element */}
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#a4585a]/10 to-transparent rounded-full blur-2xl transform translate-x-1/2 -translate-y-1/2 group-hover:scale-150 transition-transform duration-700"></div>
-
-                    {/* Quote icon */}
-                    <div className="absolute top-4 right-4 opacity-20 group-hover:opacity-30 transition-opacity duration-300">
-                      <svg className="w-12 h-12 text-[#a4585a]" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.996 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.984zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-                      </svg>
-                    </div>
+                    <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-full transition-all duration-500 group-hover:scale-110"></div>
 
                     <div className="relative z-10 flex flex-col h-full">
                       {/* Rating */}
-                      <div className="flex items-center gap-2 mb-4">
-                        <div className="flex text-yellow-400">
-                          {[...Array(review.rating)].map((_, i) => (
-                            <svg key={i} className="w-5 h-5 fill-current drop-shadow-sm" viewBox="0 0 20 20">
+                      <div className="flex items-center justify-between mb-8">
+                        <div className="flex gap-0.5">
+                          {[...Array(5)].map((_, i) => (
+                            <svg
+                              key={i}
+                              className={`w-4 h-4 ${i < review.rating ? 'text-[#a4585a]' : 'text-gray-200'}`}
+                              fill="currentColor"
+                              viewBox="0 0 20 20"
+                            >
                               <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                             </svg>
                           ))}
                         </div>
-                        <span className="text-xs font-medium text-gray-500 bg-white/50 px-2 py-1 rounded-full">Google</span>
+                        <span className="text-[10px] font-iso font-bold uppercase tracking-widest text-gray-400 bg-gray-50 px-2 py-1 rounded">Google</span>
                       </div>
 
-                      {/* Comment - flex-grow ile genişleyecek */}
-                      <p className="text-gray-800 mb-6 leading-relaxed font-medium relative z-10 flex-grow">
+                      <p className="text-gray-700 font-iso leading-relaxed mb-8 flex-grow text-sm italic">
                         "{review.comment}"
                       </p>
 
-                      {/* Author info - kartın altına sabitlendi */}
-                      <div className="flex items-center gap-3 pt-4 border-t border-white/50 mt-auto">
+                      <div className="flex items-center gap-4 pt-6 mt-auto border-t border-gray-50">
                         {review.profilePhoto ? (
                           <img
                             src={review.profilePhoto}
                             alt={review.name}
-                            className="w-12 h-12 rounded-full object-cover shadow-md group-hover:shadow-lg transition-shadow duration-300 ring-2 ring-white/50 flex-shrink-0"
+                            className="w-10 h-10 rounded-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
                           />
                         ) : (
-                          <div className="w-12 h-12 bg-gradient-to-br from-[#a4585a] to-primary rounded-full flex items-center justify-center flex-shrink-0 shadow-md group-hover:shadow-lg transition-shadow duration-300 ring-2 ring-white/50">
-                            <span className="text-white font-bold text-lg">{review.avatar}</span>
+                          <div className="w-10 h-10 bg-gray-100 text-primary rounded-full flex items-center justify-center font-display font-bold text-sm group-hover:bg-primary group-hover:text-white transition-all duration-500">
+                            {review.avatar}
                           </div>
                         )}
-                        <div className="flex-1 min-w-0">
-                          <p className="font-bold text-gray-900 text-sm truncate">{review.name}</p>
-                          {review.branch && (
-                            <p className="text-xs text-gray-600 font-medium truncate">{review.branch}</p>
-                          )}
-                          <p className="text-xs text-gray-400">{review.date}</p>
+                        <div className="min-w-0">
+                          <p className="font-display font-semibold text-gray-900 text-sm truncate uppercase tracking-wide">{review.name}</p>
+                          <div className="flex items-center gap-2 mt-0.5">
+                            {review.branch && (
+                              <p className="text-[10px] text-primary font-bold uppercase tracking-widest">{review.branch}</p>
+                            )}
+                            <span className="w-1 h-1 bg-gray-200 rounded-full"></span>
+                            <p className="text-[10px] text-gray-400 uppercase tracking-widest">{review.date}</p>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -502,21 +483,17 @@ const Reviews: React.FC = () => {
         </div>
       </section>
 
-      {/* Google Link */}
       {/* More Reviews CTA */}
-      <section className="py-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-white via-rose-50 to-pink-100 opacity-70"></div>
-        <div className="absolute -top-24 -left-24 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-blob"></div>
-        <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-pink-200/20 rounded-full blur-3xl animate-blob animation-delay-2000"></div>
-
+      <section className="py-24 relative overflow-hidden bg-white">
+        <div className="absolute inset-0 bg-gradient-to-b from-gray-50/50 to-white"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <div className="inline-block px-4 py-1.5 bg-white shadow-sm border border-rose-100 rounded-full text-xs font-iso font-semibold tracking-widest text-[#a4585a] mb-8 uppercase animate-float">
+          <div className="inline-block px-4 py-1.5 bg-white shadow-sm border border-gray-100 rounded-full text-[10px] font-iso font-bold tracking-[0.2em] text-[#a4585a] mb-12 uppercase">
             DENEYİMLERİNİZ BİZE IŞIK TUTUYOR
           </div>
-          <h2 className="text-4xl md:text-5xl font-display font-medium text-gray-900 mb-6">
+          <h2 className="text-4xl md:text-5xl font-display font-medium text-gray-900 mb-8">
             Daha Fazla Yorum Görün
           </h2>
-          <p className="text-lg text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg text-gray-500 mb-12 max-w-2xl mx-auto leading-relaxed">
             Google'ın şeffaf ve gerçek kullanıcı deneyimleriyle tüm yorumlarımızı inceleyin,
             mutluluğumuza ortak olan yüzlerce çiftin hikayesini keşfedin.
           </p>

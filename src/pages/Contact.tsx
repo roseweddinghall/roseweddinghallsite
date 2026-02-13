@@ -17,7 +17,7 @@ const Contact: React.FC = () => {
       name: "Yenimahalle Şubesi",
       address: "İvedik OSB, 1439. Sk. No: 1 İç Kapı: 121",
       city: "06378 Yenimahalle/Ankara",
-      phone: "+90 546 624 25 95",
+      phone: "+90 553 394 92 00",
       email: "roseweddingivedik@gmail.com",
       mapSrc: "https://www.google.com/maps?q=1439.+Sokak+Rose+Wedding+Hall+İvedik&output=embed&zoom=17"
     }
@@ -26,7 +26,7 @@ const Contact: React.FC = () => {
   return (
     <div className="min-h-screen bg-white font-iso">
       {/* Hero Section */}
-      <section className="pt-32 pb-16 lg:pt-48 lg:pb-24 bg-gradient-to-br from-mint-softest via-mint-light to-white">
+      <section className="pt-32 pb-16 lg:pt-48 lg:pb-24 bg-gradient-to-br from-rose-50/50 via-white to-rose-50/30 border-b border-rose-100/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <div className="flex items-center gap-2 mb-6">
@@ -35,7 +35,7 @@ const Contact: React.FC = () => {
                 İLETİŞİM
               </span>
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-medium text-gray-900 leading-tight mb-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-medium text-gradient leading-tight mb-6">
               Sizinle iletişime geçmek için sabırsızlanıyoruz.
             </h1>
             <p className="text-lg text-gray-600 leading-relaxed">
@@ -55,7 +55,7 @@ const Contact: React.FC = () => {
                 {/* Branch Info */}
                 <div className="p-6 lg:p-8">
                   <div className="flex items-center gap-2 mb-4">
-                    <span className="w-2 h-2 bg-mint-400 rounded-sm"></span>
+                    <span className="w-2 h-2 bg-primary rounded-sm shadow-sm"></span>
                     <span className="text-xs font-iso font-medium uppercase tracking-wider text-gray-600">
                       ŞUBE
                     </span>

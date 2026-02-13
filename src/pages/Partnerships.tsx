@@ -31,7 +31,7 @@ const Partnerships: React.FC = () => {
       id: 9,
       name: "Batuhan Ağca",
       category: "Fotoğraf / Video",
-      description: "Düğün salonundaki coşkudan dış çekimin büyüleyici atmosferine kadar; en mutlu gününüzü sinematik düğün klipleri ve eşsiz karelerle ölümsüzleştiren profesyonel bir bakış.",
+      description: "Amore Salon'un ev sahipliği yaptığı coşkudan dış çekimin büyüleyici atmosferine kadar; en mutlu gününüzü sinematik düğün klipleri ve eşsiz karelerle ölümsüzleştiren profesyonel bir bakış.",
       phone: "0545 761 60 96",
       website: "",
       instagram: "@batuhanagcaphotographer",
@@ -97,6 +97,16 @@ const Partnerships: React.FC = () => {
       logo: "images/partners/flexakademi.jpg"
     },
     {
+      id: 12,
+      name: "Move Medya",
+      category: "Fotoğraf / Video",
+      description: "Angel Salon’un seçkin ambiyansında gerçekleşen davetlerde, her detayı incelikle işleyen, yüksek görüntü kalitesi ve estetik bir dille kurgulanmış görsel bir şölen. En özel anların, hassasiyet ve ustalıkla ebedi birer sanat eserine dönüştüğü, Move Medya kalitesiyle sunulan prestijli bir hizmet.",
+      phone: "0542 359 93 43",
+      website: "",
+      instagram: "@move.medya",
+      logo: "/images/partners/Movemedya.jpg"
+    },
+    {
       id: 4,
       name: "Şeyda Çakır",
       category: "Gelinlik",
@@ -131,7 +141,7 @@ const Partnerships: React.FC = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="pt-32 pb-16 lg:pt-48 lg:pb-24 bg-gradient-to-br from-mint-softest via-mint-light to-white">
+      <section className="pt-32 pb-16 lg:pt-48 lg:pb-24 bg-gradient-to-br from-rose-50/50 via-white to-rose-50/30 border-b border-rose-100/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <div className="flex items-center gap-2 mb-6">
@@ -140,7 +150,7 @@ const Partnerships: React.FC = () => {
                 İŞ BİRLİKLERİ
               </span>
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-medium text-gray-900 leading-tight mb-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-medium text-gradient leading-tight mb-6">
               En iyi ortaklarla, en güzel anlar için.
             </h1>
             <p className="text-lg text-gray-600 leading-relaxed">

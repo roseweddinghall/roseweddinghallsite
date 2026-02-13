@@ -71,7 +71,7 @@ const Footer: React.FC = () => {
                   İvedik OSB, 1439. Sk. No: 1<br />
                   İç Kapı: 121, 06378 Yenimahalle/Ankara
                 </p>
-                <p className="text-gray-500 font-iso text-sm mt-2">+90 546 624 25 95</p>
+                <p className="text-gray-500 font-iso text-sm mt-2">+90 553 394 92 00</p>
               </div>
             </div>
           </div>

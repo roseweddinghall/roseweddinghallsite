@@ -81,12 +81,12 @@ const Home: React.FC = () => {
   return (
     <div className="min-h-screen bg-white font-iso">
       {/* Hero Section - Isomorphic Labs Style */}
-      <section className="relative bg-gradient-to-br from-mint-softest via-mint-light to-mint-soft overflow-hidden">
+      <section className="relative bg-gradient-to-br from-rose-50/50 via-white to-rose-50/30 border-b border-rose-100/50 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 pt-32 pb-16 lg:pt-48 lg:pb-24">
             {/* Left Content */}
             <div className="lg:col-span-5 flex flex-col justify-center">
-              <h1 className="text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-display font-medium leading-tight mb-6 bg-gradient-to-r from-mint-500 to-mint-300 bg-clip-text text-transparent">
+              <h1 className="text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-display font-medium leading-tight mb-6 text-gradient">
                 Hayalinizdeki Düğün
                 <br />
                 Burada Başlıyor
@@ -110,7 +110,7 @@ const Home: React.FC = () => {
       <section className="py-8 lg:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-medium bg-gradient-to-r from-mint-500 to-mint-300 bg-clip-text text-transparent">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-medium text-gradient">
               Özel Anlardan Kareler
             </h2>
           </div>
@@ -129,7 +129,7 @@ const Home: React.FC = () => {
       <section ref={salonSectionRef} className="py-4 lg:py-8 bg-white opacity-0">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 lg:mb-16">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-medium mb-4 bg-gradient-to-r from-mint-500 to-mint-300 bg-clip-text text-transparent">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-medium mb-4 text-gradient">
               Salonlarımız
             </h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
@@ -156,7 +156,7 @@ const Home: React.FC = () => {
                     ERYAMAN
                   </span>
                 </div>
-                <h3 className="text-2xl lg:text-3xl font-display font-medium mb-3 bg-gradient-to-r from-mint-500 to-mint-300 bg-clip-text text-transparent transition-all duration-300">
+                <h3 className="text-2xl lg:text-3xl font-display font-medium mb-3 text-gradient transition-all duration-300">
                   Etimesgut
                 </h3>
                 <p className="text-gray-600 mb-4">
@@ -188,7 +188,7 @@ const Home: React.FC = () => {
                     İVEDİK
                   </span>
                 </div>
-                <h3 className="text-2xl lg:text-3xl font-display font-medium mb-3 bg-gradient-to-r from-mint-500 to-mint-300 bg-clip-text text-transparent transition-all duration-300">
+                <h3 className="text-2xl lg:text-3xl font-display font-medium mb-3 text-gradient transition-all duration-300">
                   Yenimahalle
                 </h3>
                 <p className="text-gray-600 mb-4">
@@ -213,30 +213,39 @@ const Home: React.FC = () => {
           <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
             <IsoCard
               label="YORUMLAR"
-              title="Mutluluğa 'Evet' diyen çiftlerimizin deneyimleri."
-              className="hover:-translate-y-2 hover:shadow-xl hover:border-mint-200"
+              gradientBorder={true}
+              className="hover:-translate-y-2 hover:shadow-xl transition-all duration-500"
             >
-              <IsoButton to="/yorumlar" size="sm" className="!border-mint-500 !text-mint-600">
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-display font-medium mb-6 text-gradient">
+                Mutluluğa 'Evet' diyen çiftlerimizin deneyimleri.
+              </h3>
+              <IsoButton to="/yorumlar" size="sm" className="btn-solid-gradient">
                 TÜM YORUMLAR
               </IsoButton>
             </IsoCard>
 
             <IsoCard
               label="GALERİ"
-              title="Düğünlerimizden unutulmaz kareler ve anılar."
-              className="hover:-translate-y-2 hover:shadow-xl hover:border-mint-200"
+              gradientBorder={true}
+              className="hover:-translate-y-2 hover:shadow-xl transition-all duration-500"
             >
-              <IsoButton to="/galeri" size="sm" className="!border-mint-500 !text-mint-600">
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-display font-medium mb-6 text-gradient">
+                Düğünlerimizden unutulmaz kareler ve anılar.
+              </h3>
+              <IsoButton to="/galeri" size="sm" className="btn-solid-gradient">
                 GALERİ
               </IsoButton>
             </IsoCard>
 
             <IsoCard
               label="İŞ BİRLİKLERİ"
-              title="Özel gün partnerlerimizle tanışın."
-              className="hover:-translate-y-2 hover:shadow-xl hover:border-mint-200"
+              gradientBorder={true}
+              className="hover:-translate-y-2 hover:shadow-xl transition-all duration-500"
             >
-              <IsoButton to="/is-birlikleri" size="sm" className="!border-mint-500 !text-mint-600">
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-display font-medium mb-6 text-gradient">
+                Özel gün partnerlerimizle tanışın.
+              </h3>
+              <IsoButton to="/is-birlikleri" size="sm" className="btn-solid-gradient">
                 PARTNERLER
               </IsoButton>
             </IsoCard>
@@ -278,14 +287,12 @@ const Home: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-8">
             {/* FAQ Card */}
-            <div className="bg-white gradient-border rounded-lg p-8 lg:p-12">
-              <div className="flex items-center gap-2 mb-4">
-                <span className="w-2 h-2 bg-gray-800 rounded-sm"></span>
-                <span className="text-xs font-iso font-semibold uppercase tracking-wider text-mint-600">
-                  SSS
-                </span>
-              </div>
-              <h3 className="text-2xl lg:text-3xl font-display font-medium mb-4 bg-gradient-to-r from-mint-500 to-mint-300 bg-clip-text text-transparent">
+            <IsoCard
+              label="SSS"
+              gradientBorder={true}
+              className="lg:p-12"
+            >
+              <h3 className="text-2xl lg:text-3xl font-display font-medium mb-4 text-gradient">
                 Düğününüze dair merak ettikleriniz
               </h3>
               <p className="text-gray-600 mb-6">
@@ -294,7 +301,7 @@ const Home: React.FC = () => {
               <IsoButton to="/sikca-sorulan-sorular" className="btn-solid-gradient">
                 TÜM SORULAR
               </IsoButton>
-            </div>
+            </IsoCard>
 
             {/* Instagram Card */}
             <div className="bg-gradient-to-br from-pink-50 to-purple-50 border border-iso-border rounded-lg p-8 lg:p-12">

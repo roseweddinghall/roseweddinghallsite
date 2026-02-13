@@ -29,7 +29,7 @@ const About: React.FC = () => {
   return (
     <div className="min-h-screen bg-white font-iso">
       {/* Hero Section */}
-      <section className="pt-32 pb-4 lg:pt-48 lg:pb-6 bg-gradient-to-br from-mint-softest via-mint-light to-white overflow-hidden">
+      <section className="pt-32 pb-4 lg:pt-48 lg:pb-6 bg-gradient-to-br from-rose-50/50 via-white to-rose-50/30 border-b border-rose-100/50 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div>
@@ -86,8 +86,8 @@ const About: React.FC = () => {
                 NEDEN BİZ?
               </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-medium leading-tight max-w-3xl mx-auto text-gradient">
-              Hayalinizdeki düğünü gerçeğe dönüştürmek için
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-medium leading-tight max-w-3xl mx-auto text-gray-900">
+              Hayalinizdeki düğünü <span className="text-gradient">gerçeğe</span> dönüştürmek için
             </h2>
           </div>
 
@@ -95,7 +95,7 @@ const About: React.FC = () => {
             {whyUsFeatures.map((feature, index) => (
               <div
                 key={index}
-                className="bg-gradient-to-br from-mint-softest/50 to-white border border-iso-border rounded-lg p-6 lg:p-8 hover:-translate-y-2 hover:shadow-xl hover:border-mint-200 transition-all duration-300 group"
+                className="bg-white border border-iso-border rounded-lg p-6 lg:p-8 hover:-translate-y-2 hover:shadow-xl hover:border-gray-300 transition-all duration-300 group"
               >
                 <div className="flex items-center gap-2 mb-3">
                   <span className="w-1.5 h-1.5 bg-[#a4585a] rounded-full opacity-50 group-hover:opacity-100 transition-opacity"></span>
@@ -116,15 +116,15 @@ const About: React.FC = () => {
       <section className="py-16 lg:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
-            <div className="bg-gradient-to-br from-mint-softest to-mint-light border border-iso-border rounded-lg p-8 lg:p-12">
+            <div className="bg-gray-50 border border-gray-100 rounded-lg p-8 lg:p-12">
               <div className="flex items-center gap-2 mb-4">
-                <span className="w-2 h-2 bg-gray-800 rounded-sm"></span>
-                <span className="text-xs font-iso font-medium uppercase tracking-wider text-gray-600">
+                <span className="w-2 h-2 bg-primary rounded-sm shadow-sm"></span>
+                <span className="text-xs font-iso font-semibold uppercase tracking-widest text-[#a4585a]">
                   MİSYONUMUZ
                 </span>
               </div>
               <h3 className="text-2xl lg:text-3xl font-display font-medium text-gray-900 mb-4">
-                Hayalleri gerçeğe dönüştürmek
+                Hayalleri <span className="text-gradient">gerçeğe</span> dönüştürmek
               </h3>
               <p className="text-gray-600 leading-relaxed">
                 Her düğünün eşsiz olduğuna inanarak, çiftlerin hayallerindeki düğünü
@@ -132,15 +132,15 @@ const About: React.FC = () => {
                 profesyonel bir şekilde sunmak.
               </p>
             </div>
-            <div className="bg-gradient-to-br from-mint-light to-mint-soft border border-iso-border rounded-lg p-8 lg:p-12">
+            <div className="bg-gray-100/50 border border-gray-100 rounded-lg p-8 lg:p-12">
               <div className="flex items-center gap-2 mb-4">
-                <span className="w-2 h-2 bg-gray-800 rounded-sm"></span>
-                <span className="text-xs font-iso font-medium uppercase tracking-wider text-gray-600">
+                <span className="w-2 h-2 bg-primary rounded-sm shadow-sm"></span>
+                <span className="text-xs font-iso font-semibold uppercase tracking-widest text-[#a4585a]">
                   VİZYONUMUZ
                 </span>
               </div>
               <h3 className="text-2xl lg:text-3xl font-display font-medium text-gray-900 mb-4">
-                Sektörde lider olmak
+                Sektörde <span className="text-gradient">lider</span> olmak
               </h3>
               <p className="text-gray-600 leading-relaxed">
                 Türkiye'nin düğün organizasyonu alanındaki lider markası olmak,

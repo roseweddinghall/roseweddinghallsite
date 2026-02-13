@@ -60,7 +60,7 @@ Bu rezervasyon talebi Rose Wedding Hall web sitesinden gönderilmiştir.
   return (
     <div className="min-h-screen bg-white font-iso">
       {/* Hero Section */}
-      <section className="pt-32 pb-16 lg:pt-48 lg:pb-24 bg-gradient-to-br from-mint-softest via-mint-light to-white">
+      <section className="pt-32 pb-16 lg:pt-48 lg:pb-24 bg-gradient-to-br from-rose-50/50 via-white to-rose-50/30 border-b border-rose-100/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <div className="flex items-center gap-2 mb-6">
@@ -69,7 +69,7 @@ Bu rezervasyon talebi Rose Wedding Hall web sitesinden gönderilmiştir.
                 REZERVASYON
               </span>
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-medium text-gray-900 leading-tight mb-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-medium text-gradient leading-tight mb-6">
               Hayalinizdeki düğün için ilk adımı atın.
             </h1>
             <p className="text-lg text-gray-600 leading-relaxed">
@@ -248,7 +248,7 @@ Bu rezervasyon talebi Rose Wedding Hall web sitesinden gönderilmiştir.
               {/* Submit */}
               <button
                 type="submit"
-                className="w-full inline-flex items-center justify-center gap-3 px-8 py-4 bg-gray-900 text-white text-sm font-iso font-medium uppercase tracking-wider rounded-full hover:bg-black transition-colors duration-300"
+                className="w-full inline-flex items-center justify-center gap-3 px-8 py-4 btn-solid-gradient text-white text-sm font-iso font-medium uppercase tracking-widest rounded-full hover:shadow-lg transition-all duration-300"
               >
                 <span>Rezervasyon Talebi Gönder</span>
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

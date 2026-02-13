@@ -42,7 +42,7 @@ const Gallery: React.FC = () => {
   return (
     <div className="min-h-screen bg-white font-iso">
       {/* Hero Section */}
-      <section className="pt-32 pb-16 lg:pt-48 lg:pb-24 bg-gradient-to-br from-mint-softest via-mint-light to-white">
+      <section className="pt-32 pb-16 lg:pt-48 lg:pb-24 bg-gradient-to-br from-rose-50/50 via-white to-rose-50/30 border-b border-rose-100/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <div className="flex items-center gap-2 mb-6">
@@ -51,7 +51,7 @@ const Gallery: React.FC = () => {
                 GALERİ
               </span>
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-medium text-gray-900 leading-tight mb-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-medium text-gradient leading-tight mb-6">
               Unutulmaz anlardan öne çıkan kareler.
             </h1>
             <p className="text-lg text-gray-600 leading-relaxed">
@@ -99,9 +99,9 @@ const Gallery: React.FC = () => {
             <div className="text-center py-6 lg:py-10 animate-fade-in">
               <div className="bg-iso-light border border-iso-border rounded-lg p-12 lg:p-16 max-w-2xl mx-auto flex flex-col items-center">
                 <div className="w-20 h-20 mb-8 relative">
-                  <div className="absolute inset-0 bg-mint-300 rounded-full opacity-20 animate-ping"></div>
+                  <div className="absolute inset-0 bg-primary/20 rounded-full opacity-20 animate-ping"></div>
                   <div className="relative w-full h-full bg-white border border-iso-border rounded-2xl flex items-center justify-center shadow-lg">
-                    <div className="w-8 h-8 border-2 border-mint-500 border-t-transparent rounded-full animate-spin"></div>
+                    <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
                   </div>
                 </div>
                 <h2 className="text-2xl lg:text-3xl font-display font-medium text-gradient mb-4">
@@ -111,9 +111,9 @@ const Gallery: React.FC = () => {
                   En özel anlardan derlediğimiz seçkimiz çok yakında tüm detaylarıyla burada olacak.
                 </p>
                 <div className="mt-8 flex gap-2">
-                  <div className="w-1.5 h-1.5 bg-mint-400 rounded-full animate-bounce" style={{ animationDelay: '0s' }}></div>
-                  <div className="w-1.5 h-1.5 bg-mint-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                  <div className="w-1.5 h-1.5 bg-mint-400 rounded-full animate-bounce" style={{ animationDelay: '0.4s' }}></div>
+                  <div className="w-1.5 h-1.5 bg-primary/40 rounded-full animate-bounce" style={{ animationDelay: '0s' }}></div>
+                  <div className="w-1.5 h-1.5 bg-primary/40 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                  <div className="w-1.5 h-1.5 bg-primary/40 rounded-full animate-bounce" style={{ animationDelay: '0.4s' }}></div>
                 </div>
               </div>
             </div>

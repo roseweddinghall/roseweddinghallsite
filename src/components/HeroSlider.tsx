@@ -20,31 +20,30 @@ const HeroSlider: React.FC<HeroSliderProps> = ({
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [preloadedSlides, setPreloadedSlides] = useState<Set<number>>(new Set([0]));
 
-  // Preload all slides
+  // Preload only first few slides to avoid network congestion
   useEffect(() => {
     if (slides.length === 0) return;
 
-    slides.forEach((slide, index) => {
+    // Sadece ilk 2 görseli hemen preload et
+    slides.slice(0, 2).forEach((slide, index) => {
       const link = document.createElement('link');
       link.rel = 'preload';
       link.as = 'image';
       link.href = slide.image;
       if ('fetchPriority' in link) {
-        (link as any).fetchPriority = index < 2 ? 'high' : 'auto';
+        (link as any).fetchPriority = 'high';
       }
       document.head.appendChild(link);
 
       const img = new Image();
       img.src = slide.image;
       if ('fetchPriority' in img) {
-        (img as any).fetchPriority = index < 2 ? 'high' : 'auto';
+        (img as any).fetchPriority = 'high';
       }
-      if (index < 2) {
-        img.decode().catch(() => { });
-      }
+      img.decode().catch(() => { });
     });
 
-    setPreloadedSlides(new Set(slides.map((_, i) => i)));
+    setPreloadedSlides(new Set([0, 1]));
   }, [slides]);
 
   useEffect(() => {
