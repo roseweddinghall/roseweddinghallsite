@@ -1,21 +1,3 @@
-import React, { useState } from 'react';
-import OptimizedImage from '../components/OptimizedImage';
-
-const galleryImages = [
-  { id: 1, src: '/images/amore1.JPG', alt: 'Yenimahalle salonu görseli 1' },
-  { id: 2, src: '/images/amore2.JPG', alt: 'Yenimahalle salonu görseli 2' },
-  { id: 3, src: '/images/amore3.JPG', alt: 'Yenimahalle salonu görseli 3' },
-  { id: 4, src: '/images/amore4.JPG', alt: 'Yenimahalle salonu görseli 4' },
-  { id: 5, src: '/images/IMG_5499.JPG', alt: 'Yenimahalle salonu görseli 5' },
-  { id: 6, src: '/images/IMG_5500.JPG', alt: 'Yenimahalle salonu görseli 6' },
-  { id: 7, src: '/images/IMG_5501.JPG', alt: 'Yenimahalle salonu görseli 7' },
-  { id: 8, src: '/images/IMG_5502.JPG', alt: 'Yenimahalle salonu görseli 8' },
-  { id: 9, src: '/images/IMG_5503.JPG', alt: 'Yenimahalle salonu görseli 9' },
-  { id: 10, src: '/images/IMG_5504.JPG', alt: 'Yenimahalle salonu görseli 10' },
-  { id: 11, src: '/images/IMG_5505.JPG', alt: 'Yenimahalle salonu görseli 11' },
-  { id: 12, src: '/images/5A6A0527.JPG', alt: 'Yenimahalle salonu görseli 12' }
-];
-
 const Yenimahalle: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
@@ -271,33 +253,6 @@ const Yenimahalle: React.FC = () => {
         </div>
       </section>
 
-      {selectedImage && (
-        <div
-          className="fixed inset-0 z-[9999] bg-black/80 backdrop-blur-sm flex items-center justify-center p-6"
-          onClick={() => setSelectedImage(null)}
-        >
-          <div className="relative max-w-5xl w-full" onClick={(e) => e.stopPropagation()}>
-            <button
-              type="button"
-              onClick={() => setSelectedImage(null)}
-              className="absolute -top-10 right-0 text-white hover:text-primary transition-colors"
-              aria-label="Kapat"
-            >
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-            <OptimizedImage
-              src={selectedImage}
-              alt="Yenimahalle salon görseli"
-              className="w-full h-full rounded-3xl shadow-2xl"
-              objectFit="contain"
-              loading="eager"
-              placeholder="blur"
-            />
-          </div>
-        </div>
-      )}
     </div>
   );
 };
