@@ -1,6 +1,6 @@
-const Yenimahalle: React.FC = () => {
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+import React from 'react';
 
+const Yenimahalle: React.FC = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
